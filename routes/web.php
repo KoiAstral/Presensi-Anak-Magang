@@ -24,14 +24,11 @@ Route::get('/', function () {
 Route::get('/login', [Clogin::class, 'index'])->name('login'); // Show login form
 Route::post('/login', [Clogin::class, 'login_proses'])->name('login.proses'); // Handle login submission
 
-// Home route (after successful login)
-Route::get('/home', function () {
-    return view('home.home'); // Correctly referencing the file in the 'home' folder
-})->name('home')->middleware('auth');
-
-
+// Registration routes
 Route::get('/register', [Cregister::class, 'index'])->name('register'); // Show the registration form
-Route::post('/register', [Cregister::class, 'register'])->name('register.proses'); // Handle form submission
+Route::post('/register', [Cregister::class, 'register'])->name('register.proses'); // Handle registration submission
 
-
-
+// Dashboard route (after successful login)
+Route::get('/dashboard', function () {
+    return view('dashboard'); // Redirect to dashboard.blade.php
+})->name('dashboard')->middleware('auth');
