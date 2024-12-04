@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
@@ -26,67 +26,47 @@
                     Presensi PKL Sekretariat DPRD Kab. Banjar
                 </p>
             </div>
-            <!-- Registration Form -->
-            <form method="POST" action="{{ route('register.proses') }}">
-                @csrf <!-- CSRF token to protect against cross-site request forgery -->
-
-                <!-- Nama Input -->
+            <form>
                 <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                     <img src="/images/nama.png" alt="Nama Logo" class="h-6 w-6 mr-2">
-                    <input type="text" name="nama" placeholder="Nama" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none" required>
+                    <input type="text" placeholder="Nama" 
+                        class="w-full bg-transparent text-gray-700 focus:outline-none">
                 </div>
-                
-                <!-- Jurusan Input -->
                 <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                     <img src="/images/jurusan.png" alt="Jurusan Logo" class="h-6 w-6 mr-2">
-                    <input type="text" name="jurusan" placeholder="Jurusan" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none" required>
+                    <input type="text" placeholder="Jurusan" 
+                        class="w-full bg-transparent text-gray-700 focus:outline-none">
                 </div>
-
-                <!-- Kelas Input -->
                 <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                     <img src="/images/kelas.png" alt="Kelas Logo" class="h-6 w-6 mr-2">
-                    <input type="text" name="kelas" placeholder="Kelas" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none" required>
+                    <input type="text" placeholder="Kelas" 
+                        class="w-full bg-transparent text-gray-700 focus:outline-none">
                 </div>
-
-                <!-- Asal Sekolah Input -->
                 <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                     <img src="/images/asal.png" alt="Asal Sekolah Logo" class="h-6 w-6 mr-2">
-                    <input type="text" name="asal_sekolah" placeholder="Asal Sekolah" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none" required>
+                    <input type="text" placeholder="Asal Sekolah" 
+                        class="w-full bg-transparent text-gray-700 focus:outline-none">
                 </div>
-
-                <!-- NISN Input -->
                 <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                     <img src="/images/nisn.png" alt="NISN Logo" class="h-6 w-6 mr-2">
-                    <input type="text" name="nisn" placeholder="NISN" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none" required>
+                    <input type="text" placeholder="NISN" 
+                        class="w-full bg-transparent text-gray-700 focus:outline-none">
                 </div>
-
-                <!-- Password Input -->
                 <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                     <img src="/images/password.png" alt="Password Logo" class="h-6 w-6 mr-2">
-                    <input type="password" name="password" placeholder="Password" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none" required>
+                    <input type="password" placeholder="Password" 
+                        class="w-full bg-transparent text-gray-700 focus:outline-none">
                 </div>
-
-                <!-- Confirm Password Input -->
                 <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                     <img src="/images/password2.png" alt="Konfirmasi Password Logo" class="h-6 w-6 mr-2">
-                    <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none" required>
+                    <input type="password" placeholder="Konfirmasi Password" 
+                        class="w-full bg-transparent text-gray-700 focus:outline-none">
                 </div>
-
-                <!-- Submit Button -->
                 <button type="submit"
                         class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2">
-                    Register
+                        Register
                     <img src="/images/login.png" alt="Login Logo" class="h-6 w-6">
                 </button>
-
-                <!-- Login Link -->
                 <div class="text-center mt-5">
                     <p class="text-gray-500">
                         Sudah memiliki akun? 
@@ -94,8 +74,6 @@
                     </p>
                 </div>
             </form>
-            <!-- End of Registration Form -->
         </div>
     </div>
 </body>
-</html>
