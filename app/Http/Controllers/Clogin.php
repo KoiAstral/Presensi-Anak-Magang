@@ -23,25 +23,24 @@ class Clogin extends Controller
     {
         // Validate the request input
         $request->validate([
-            'email' => 'required|email', // Ensure email is provided and valid
-            'password' => 'required',   // Ensure password is provided
+            'nisn' => 'required',      // Ensure NISN is provided
+            'password' => 'required', // Ensure password is provided
         ], [
-            'email.required' => 'Email wajib diisi',
-            'email.email' => 'Format email tidak valid',
+            'nisn.required' => 'NISN wajib diisi',
             'password.required' => 'Password wajib diisi',
         ]);
 
-        // Attempt to authenticate using email and password
-        $credentials = $request->only('email', 'password');
+        // Attempt to authenticate using NISN and password
+        $credentials = $request->only('nisn', 'password');
 
         if (Auth::attempt($credentials)) {
-            // If authentication is successful, redirect to the home page
-            return redirect()->route('home');
+            // If authentication is successful, redirect to the dashboard
+            return redirect()->route('dashboard');
         }
 
         // If authentication fails, redirect back with an error
         return redirect()->route('login')->withErrors([
-            'email' => 'Email atau password salah',
+            'nisn' => 'NISN atau password salah',
         ]);
     }
 }
