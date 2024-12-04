@@ -26,20 +26,21 @@
                     Presensi PKL Sekretariat DPRD Kab. Banjar
                 </p>
             </div>
-            <form>
+            <form method="POST" action="{{ route('login.proses') }}">
+                @csrf <!-- Laravel CSRF protection -->
                 <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                     <img src="/images/nisn.png" alt="NISN Logo" class="h-6 w-6 mr-2">
-                    <input type="text" placeholder="NISN" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
+                    <input type="text" name="nisn" placeholder="NISN" 
+                        class="w-full bg-transparent text-gray-700 focus:outline-none" required>
                 </div>
                 <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                     <img src="/images/password.png" alt="Password Logo" class="h-6 w-6 mr-2">
-                    <input type="password" placeholder="Password" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
+                    <input type="password" name="password" placeholder="Password" 
+                        class="w-full bg-transparent text-gray-700 focus:outline-none" required>
                 </div>
                 <button type="submit"
                         class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2">
-                        <a href="/dashboard">Login</a>
+                    Login
                     <img src="/images/login.png" alt="Login Logo" class="h-6 w-6">
                 </button>
                 <div class="text-center mt-5">
@@ -52,3 +53,4 @@
         </div>
     </div>
 </body>
+</html>
