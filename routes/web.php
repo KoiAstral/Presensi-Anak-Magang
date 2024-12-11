@@ -21,14 +21,14 @@ Route::get('/', function () {
 });
 
 // Login routes
-Route::get('/login', [Clogin::class, 'index'])->name('login'); // Show login form
-Route::post('/login', [Clogin::class, 'login_proses'])->name('login.proses'); // Handle login submission
+Route::get('/login', [Clogin::class, 'index'])->name('login'); 
+Route::post('/login', [Clogin::class, 'login_proses'])->name('login.proses'); 
 
 // Registration routes
-Route::get('/register', [Cregister::class, 'index'])->name('register'); // Show the registration form
-Route::post('/register', [Cregister::class, 'register'])->name('register.proses'); // Handle registration submission
+Route::get('/register', [Cregister::class, 'index'])->name('register'); 
+Route::post('/register', [Cregister::class, 'register'])->name('register.proses'); 
 
-// Dashboard route (after successful login)
+
 Route::get('/dashboard', function () {
-    return view('dashboard'); // Redirect to dashboard.blade.php
+    return view('dashboard'); 
 })->name('dashboard')->middleware('auth');
