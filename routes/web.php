@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Clogin; // Import the Clogin controller
+use App\Http\Controllers\Cregister;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,19 +15,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Default route
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('login'); 
-});
-Route::get('/register', function () {
-    return view('register'); 
-});
-Route::get('/dashboard_user', function () {
-    return view('dashboard_user'); 
-});
-Route::get('/dashboard_admin', function () {
-    return view('dashboard_admin'); 
-});
+// Login routes
+Route::get('/login', [Clogin::class, 'index'])->name('login'); 
+Route::post('/login', [Clogin::class, 'login_proses'])->name('login.proses'); 
+
+// Registration routes
+Route::get('/register', [Cregister::class, 'index'])->name('register'); 
+Route::post('/register', [Cregister::class, 'register'])->name('register.proses'); 
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard'); 
+})->name('dashboard')->middleware('auth');

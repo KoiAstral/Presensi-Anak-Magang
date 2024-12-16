@@ -27,45 +27,25 @@
                 </p>
             </div>
             <form>
-                <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/nama.png" alt="Nama Logo" class="h-6 w-6 mr-2">
-                    <input type="text" placeholder="Nama Lengkap" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
-                </div>
-                <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                     <img src="/images/email.png" alt="Email Logo" class="h-6 w-6 mr-2">
                     <input type="text" placeholder="Email" 
                         class="w-full bg-transparent text-gray-700 focus:outline-none">
                 </div>
-                <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/nisn.png" alt="NISN Logo" class="h-6 w-6 mr-2">
-                    <input type="text" placeholder="NISN/NIM" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
-                </div>
-                <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/asal.png" alt="Asal Sekolah Logo" class="h-6 w-6 mr-2">
-                    <input type="text" placeholder="Sekolah/Universitas" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
-                </div>
-                <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                     <img src="/images/password2.png" alt="Password Logo" class="h-6 w-6 mr-2">
                     <input type="password" placeholder="Password" 
                         class="w-full bg-transparent text-gray-700 focus:outline-none">
                 </div>
-                <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/password.png" alt="Konfirmasi Password Logo" class="h-6 w-6 mr-2">
-                    <input type="password" placeholder="Konfirmasi Password" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
-                </div>
                 <button type="submit"
                         class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2">
-                        Register
+                        <a href="/dashboard_user">Login</a>
                     <img src="/images/login.png" alt="Login Logo" class="h-6 w-6">
                 </button>
                 <div class="text-center mt-5">
                     <p class="text-gray-500">
-                        Sudah memiliki akun? 
-                        <a href="/login" class="text-[#396E66] font-normal underline">Login</a>
+                        Belum memiliki akun? 
+                        <a href="/register" class="text-[#396E66] font-normal underline">Buat Akun</a>
                     </p>
                 </div>
             </form>
