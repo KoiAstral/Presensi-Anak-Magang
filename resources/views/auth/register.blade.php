@@ -19,46 +19,41 @@
 </head>
 <body class="bg-cover bg-center bg-no-repeat" style="background-image: url('/images/gedung.jpg');">
     <div class="flex items-center justify-center min-h-screen bg-black/50">
-        <div class="bg-white rounded-lg p-8 w-[500px]" style="box-shadow: 0 4px 10px #396E66;">
+        <div class="bg-white rounded-lg p-8 w-[550px]" style="box-shadow: 0 4px 10px #396E66;">
             <div class="flex flex-col items-center mb-6">
                 <img src="/images/dprd.png" alt="Logo" class="h-36">
                 <p class="text-center text-lg font-bold mt-4">
-                    Presensi PKL Sekretariat DPRD Kab. Banjar
+                    Presensi Magang Sekretariat DPRD Kab. Banjar
                 </p>
             </div>
             <form>
                 <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                     <img src="/images/nama.png" alt="Nama Logo" class="h-6 w-6 mr-2">
-                    <input type="text" placeholder="Nama" 
+                    <input type="text" placeholder="Nama Lengkap" 
                         class="w-full bg-transparent text-gray-700 focus:outline-none">
                 </div>
                 <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/jurusan.png" alt="Jurusan Logo" class="h-6 w-6 mr-2">
-                    <input type="text" placeholder="Jurusan" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
-                </div>
-                <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/kelas.png" alt="Kelas Logo" class="h-6 w-6 mr-2">
-                    <input type="text" placeholder="Kelas" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
-                </div>
-                <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/asal.png" alt="Asal Sekolah Logo" class="h-6 w-6 mr-2">
-                    <input type="text" placeholder="Asal Sekolah" 
+                    <img src="/images/email.png" alt="Email Logo" class="h-6 w-6 mr-2">
+                    <input type="text" placeholder="Email" 
                         class="w-full bg-transparent text-gray-700 focus:outline-none">
                 </div>
                 <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                     <img src="/images/nisn.png" alt="NISN Logo" class="h-6 w-6 mr-2">
-                    <input type="text" placeholder="NISN" 
+                    <input type="text" placeholder="NISN/NIM" 
                         class="w-full bg-transparent text-gray-700 focus:outline-none">
                 </div>
                 <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/password.png" alt="Password Logo" class="h-6 w-6 mr-2">
+                    <img src="/images/asal.png" alt="Asal Sekolah Logo" class="h-6 w-6 mr-2">
+                    <input type="text" placeholder="Sekolah/Universitas" 
+                        class="w-full bg-transparent text-gray-700 focus:outline-none">
+                </div>
+                <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                    <img src="/images/password2.png" alt="Password Logo" class="h-6 w-6 mr-2">
                     <input type="password" placeholder="Password" 
                         class="w-full bg-transparent text-gray-700 focus:outline-none">
                 </div>
                 <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/password2.png" alt="Konfirmasi Password Logo" class="h-6 w-6 mr-2">
+                    <img src="/images/password.png" alt="Konfirmasi Password Logo" class="h-6 w-6 mr-2">
                     <input type="password" placeholder="Konfirmasi Password" 
                         class="w-full bg-transparent text-gray-700 focus:outline-none">
                 </div>
