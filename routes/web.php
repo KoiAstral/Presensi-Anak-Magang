@@ -30,5 +30,13 @@ Route::post('/register', [Cregister::class, 'register'])->name('register.proses'
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard'); 
+
+    $user = auth()->user();
+
+    if($user->role == 'admin') {
+        return view('home.dashboard_admin');
+    } else {
+        return view('home.dashboard_user');
+    }
+
 })->name('dashboard')->middleware('auth');
