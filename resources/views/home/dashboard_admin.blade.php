@@ -14,36 +14,37 @@
 </head>
 <body class="bg-gray-100">
     <div class="relative h-screen overflow-hidden">
-    <div id="sidebar" class="bg-black text-white w-64 h-full fixed top-0 left-0 -translate-x-full transition-transform z-40 flex flex-col justify-between">
-        <div>
-            <div class="px-4 pt-3 pb-2 flex items-center border-b border-gray-300">
-                <img src="/images/username.png" alt="User Icon" class="h-10 w-10 mr-4">
-                <span class="text-lg font-semibold">Username</span>
+        <!-- Sidebar -->
+        <div id="sidebar" class="bg-black text-white w-64 h-full fixed top-0 left-0 -translate-x-full transition-transform z-40 flex flex-col justify-between">
+            <div>
+                <div class="px-4 pt-3 pb-2 flex items-center border-b border-gray-300">
+                    <img src="/images/username.png" alt="User Icon" class="h-10 w-10 mr-4">
+                    <span class="text-lg font-semibold">Username</span>
+                </div>
+                <div class="mt-4">
+                    <a href="/data-siswa" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                        <img src="/images/data.png" alt="Data Siswa Icon" class="h-6 w-6 mr-4">
+                        <span>Data Siswa/i Magang</span>
+                    </a>
+                    <a href="/riwayat-absensi" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                        <img src="/images/riwayat.png" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
+                        <span>Riwayat Absensi</span>
+                    </a>
+                </div>
             </div>
-            <div class="border-1"></div>
-            <div class="mt-4">
-                <a href="/data-siswa" class="flex items-center px-4 py-2 hover:bg-gray-700">
-                    <img src="/images/data.png" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
-                    <span>Data Siswa/i Magang</span>
-                </a>
-                <a href="/riwayat-absensi" class="flex items-center px-4 py-2 hover:bg-gray-700">
-                    <img src="/images/riwayat.png" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
-                    <span>Riwayat Absensi</span>
-                </a>
+
+            <div class="p-4">
+                <button id="logoutButton" class="flex items-center">
+                    <img src="/images/logout.png" alt="Logout Icon" class="h-6 w-6 mr-4">
+                    <span>Logout</span>
+                </button>
             </div>
         </div>
 
-        <div class="p-4">
-            <a href="/login" class="flex items-center">
-                <img src="/images/logout.png" alt="Logout Icon" class="h-6 w-6 mr-4">
-                <span>Logout</span>
-            </a>
-        </div>
-    </div>
-
+        <!-- Main Content -->
         <div id="mainContent" class="flex flex-col transform transition-transform duration-300">
             <header class="bg-white border-b-2 border-[#396E66] p-4 flex items-center z-50 relative">
-                <button id="sidebarToggle" class="mr-4 text-[#396E66] focus:outline-none">
+                <button id="sidebarToggle" aria-label="Toggle Sidebar" class="mr-4 text-[#396E66] focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
@@ -54,13 +55,29 @@
                 <h2 class="text-xl font-semibold">Selamat datang di Dashboard!</h2>
             </main>
         </div>
+
+        <!-- Logout Confirmation Modal -->
+        <div id="logoutModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white p-6 rounded-md shadow-md w-80">
+                <h2 class="text-lg font-semibold mb-4">Confirm Logout</h2>
+                <p class="mb-4">Are you sure you want to logout?</p>
+                <div class="flex justify-end">
+                    <button id="cancelLogout" class="mr-2 px-4 py-2 bg-gray-200 rounded">Cancel</button>
+                    <a href="/login" class="px-4 py-2 bg-red-500 text-white rounded">Logout</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
         const sidebarToggle = document.getElementById('sidebarToggle');
         const sidebar = document.getElementById('sidebar');
         const mainContent = document.getElementById('mainContent');
+        const logoutButton = document.getElementById('logoutButton');
+        const logoutModal = document.getElementById('logoutModal');
+        const cancelLogout = document.getElementById('cancelLogout');
 
+        // Toggle sidebar
         sidebarToggle.addEventListener('click', () => {
             if (sidebar.classList.contains('-translate-x-full')) {
                 sidebar.classList.remove('-translate-x-full');
@@ -71,6 +88,16 @@
                 sidebar.classList.remove('translate-x-0');
                 mainContent.classList.remove('translate-x-64');
             }
+        });
+
+        // Show logout modal
+        logoutButton.addEventListener('click', () => {
+            logoutModal.classList.remove('hidden');
+        });
+
+        // Hide logout modal
+        cancelLogout.addEventListener('click', () => {
+            logoutModal.classList.add('hidden');
         });
     </script>
 </body>
