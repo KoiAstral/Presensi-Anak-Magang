@@ -26,16 +26,17 @@
                     Presensi Magang Sekretariat DPRD Kab. Banjar
                 </p>
             </div>
-            <form>
+            <form method="POST" action="{{route('login_proses')}}">
+                @csrf
                 <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                     <img src="/images/email.png" alt="Email Logo" class="h-6 w-6 mr-2">
-                    <input type="text" placeholder="Email" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
+                    <input type="text" placeholder="nomor induk" 
+                        class="w-full bg-transparent text-gray-700 focus:outline-none" name="nomor_induk">
                 </div>
                 <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                     <img src="/images/password2.png" alt="Password Logo" class="h-6 w-6 mr-2">
                     <input type="password" placeholder="Password" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
+                        class="w-full bg-transparent text-gray-700 focus:outline-none" name="password">
                 </div>
                 <button type="submit"
                         class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2">

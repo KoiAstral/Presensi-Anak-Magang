@@ -11,7 +11,7 @@ class Cregister extends Controller
     /**
      * Display the registration form.
      */
-    public function index()
+    public function register_page()
     {
         return view('auth.register'); // Ensure this Blade file exists
     }
@@ -23,25 +23,28 @@ class Cregister extends Controller
     {
         // Validate the request
         $request->validate([
-            'name'     => 'required|string|max:255',
+            'nama'     => 'required|string|max:255',
             'email'    => 'required|email|unique:users,email',
-            'role'     => 'required|in:admin,anak_magang',
+            'role'     => 'required|in:admin,user',
+            'status'   => 'required|in:siswa,mahasiswa',
             'password' => 'required|string|min:6|confirmed',
         ], [
-            'name.required' => 'Nama wajib diisi',
+            'nama.required' => 'Nama wajib diisi',
             'email.required' => 'Email wajib diisi',
             'email.email'    => 'Format email tidak valid',
             'email.unique'   => 'Email sudah terdaftar',
             'role.required'  => 'Role wajib dipilih',
+            'status.required'   => 'status wajib jelas',
             'password.required' => 'Password wajib diisi',
             'password.confirmed' => 'Konfirmasi password tidak cocok',
         ]);
 
         // Create the user
         User::create([
-            'name'     => $request->name,
+            'nama'     => $request->name,
             'email'    => $request->email,
             'role'     => $request->role,
+            'status'   => $request->status,
             'password' => Hash::make($request->password),
         ]);
 

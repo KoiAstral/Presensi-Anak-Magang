@@ -13,6 +13,20 @@
         body {
             font-family: 'Montserrat', sans-serif;
         }
+
+        @keyframes slide-down {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .animate-slide-down {
+            animation: slide-down 0.5s ease-out forwards;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -34,7 +48,7 @@
                         <img src="/images/detail_profile.png" alt="Icon" class="h-6 w-8 mr-2">
                         <span>Detail Profil</span>
                     </a>
-                    <a href="/login" class="flex items-center px-4 py-2 w-full text-left hover:bg-gray-200 font-semibold text-black">
+                    <a href="{{route('logout')}}" id="btnLogout" class="flex items-center px-4 py-2 w-full text-left hover:bg-gray-200 font-semibold text-black">
                         <img src="/images/logout2.png" alt="Icon" class="h-6 w-8 mr-2">
                         <span>Logout</span>
                     </a>
@@ -49,7 +63,7 @@
                             <img src="/images/presensi.png" alt="Icon" class="h-12 w-12">
                         </div>
                         <p class="text-sm font-light text-gray-600 mt-2">Anda belum melakukan presensi hari ini.</p>
-                        <button class="mt-4 bg-[#396E66] text-white font-bold px-4 py-2 rounded-md w-full">
+                        <button id="btnPresensi" class="mt-4 bg-[#396E66] text-white font-bold px-4 py-2 rounded-md w-full">
                             Presensi
                         </button>
                     </div>
@@ -61,7 +75,7 @@
                         </div>
                         <p class="text-sm font-light text-gray-600 mt-2">Silahkan buat pengajuan izin jika diperlukan.</p>
                         <button class="mt-4 bg-[#00307D] text-white font-bold px-4 py-2 rounded-md w-full">
-                            Buat Pengajuan
+                            <a href="/pengajuan_izin" class="block w-full text-center">Buat Pengajuan</a>
                         </button>
                     </div>
                 </div>
@@ -107,32 +121,84 @@
             </main>
         </div>
     </div>
+
+    <div id="popupPresensi" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-md py-6 px-8 relative">
+            <p class="text-center text-lg font-semibold mb-6 mt-4">Anda akan melakukan absensi untuk kehadiran hari ini.</p>
+            <img id="closePopup" src="/images/silang.png" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
+            <div class="flex justify-around">
+                <button id="btnBatal" class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
+                <button id="btnHadir" class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Hadir</button>
+            </div>
+        </div>
+    </div>
+    <div id="popupKonfirmasi" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
+        <div class="bg-white rounded-md p-4 relative animate-slide-down w-96">
+            <div class="flex items-center">
+                <p class="text-lg font-semibold mr-4">Terima kasih, presensi berhasil!</p>
+                <img src="/images/berhasil.png" alt="Presensi Berhasil" class="h-8 w-8">
+            </div>
+        </div>
+    </div>
+
+    <div id="popupLogout" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-md py-6 px-12 relative">
+            <p class="text-center text-lg font-semibold mb-8 mt-4">Apakah anda yakin ingin Logout?</p>
+            <img id="closePopup" src="/images/silang.png" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
+            <div class="flex space-x-4 mt-4">
+            <button id="btnBatal" class="bg-[#ECB131] text-white font-bold flex-1 py-2 rounded-md shadow">
+                Batal
+            </button>
+            <a href="/login" class="bg-[#396E66] text-white font-bold flex-1 py-2 rounded-md shadow text-center inline-block">
+                Ya
+            </a>
+        </div>
+        </div>
+    </div>
 </body>
 </html>
 <script>
     $(document).ready(function () {
+        // table
         $('#dataTable').DataTable();
-    });
 
-    $(document).ready(function () {
-    let isProfileOpen = false;
-    $('#profileMenu').on('click', function (e) {
-        e.stopPropagation();
-        $('#modalProfile').toggle();
-        isProfileOpen = !isProfileOpen;
-        const arrowIcon = $('#arrowIcon');
-        if (isProfileOpen) {
-            arrowIcon.css('transform', 'rotate(180deg)');
-        } else {
-            arrowIcon.css('transform', 'rotate(0deg)');
-        }
-    });
+        // toggle profile
+        let isProfileOpen = false;
+        $('#profileMenu').on('click', function (e) {
+            e.stopPropagation();
+            $('#modalProfile').toggle();
+            isProfileOpen = !isProfileOpen;
+            const arrowIcon = $('#arrowIcon');
+            arrowIcon.css('transform', isProfileOpen ? 'rotate(180deg)' : 'rotate(0deg)');
+        });
+        $(document).on('click', function () {
+            $('#modalProfile').hide();
+            isProfileOpen = false;
+            $('#arrowIcon').css('transform', 'rotate(0deg)');
+        });
 
-    $(document).on('click', function () {
-        $('#modalProfile').hide();
-        isProfileOpen = false;
-        $('#arrowIcon').css('transform', 'rotate(0deg)');
-    });
+        // pop up presensi
+        $('#btnPresensi').on('click', function () {
+            $('#popupPresensi').removeClass('hidden');
+        });
+        $('#closePopup, #btnBatal').on('click', function () {
+            $('#popupPresensi').addClass('hidden');
+        });
+        $('#btnHadir').on('click', function () {
+            $('#popupPresensi').addClass('hidden');
+            $('#popupKonfirmasi').removeClass('hidden');
+            setTimeout(() => {
+                $('#popupKonfirmasi').addClass('hidden');
+            }, 3000);
+        });
+
+        //pop up logout 
+        $('#btnLogout').on('click', function () {
+            $('#popupLogout').removeClass('hidden');
+        });
+        $('#closePopup, #btnBatal').on('click', function () {
+            $('#popupLogout').addClass('hidden');
+        });
     });
 </script>
 

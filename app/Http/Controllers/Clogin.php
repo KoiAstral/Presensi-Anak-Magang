@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class Clogin extends Controller
 {
     
-    public function index()
+    public function login_page()
     {
         return view('auth.login'); 
     }
