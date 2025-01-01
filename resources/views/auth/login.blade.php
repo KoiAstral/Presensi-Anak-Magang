@@ -39,7 +39,7 @@
                 </div>
                 <button type="submit"
                         class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2">
-                        <a href="/dashboard_user">Login</a>
+                        <a href="/dashboard_admin">Login</a>
                     <img src="/images/login.png" alt="Login Logo" class="h-6 w-6">
                 </button>
                 <div class="text-center mt-5">

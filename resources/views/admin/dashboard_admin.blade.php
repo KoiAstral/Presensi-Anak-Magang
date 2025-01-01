@@ -22,11 +22,11 @@
             </div>
             <div class="border-1"></div>
             <div class="mt-4">
-                <a href="/data-siswa" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                <a href="/data_magang" class="flex items-center px-4 py-2 hover:bg-gray-700">
                     <img src="/images/data.png" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
-                    <span>Data Siswa/i Magang</span>
+                    <span>Data Anak Magang</span>
                 </a>
-                <a href="/riwayat-absensi" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                <a href="/riwayat_absensi" class="flex items-center px-4 py-2 hover:bg-gray-700">
                     <img src="/images/riwayat.png" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
                     <span>Riwayat Absensi</span>
                 </a>

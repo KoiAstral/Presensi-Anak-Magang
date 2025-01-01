@@ -19,16 +19,27 @@ use App\Http\Controllers\Cregister;
 Route::get('/', function () {
     return view('welcome');
 });
-
-// Login routes
-Route::get('/login', [Clogin::class, 'index'])->name('login'); 
-Route::post('/login', [Clogin::class, 'login_proses'])->name('login.proses'); 
-
-// Registration routes
-Route::get('/register', [Cregister::class, 'index'])->name('register'); 
-Route::post('/register', [Cregister::class, 'register'])->name('register.proses'); 
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard'); 
-})->name('dashboard')->middleware('auth');
+Route::get('/login', function () {
+    return view('auth/login');
+});
+Route::get('/register', function () {
+    return view('auth/register');
+});
+Route::get('/dashboard_user', function () {
+    return view('user/dashboard_user');
+});
+Route::get('/pengajuan_izin', function () {
+    return view('user/pengajuan_izin');
+});
+Route::get('/detail_profile', function () {
+    return view('user/detail_profile');
+});
+Route::get('/dashboard_admin', function () {
+    return view('admin/dashboard_admin');
+});
+Route::get('/data_magang', function () {
+    return view('admin/data_magang');
+});
+Route::get('/edit_data', function () {
+    return view('admin/edit_data');
+});
