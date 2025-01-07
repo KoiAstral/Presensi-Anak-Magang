@@ -26,42 +26,90 @@
                     Presensi Magang Sekretariat DPRD Kab. Banjar
                 </p>
             </div>
-            <form>
-                <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/nama.png" alt="Nama Logo" class="h-6 w-6 mr-2">
-                    <input type="text" placeholder="Nama Lengkap" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
+            <form method="POST" action="{{ route('register_proses') }}">
+                @csrf
+            
+                <!-- Nama Lengkap -->
+                <div class="mb-5">
+                    <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                        <img src="/images/nama.png" alt="Nama Logo" class="h-6 w-6 mr-2">
+                        <input type="text" name="nama_lengkap" placeholder="Nama Lengkap" 
+                               class="w-full bg-transparent text-gray-700 focus:outline-none" 
+                               value="{{ old('nama_lengkap') }}">
+                    </div>
+                    @error('nama_lengkap')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/email.png" alt="Email Logo" class="h-6 w-6 mr-2">
-                    <input type="text" placeholder="Email" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
+            
+                <!-- Email -->
+                <div class="mb-5">
+                    <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                        <img src="/images/email.png" alt="Email Logo" class="h-6 w-6 mr-2">
+                        <input type="text" name="email" placeholder="Email" 
+                               class="w-full bg-transparent text-gray-700 focus:outline-none" 
+                               value="{{ old('email') }}">
+                    </div>
+                    @error('email')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/nisn.png" alt="NISN Logo" class="h-6 w-6 mr-2">
-                    <input type="text" placeholder="NISN/NIM" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
+            
+                <!-- NISN/NIM -->
+                <div class="mb-5">
+                    <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                        <img src="/images/nisn.png" alt="NISN Logo" class="h-6 w-6 mr-2">
+                        <input type="text" name="nisn_nim" placeholder="NISN/NIM" 
+                               class="w-full bg-transparent text-gray-700 focus:outline-none" 
+                               value="{{ old('nisn_nim') }}">
+                    </div>
+                    @error('nisn_nim')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/asal.png" alt="Asal Sekolah Logo" class="h-6 w-6 mr-2">
-                    <input type="text" placeholder="Sekolah/Universitas" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
+            
+                <!-- Asal -->
+                <div class="mb-5">
+                    <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                        <img src="/images/asal.png" alt="Asal Sekolah Logo" class="h-6 w-6 mr-2">
+                        <input type="text" name="asal" placeholder="Sekolah/Universitas" 
+                               class="w-full bg-transparent text-gray-700 focus:outline-none" 
+                               value="{{ old('asal') }}">
+                    </div>
+                    @error('asal')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/password2.png" alt="Password Logo" class="h-6 w-6 mr-2">
-                    <input type="password" placeholder="Password" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
+            
+                <!-- Password -->
+                <div class="mb-5">
+                    <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                        <img src="/images/password2.png" alt="Password Logo" class="h-6 w-6 mr-2">
+                        <input type="password" name="password" placeholder="Password" 
+                               class="w-full bg-transparent text-gray-700 focus:outline-none">
+                    </div>
+                    @error('password')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/password.png" alt="Konfirmasi Password Logo" class="h-6 w-6 mr-2">
-                    <input type="password" placeholder="Konfirmasi Password" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none">
+            
+                <!-- Konfirmasi Password -->
+                <div class="mb-5">
+                    <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                        <img src="/images/password.png" alt="Konfirmasi Password Logo" class="h-6 w-6 mr-2">
+                        <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" 
+                               class="w-full bg-transparent text-gray-700 focus:outline-none">
+                    </div>
                 </div>
+            
+                <!-- Submit Button -->
                 <button type="submit"
                         class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2">
-                        Register
+                    Register
                     <img src="/images/login.png" alt="Login Logo" class="h-6 w-6">
                 </button>
+            
+                <!-- Login Link -->
                 <div class="text-center mt-5">
                     <p class="text-gray-500">
                         Sudah memiliki akun? 
@@ -69,6 +117,7 @@
                     </p>
                 </div>
             </form>
+            
         </div>
     </div>
 </body>

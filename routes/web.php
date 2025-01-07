@@ -48,7 +48,13 @@ Route::middleware('auth')->group(function(){
 })->name('dashboard');
 
 Route::get('/logout', [AuthController::class, 'logout_page'])->name('logout');
+
+
 });
+
+Route::get('/User', [UserController::class, 'index'])->name('user.index');
+Route::get('/User/edit/{$id}', [UserController::class, 'index'])->name('user.index');
+
 
 
 

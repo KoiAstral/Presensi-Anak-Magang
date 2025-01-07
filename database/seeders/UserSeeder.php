@@ -27,7 +27,6 @@ class UserSeeder extends Seeder
                 'nomor_induk'  => 'U001',
                 'email'        => 'user@example.com',
                 'password'     => Hash::make('user123'),
-
                 'status'       => 'siswa',
                 'created_at'   => now(),
                 'updated_at'   => now(),

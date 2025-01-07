@@ -9,7 +9,7 @@
     <style>
         @layer utilities {
             .bg-blur {
-                backdrop-filter: blur(5px);
+                backdrop-filter: blur(5px);a
             }
         }
         body {
@@ -26,30 +26,57 @@
                     Presensi Magang Sekretariat DPRD Kab. Banjar
                 </p>
             </div>
-            <form method="POST" action="{{route('login_proses')}}">
+            <form method="POST" action="{{ route('login_proses') }}">
                 @csrf
-                <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/email.png" alt="Email Logo" class="h-6 w-6 mr-2">
-                    <input type="text" placeholder="nomor induk" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none" name="nomor_induk">
+
+                <!-- Error Message for Incorrect Credentials -->
+                <!-- Error Message for Nomor Induk -->
+                @if ($errors->has('nomor_induk'))
+                <div class="text-red-500 text-sm mb-4 text-center">
+                    {{ $errors->first('nomor_induk') }}
                 </div>
+                @endif
+
+                <!-- Input for Nomor Induk -->
                 <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                    <img src="/images/password2.png" alt="Password Logo" class="h-6 w-6 mr-2">
-                    <input type="password" placeholder="Password" 
-                        class="w-full bg-transparent text-gray-700 focus:outline-none" name="password">
+                <img src="{{ asset('images/email.png') }}" alt="Email Logo" class="h-6 w-6 mr-2">
+                <input type="text" placeholder="Nomor Induk" 
+                    class="w-full bg-transparent text-gray-700 focus:outline-none" 
+                    name="nomor_induk" aria-label="Nomor Induk" value="{{ old('nomor_induk') }}" required>
                 </div>
+
+                <!-- Error Message for Password -->
+                @if ($errors->has('password'))
+                <div class="text-red-500 text-sm mb-4 text-center">
+                    {{ $errors->first('password') }}
+                </div>
+                @endif
+
+                <!-- Input for Password -->
+                <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                <img src="{{ asset('images/password2.png') }}" alt="Password Logo" class="h-6 w-6 mr-2">
+                <input type="password" placeholder="Password" 
+                    class="w-full bg-transparent text-gray-700 focus:outline-none" 
+                    name="password" aria-label="Password" required>
+                </div>
+    
+                
+                <!-- Submit Button -->
                 <button type="submit"
                         class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2">
-                        <a href="/dashboard_user">Login</a>
-                    <img src="/images/login.png" alt="Login Logo" class="h-6 w-6">
+                    <img src="{{ asset('images/login.png') }}" alt="Login Logo" class="h-6 w-6">
+                    Login
                 </button>
+
+                <!-- Register Link --> 
                 <div class="text-center mt-5">
                     <p class="text-gray-500">
                         Belum memiliki akun? 
-                        <a href="/register" class="text-[#396E66] font-normal underline">Buat Akun</a>
+                        <a href="{{ route('register') }}" class="text-[#396E66] font-normal underline">Buat Akun</a>
                     </p>
                 </div>
             </form>
         </div>
     </div>
 </body>
+</html>
