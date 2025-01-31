@@ -92,19 +92,24 @@
                     <table id="dataTable" class="display w-full">
                         <thead class="bg-[#EAEAEA]">
                             <tr>
-                                <th class="border border-gray-300 px-6 py-4">Nama</th>
-                                <th class="border border-gray-300 px-6 py-4">NIS</th>
-                                <th class="border border-gray-300 px-6 py-4">Sekolah/Universitas</th>
-                                <th class="border border-gray-300 px-6 py-4">Email</th>
-                                <th class="border border-gray-300 px-6 py-4">Aksi</th>
+                                <th class="border border-gray-300 px-6 py-4">No</th>
+                                <th class="border border-gray-300 px-6 py-4">id presensi</th>
+                                <th class="border border-gray-300 px-6 py-4">nomor induk</th>
+                                <th class="border border-gray-300 px-6 py-4">Tanggal presensi</th>
+                                <th class="border border-gray-300 px-6 py-4">waktu presensi</th>
+                                <th class="border border-gray-300 px-6 py-4">status</th>
+                                <th class="border border-gray-300 px-6 py-4">aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($presensi as $data )
                             <tr>
-                                <td class="px-6 py-4">Azizah Nur Octaviani</td>
-                                <td class="px-6 py-4">543221192</td>
-                                <td class="px-6 py-4">SMK Telkom Banjarbaru</td>
-                                <td class="px-6 py-4">azizahnuroctaviani@gmail.com</td>
+                                <td class="px-6 py-4">{{$loop->iteration}}</td>
+                                <td class="px-6 py-4">{{$data->id_presensi}}</td>
+                                <td class="px-6 py-4">{{$data->nomor_induk}}</td>
+                                <td class="px-6 py-4">{{$data->tanggal_presensi}}</td>
+                                <td class="px-6 py-4">{{$data->waktu_presensi}}</td>
+                                <td class="px-6 py-4">{{$data->status}}</td>
                                 <td class="px-6 py-4 flex items-center justify-start space-x-2">
                                     <a href="/edit_data" class="flex items-center hover:opacity-75">
                                         <img src="/images/edit.png" alt="Edit Icon" class="h-6 w-6">
@@ -114,20 +119,7 @@
                                     </button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="px-6 py-4">Fauzia Ibaiti</td>
-                                <td class="px-6 py-4">543221193</td>
-                                <td class="px-6 py-4">SMK Telkom Banjarbaru</td>
-                                <td class="px-6 py-4">fauziaibaiti@gmail.com</td>
-                                <td class="px-6 py-4 flex items-center justify-start space-x-2">
-                                    <a href="/edit_data" class="flex items-center hover:opacity-75">
-                                        <img src="/images/edit.png" alt="Edit Icon" class="h-6 w-6">
-                                    </a>
-                                    <button id="btnHapus" class="flex items-center hover:opacity-75">
-                                        <img src="/images/hapus.png" alt="Delete Icon" class="h-6 w-6">
-                                    </button>
-                                </td>
-                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

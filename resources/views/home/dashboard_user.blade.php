@@ -44,7 +44,7 @@
                 </div>
 
                 <div id="modalProfile" class="absolute top-16 right-0 bg-white shadow-lg rounded-md w-64 hidden flex flex-col overflow-hidden">
-                    <a href="/detail_profile" class="flex items-center px-4 py-2 w-full text-left hover:bg-gray-200 font-semibold text-black">
+                    <a href="/profile_detail" class="flex items-center px-4 py-2 w-full text-left hover:bg-gray-200 font-semibold text-black">
                         <img src="/images/detail_profile.png" alt="Icon" class="h-6 w-8 mr-2">
                         <span>Detail Profil</span>
                     </a>
@@ -75,7 +75,7 @@
                         </div>
                         <p class="text-sm font-light text-gray-600 mt-2">Silahkan buat pengajuan izin jika diperlukan.</p>
                         <button class="mt-4 bg-[#00307D] text-white font-bold px-4 py-2 rounded-md w-full">
-                            <a href="/pengajuan_izin" class="block w-full text-center">Buat Pengajuan</a>
+                            <a href="/pengajuan_absensi" class="block w-full text-center">Buat Pengajuan</a>
                         </button>
                     </div>
                 </div>
@@ -84,36 +84,36 @@
                     <table id="dataTable" class="display text-sm w-full border-collapse border border-gray-300">
                         <thead class="bg-[#EAEAEA]">
                             <tr>
-                                <th class="border border-gray-300 px-4 py-2">Nama</th>
-                                <th class="border border-gray-300 px-4 py-2">NIS</th>
                                 <th class="border border-gray-300 px-4 py-2">Tanggal</th>
-                                <th class="border border-gray-300 px-4 py-2">Waktu</th>
+                                <th class="border border-gray-300 px-4 py-2">Waktu</th>|
+                                <th class="border border-gray-300 px-4 py-2">status</th>|
+                                <th class="border border-gray-300 px-4 py-2">detail</th>|
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="px-4 py-2">Azizah Nur Octaviani</td>
-                                <td class="px-4 py-2">543221192</td>
                                 <td class="px-4 py-2">01/01/2000</td>
                                 <td class="px-4 py-2">07.00</td>
+                                <td class="px-4 py-2">hadir</td>
+                                <td class="px-4 py-2"><a class="bg-[#396E66] text-white px-4 py-2" href="">Detail</a></td>
                             </tr>
                             <tr>
-                                <td class="px-4 py-2">Azizah Nur Octaviani</td>
-                                <td class="px-4 py-2">543221192</td>
                                 <td class="px-4 py-2">01/01/2000</td>
-                                <td class="px-4 py-2">07.00</td>
+                                <td class="px-4 py-2">07.30</td>
+                                <td class="px-4 py-2">hadir</td>
+                                <td class="px-4 py-2">hadir</td>
                             </tr>
                             <tr>
-                                <td class="px-4 py-2">Fauzia Ibaiti</td>
-                                <td class="px-4 py-2">543221193</td>
                                 <td class="px-4 py-2">01/01/2000</td>
-                                <td class="px-4 py-2">07.00</td>
+                                <td class="px-4 py-2">07.45</td>
+                                <td class="px-4 py-2">hair</td>
+                                <td class="px-4 py-2">hair</td>
                             </tr>
                             <tr>
-                                <td class="px-4 py-2">Fauzia Ibaiti</td>
-                                <td class="px-4 py-2">543221193</td>
                                 <td class="px-4 py-2">01/01/2000</td>
-                                <td class="px-4 py-2">07.00</td>
+                                <td class="px-4 py-2">09.00</td>
+                                <td class="px-4 py-2">alpha</td>
+                                <td class="px-4 py-2">alpha</td>
                             </tr>
                         </tbody>
                     </table>

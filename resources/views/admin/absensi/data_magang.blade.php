@@ -88,40 +88,51 @@
                 <div class="bg-[#EAEAEA] p-4 mb-6 rounded-md border-t-4 border-[#396E66] shadow-md text-center w-full max-w-md">
                     <h2 class="text-lg font-bold text-black">Data Anak Magang</h2>
                 </div>
-                <div class="w-full max-w-5xl mx-auto">
+                <div class="w-full mx-auto">
                     <table id="dataTable" class="display w-full">
                         <thead class="bg-[#EAEAEA]">
                             <tr>
                                 <th class="border border-gray-300 px-6 py-4">No</th>
-                                <th class="border border-gray-300 px-6 py-4">id presensi</th>
-                                <th class="border border-gray-300 px-6 py-4">nomor induk</th>
-                                <th class="border border-gray-300 px-6 py-4">Tanggal presensi</th>
-                                <th class="border border-gray-300 px-6 py-4">waktu presensi</th>
-                                <th class="border border-gray-300 px-6 py-4">status</th>
-                                <th class="border border-gray-300 px-6 py-4">aksi</th>
+                                <th class="border border-gray-300 px-6 py-4">ID Absensi</th>
+                                <th class="border border-gray-300 px-6 py-4">Nomor Induk</th>
+                                <th class="border border-gray-300 px-6 py-4">Waktu Absensi</th>
+                                <th class="border border-gray-300 px-6 py-4">Jenis Absensi</th>
+                                <th class="border border-gray-300 px-6 py-4">Keterangan</th>
+                                <th class="border border-gray-300 px-6 py-4">Tanggal Mulai</th>
+                                <th class="border border-gray-300 px-6 py-4">Tanggal Akhir</th>
+                                <th class="border border-gray-300 px-6 py-4">Status</th>
+                                <th class="border border-gray-300 px-6 py-4">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $data )
+                            @foreach ($absensi as $data)
                             <tr>
-                                <td class="px-6 py-4">{{$loop->iteration}}</td>
-                                <td class="px-6 py-4">{{$data->id_presensi}}</td>
-                                <td class="px-6 py-4">{{$data->nomor_induk}}</td>
-                                <td class="px-6 py-4">{{$data->tanggal_presensi}}</td>
-                                <td class="px-6 py-4">{{$data->waktu_presensi}}</td>
-                                <td class="px-6 py-4">{{$data->status}}</td>
+                                <td class="px-6 py-4">{{ $loop->iteration }}</td>
+                                <td class="px-6 py-4">{{ $data->id_absensi }}</td>
+                                <td class="px-6 py-4">{{ $data->nomor_induk }}</td>
+                                <td class="px-6 py-4">{{ $data->waktu_absensi }}</td>
+                                <td class="px-6 py-4">{{ $data->jenis_absensi }}</td>
+                                <td class="px-6 py-4">{{ $data->keterangan }}</td>
+                                <td class="px-6 py-4">{{ $data->tanggal_mulai }}</td>
+                                <td class="px-6 py-4">{{ $data->tanggal_akhir }}</td>
+                                <td class="px-6 py-4">{{ $data->status }}</td>
                                 <td class="px-6 py-4 flex items-center justify-start space-x-2">
-                                    <a href="/edit_data" class="flex items-center hover:opacity-75">
+                                    <a href="/edit_data/{{ $data->id }}" class="flex items-center hover:opacity-75">
                                         <img src="/images/edit.png" alt="Edit Icon" class="h-6 w-6">
                                     </a>
-                                    <button id="btnHapus" class="flex items-center hover:opacity-75">
-                                        <img src="/images/hapus.png" alt="Delete Icon" class="h-6 w-6">
-                                    </button>
+                                    <form action="/delete_data/{{ $data->id }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="flex items-center hover:opacity-75">
+                                            <img src="/images/hapus.png" alt="Delete Icon" class="h-6 w-6">
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
+                    
                 </div>
             </main>
             <div id="popupHapus" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">

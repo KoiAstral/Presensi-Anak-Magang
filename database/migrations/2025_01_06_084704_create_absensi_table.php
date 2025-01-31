@@ -12,12 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('absensi', function (Blueprint $table) {
-            $table->id('id_absensi');
+            $table->id();
+            $table->string('id_absensi');
             $table->string('nomor_induk');
-            $table->date('tanggal_absensi');
             $table->time('waktu_absensi');
             $table->enum('jenis_absensi', ['sakit', 'izin']);
             $table->string('keterangan');
+            $table->date('tanggal_mulai');
+            $table->date('tanggal_akhir');
             $table->enum('status', ['approved', 'pending', 'rejected']);
             $table->timestamps();
         });
