@@ -93,7 +93,6 @@
                         <thead class="bg-[#EAEAEA]">
                             <tr>
                                 <th class="border border-gray-300 px-6 py-4">No</th>
-                                <th class="border border-gray-300 px-6 py-4">ID Absensi</th>
                                 <th class="border border-gray-300 px-6 py-4">Nomor Induk</th>
                                 <th class="border border-gray-300 px-6 py-4">Waktu Absensi</th>
                                 <th class="border border-gray-300 px-6 py-4">Jenis Absensi</th>
@@ -108,7 +107,6 @@
                             @foreach ($absensi as $data)
                             <tr>
                                 <td class="px-6 py-4">{{ $loop->iteration }}</td>
-                                <td class="px-6 py-4">{{ $data->id_absensi }}</td>
                                 <td class="px-6 py-4">{{ $data->nomor_induk }}</td>
                                 <td class="px-6 py-4">{{ $data->waktu_absensi }}</td>
                                 <td class="px-6 py-4">{{ $data->jenis_absensi }}</td>

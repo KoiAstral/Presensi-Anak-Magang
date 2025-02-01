@@ -28,18 +28,17 @@ class AbsensiController extends Controller
 
     public function store(Request $request)
 {
-    // $request->validate([
-    //     'nomor_induk' => 'required|string|max:20',
-    //     'waktu_absensi' => 'required',
-    //     'jenis_absensi' => 'required|in:izin,sakit',
-    //     'keterangan' => 'required|string|max:255',
-    //     'tanggal_mulai' => 'required|date',
-    //     'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai',
-    // ]);
+     $request->validate([
+         'nomor_induk' => 'required|string|max:20',
+         'waktu_absensi' => 'required',
+         'jenis_absensi' => 'required|in:izin,sakit',
+         'keterangan' => 'required|string|max:255',
+         'tanggal_mulai' => 'required|date',
+         'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai',
+     ]);
 
     Absensi::create([
         'nomor_induk' => $request->nomor_induk,
-        'id_absensi' => 'fh',
          'waktu_absensi' => $request->waktu_absensi,
          'jenis_absensi' => $request->jenis_absensi,
          'keterangan' => $request->keterangan,
@@ -53,10 +52,7 @@ class AbsensiController extends Controller
     return redirect()->route('form.absensi')->with('success', 'Absence request submitted successfully.');
 }
 
-public function coba()
-{
-    dd('tes');
-}
+
 
 
 }

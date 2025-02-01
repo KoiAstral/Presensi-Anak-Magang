@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('presensi', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('id_presensi')->unique();
             $table->string('nomor_induk');
             $table->foreign('nomor_induk')->references('nomor_induk')->on('users')->onDelete('cascade');
             $table->date('tanggal_presensi');
