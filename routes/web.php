@@ -8,6 +8,7 @@ use App\Http\Controllers\Cregister;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,10 +55,21 @@ Route::prefix('admin')->group(function () {
     Route::get('/absensi', [AbsensiController::class, 'indexAdmin'])->name('Table_absensi');
 });
 
-// Other routes
+// absensi routes
 Route::get('/pengajuan_absensi', [AbsensiController::class, 'formAbsensi'])->name('form.absensi');
 Route::post('/storeabsensi', [AbsensiController::class, 'store'])->name('store.absensi');
+Route::get('/edit_absensi/{id}', [AbsensiController::class, 'edit'])->name('absensi.edit');
+Route::post('/update_absensi/{id}', [AbsensiController::class, 'update'])->name('absensi.update');
+Route::delete('/delete_absensi/{id}', [AbsensiController::class, 'destroy'])->name('absensi.destroy');
+
+
+Route::get('/dashboard_user', [DashboardController::class, 'index'])->name('home.dashboard_user')->middleware('auth');
+
+
+
+
+// profile routes
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile_detail');
 
 
-Route::post('/store-absensi2', [AbsensiController::class, 'coba'])->name('store.absensi1');
+// Route::post('/store-absensi2', [AbsensiController::class, 'coba'])->name('store.absensi1');

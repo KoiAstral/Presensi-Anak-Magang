@@ -16,8 +16,7 @@ class AbsensiSeeder extends Seeder
         // Menambahkan data dummy ke tabel absensi
         DB::table('absensi')->insert([
             [
-                'id_absensi' => 'A001',
-                'nomor_induk' => '123456',
+                'nomor_induk' => 'A002',
                 'waktu_absensi' => Carbon::now()->format('H:i:s'),
                 'jenis_absensi' => 'izin',
                 'keterangan' => 'Izin keperluan keluarga',
@@ -28,8 +27,7 @@ class AbsensiSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'id_absensi' => 'A002',
-                'nomor_induk' => '654321',
+                'nomor_induk' => 'A003',
                 'waktu_absensi' => Carbon::now()->subDay()->format('H:i:s'),
                 'jenis_absensi' => 'sakit',
                 'keterangan' => 'Sakit demam',
@@ -40,8 +38,7 @@ class AbsensiSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'id_absensi' => 'A003',
-                'nomor_induk' => '789012',
+                'nomor_induk' => 'A004',
                 'waktu_absensi' => Carbon::now()->subDays(5)->format('H:i:s'),
                 'jenis_absensi' => 'izin',
                 'keterangan' => 'Izin menghadiri seminar',

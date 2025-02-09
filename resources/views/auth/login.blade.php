@@ -39,7 +39,7 @@
 
                 <!-- Input for Nomor Induk -->
                 <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                <img src="{{ asset('images/email.png') }}" alt="Email Logo" class="h-6 w-6 mr-2">
+                <img src="{{ asset('images/User.png') }}" alt="User Logo" class="h-6 w-6 mr-2">
                 <input type="text" placeholder="Nomor Induk" 
                     class="w-full bg-transparent text-gray-700 focus:outline-none" 
                     name="nomor_induk" aria-label="Nomor Induk" value="{{ old('nomor_induk') }}" required>

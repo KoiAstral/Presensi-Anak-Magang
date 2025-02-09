@@ -48,7 +48,7 @@
                         <img src="/images/detail_profile.png" alt="Icon" class="h-6 w-8 mr-2">
                         <span>Detail Profil</span>
                     </a>
-                    <a href="{{route('logout')}}" id="btnLogout" class="flex items-center px-4 py-2 w-full text-left hover:bg-gray-200 font-semibold text-black">
+                    <a id="btnLogout" class="flex items-center px-4 py-2 w-full text-left hover:bg-gray-200 font-semibold text-black cursor-pointer">
                         <img src="/images/logout2.png" alt="Icon" class="h-6 w-8 mr-2">
                         <span>Logout</span>
                     </a>
@@ -125,7 +125,7 @@
     <div id="popupPresensi" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-md py-6 px-8 relative">
             <p class="text-center text-lg font-semibold mb-6 mt-4">Anda akan melakukan absensi untuk kehadiran hari ini.</p>
-            <img id="closePopup" src="/images/silang.png" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
+            <img id="closePopup" src="/images/Close.png" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
             <div class="flex justify-around">
                 <button id="btnBatal" class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
                 <button id="btnHadir" class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Hadir</button>
@@ -144,12 +144,12 @@
     <div id="popupLogout" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-md py-6 px-12 relative">
             <p class="text-center text-lg font-semibold mb-8 mt-4">Apakah anda yakin ingin Logout?</p>
-            <img id="closePopup" src="/images/silang.png" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
+            <img id="closePopup" src="/images/close.png" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
             <div class="flex space-x-4 mt-4">
             <button id="btnBatal" class="bg-[#ECB131] text-white font-bold flex-1 py-2 rounded-md shadow">
                 Batal
             </button>
-            <a href="/login" class="bg-[#396E66] text-white font-bold flex-1 py-2 rounded-md shadow text-center inline-block">
+            <a href="{{route('logout')}}" class="bg-[#396E66] text-white font-bold flex-1 py-2 rounded-md shadow text-center inline-block">
                 Ya
             </a>
         </div>

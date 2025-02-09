@@ -50,13 +50,13 @@
                     <p class="text-medium text-gray-600">Silahkan isi data di bawah ini</p>
                 </div>
 
-                <form  method="POST" action="{{ route('store.absensi') }}">
+                <form id="izinForm"  method="POST" action="{{ route('store.absensi') }}">
                     @csrf
 
                     <!-- Nomor Induk -->
                     <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                         <img src="/images/nisn.png" alt="Nomor Induk" class="h-6 w-6 mr-2">
-                        <input type="text" name="nomor_induk" placeholder="Nomor Induk (NIP/NISN)" 
+                        <input type="text" name="nomor_induk" placeholder="Nomor Induk" 
                             class="w-full bg-transparent text-gray-700 focus:outline-none" required>
                     </div>
 
@@ -131,12 +131,12 @@
         });
 
         document.getElementById('izinForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+            // event.preventDefault();
             document.getElementById('popupSuccess').classList.remove('hidden');
 
             setTimeout(() => {
                 window.location.href = "/dashboard";
-            }, 3000);
+            }, 5000);
         });
     </script>
 </body>
