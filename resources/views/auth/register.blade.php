@@ -28,7 +28,7 @@
                 <div class="mb-5">
                     <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3">
                         <img src="/images/nama.png" alt="Nama" class="h-6 w-6 mr-2">
-                        <input type="text" name="nama" placeholder="Nama Lengkap" class="w-full focus:outline-none" value="{{ old('nama') }}">
+                        <input type="text" name="nama" placeholder="Nama Lengkap" required class="w-full focus:outline-none" value="{{ old('nama') }}">
                     </div>
                     @error('nama')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
@@ -39,9 +39,20 @@
                 <div class="mb-5">
                     <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3">
                         <img src="/images/nisn.png" alt="NISN/NIM" class="h-6 w-6 mr-2">
-                        <input type="text" name="nomor_induk" placeholder="Nomor induk" class="w-full focus:outline-none" value="{{ old('nomor_induk') }}">
+                        <input type="text" name="nomor_induk" placeholder="Nomor Induk" required class="w-full focus:outline-none" value="{{ old('nomor_induk') }}">
                     </div>
                     @error('nomor_induk')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <!-- Asal Sekolah/Universitas -->
+                <div class="mb-5">
+                    <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                        <img src="/images/asal.png" alt="Asal Sekolah Logo" class="h-6 w-6 mr-2">
+                        <input type="text" name="sekolah" placeholder="Sekolah" required class="w-full bg-transparent text-gray-700 focus:outline-none">
+                    </div>
+                    @error('sekolah')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
                 </div>
@@ -50,7 +61,7 @@
                 <div class="mb-5">
                     <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3">
                         <img src="/images/email.png" alt="Email" class="h-6 w-6 mr-2">
-                        <input type="email" name="email" placeholder="Email" class="w-full focus:outline-none" value="{{ old('email') }}">
+                        <input type="email" name="email" placeholder="Email" required class="w-full focus:outline-none" value="{{ old('email') }}">
                     </div>
                     @error('email')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
@@ -61,7 +72,7 @@
                 <div class="mb-5">
                     <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3">
                         <img src="/images/password2.png" alt="Password" class="h-6 w-6 mr-2">
-                        <input type="password" name="password" placeholder="Password" class="w-full focus:outline-none">
+                        <input type="password" name="password" placeholder="Password" required class="w-full focus:outline-none">
                     </div>
                     @error('password')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
@@ -72,7 +83,7 @@
                 <div class="mb-5">
                     <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3">
                         <img src="/images/password.png" alt="Konfirmasi Password" class="h-6 w-6 mr-2">
-                        <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" class="w-full focus:outline-none">
+                        <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" required class="w-full focus:outline-none">
                     </div>
                 </div>
                 

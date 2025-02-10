@@ -59,12 +59,14 @@ class AuthController extends Controller
   $request->validate([
     'nama'         => 'required|string|max:255',
     'nomor_induk'  => 'required|string|unique:users,nomor_induk',  // Ensure unique nomor_induk
+    'sekolah'      => 'required|string|max:255',
     'email'        => 'required|email|unique:users,email',          // Ensure unique email
     'password'     => 'required|string|min:6|confirmed',            // Ensure confirmation of password
 ], [
     'nama.required'         => 'Nama wajib diisi',
     'nomor_induk.required'  => 'Nomor induk wajib diisi',
     'nomor_induk.unique'    => 'Nomor induk sudah terdaftar',
+    'sekolah.required'      => 'required|string|max:255',
     'email.required'        => 'Email wajib diisi',
     'email.email'           => 'Format email tidak valid',
     'email.unique'          => 'Email sudah terdaftar',
@@ -77,9 +79,10 @@ class AuthController extends Controller
 User::create([
     'nama'        => $request->nama,
     'nomor_induk' => $request->nomor_induk,
+    'sekolah'     => $request->sekolah,
     'email'       => $request->email,
-    'status'      => $request->status,  // Make sure this is handled properly in the form
     'password'    => Hash::make($request->password),
+    'status'      => $request->status,  // Make sure this is handled properly in the form
 ]);
 
 // Redirect to login page with success message

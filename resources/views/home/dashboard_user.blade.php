@@ -44,7 +44,7 @@
                 </div>
 
                 <div id="modalProfile" class="absolute top-16 right-0 bg-white shadow-lg rounded-md w-64 hidden flex flex-col overflow-hidden">
-                    <a href="/profile_detail" class="flex items-center px-4 py-2 w-full text-left hover:bg-gray-200 font-semibold text-black">
+                    <a href="/profile" class="flex items-center px-4 py-2 w-full text-left hover:bg-gray-200 font-semibold text-black">
                         <img src="/images/detail_profile.png" alt="Icon" class="h-6 w-8 mr-2">
                         <span>Detail Profil</span>
                     </a>
