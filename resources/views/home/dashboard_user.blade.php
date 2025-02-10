@@ -92,25 +92,25 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="px-4 py-2">01/01/2000</td>
+                                <td class="px-4 py-2">13/02/2000</td>
                                 <td class="px-4 py-2">07.00</td>
                                 <td class="px-4 py-2">hadir</td>
                                 <td class="px-4 py-2"><a class="bg-[#396E66] text-white px-4 py-2" href="">Detail</a></td>
                             </tr>
                             <tr>
-                                <td class="px-4 py-2">01/01/2000</td>
+                                <td class="px-4 py-2">12/02/2000</td>
                                 <td class="px-4 py-2">07.30</td>
                                 <td class="px-4 py-2">hadir</td>
                                 <td class="px-4 py-2">hadir</td>
                             </tr>
                             <tr>
-                                <td class="px-4 py-2">01/01/2000</td>
+                                <td class="px-4 py-2">11/02/2000</td>
                                 <td class="px-4 py-2">07.45</td>
                                 <td class="px-4 py-2">hair</td>
                                 <td class="px-4 py-2">hair</td>
                             </tr>
                             <tr>
-                                <td class="px-4 py-2">01/01/2000</td>
+                                <td class="px-4 py-2">10/02/2000</td>
                                 <td class="px-4 py-2">09.00</td>
                                 <td class="px-4 py-2">alpha</td>
                                 <td class="px-4 py-2">alpha</td>
