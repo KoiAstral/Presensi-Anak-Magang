@@ -63,7 +63,7 @@
                     <!-- Waktu Absensi -->
                     <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                         <img src="/images/time.png" alt="Waktu Absensi" class="h-6 w-6 mr-2">
-                        <input type="time" name="waktu_absensi" required
+                        <input type="time" id="waktu_absensi" name="waktu_absensi" required
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
 
@@ -90,14 +90,14 @@
                     <!-- Tanggal Mulai -->
                     <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                         <img src="/images/date.png" alt="Tanggal Mulai" class="h-6 w-6 mr-2">
-                        <input type="date" name="tanggal_mulai" required
+                        <input type="date" id="tanggal_mulai" name="tanggal_mulai" required
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
 
                     <!-- Tanggal Akhir -->
                     <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                         <img src="/images/date.png" alt="Tanggal Akhir" class="h-6 w-6 mr-2">
-                        <input type="date" name="tanggal_akhir" required
+                        <input type="date" name="tanggal_akhir" id="tanggal_akhir" required
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
 
@@ -125,19 +125,49 @@
         </div>
     </div>
 
-    <script>
-        document.getElementById('jenis_absensi').addEventListener('click', function() {
-            document.getElementById('arrowIcon').classList.toggle('rotate-180');
-        });
+    <script>     
+document.addEventListener("DOMContentLoaded", function () {
+    let inputTime = document.getElementById("waktu_absensi");
+    let now = new Date();
+    let hours = now.getHours().toString().padStart(2, '0');
+    let minutes = now.getMinutes().toString().padStart(2, '0');
+    inputTime.value = `${hours}:${minutes}`;
 
-        document.getElementById('izinForm').addEventListener('submit', function(event) {
-            // event.preventDefault();
-            document.getElementById('popupSuccess').classList.remove('hidden');
+    let year = now.getFullYear();
+    let month = (now.getMonth() + 1).toString().padStart(2, '0');
+    let day = now.getDate().toString().padStart(2, '0');
+    document.getElementById("tanggal_mulai").value = `${year}-${month}-${day}`;
+});
 
-            setTimeout(() => {
-                window.location.href = "/dashboard";
-            }, 5000);
-        });
+document.getElementById('jenis_absensi').addEventListener('click', function() {
+    document.getElementById('arrowIcon').classList.toggle('rotate-180');
+});
+
+document.getElementById("tanggal_mulai").addEventListener("change", function() {
+        let tanggalMulai = this.value;
+        let tanggalAkhir = document.getElementById("tanggal_akhir");
+
+        tanggalAkhir.min = tanggalMulai; // Set batas minimal pada tanggal akhir
+    });
+
+
+document.getElementById('izinForm').addEventListener('submit', function(event) {
+    let tanggalMulai = document.getElementById('tanggal_mulai').value;
+    let tanggalAkhir = document.getElementById('tanggal_akhir').value;
+
+    if (new Date(tanggalAkhir) <= new Date(tanggalMulai)) {
+        event.preventDefault();
+        alert('Tanggal akhir tidak boleh sama atau lebih kecil dari tanggal mulai!');
+        return;
+    }
+
+    document.getElementById('popupSuccess').classList.remove('hidden');
+
+    setTimeout(() => {
+        window.location.href = "/dashboard";
+    }, 5000);
+});
+
     </script>
 </body>
 </html>
