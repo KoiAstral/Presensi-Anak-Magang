@@ -41,11 +41,6 @@ class AuthController extends Controller
             ]);
         }
     
-        // Cek peran pengguna setelah login
-        if ($user->role === 'admin') {
-            return redirect()->route('admin.dashboard'); // Sesuaikan dengan rute admin
-        }
-    
         // Jika bukan admin, redirect ke dashboard biasa
         return redirect()->route('dashboard');
     }
