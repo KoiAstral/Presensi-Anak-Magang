@@ -16,7 +16,7 @@ class AuthController extends Controller
 
     public function login_proses(Request $request)
     {
-        // Validasi awal untuk nomor_induk
+        // Validasi awal untuk nomor_induk dan password
         $request->validate([
             'nomor_induk' => 'required',
             'password' => 'required',
@@ -24,28 +24,32 @@ class AuthController extends Controller
             'nomor_induk.required' => 'Nomor Induk harus diisi.',
             'password.required' => 'Password harus diisi.',
         ]);
-
+    
         // Cek apakah nomor_induk ada di database
         $user = User::where('nomor_induk', $request->nomor_induk)->first();
-
+    
         if (!$user) {
-            // Jika nomor_induk tidak ditemukan, hanya tampilkan error untuk nomor_induk
             return redirect()->route('login')->withErrors([
                 'nomor_induk' => 'Nomor Induk tidak ditemukan.',
             ]);
         }
-
-        // Jika nomor_induk ditemukan, cek password
+    
+        // Coba autentikasi user
         if (!Auth::attempt($request->only('nomor_induk', 'password'))) {
-            // Jika password salah, tampilkan error untuk password saja
             return redirect()->route('login')->withErrors([
                 'password' => 'Password salah.',
             ]);
         }
-
-        // Jika semua validasi berhasil, redirect ke dashboard
+    
+        // Cek peran pengguna setelah login
+        if ($user->role === 'admin') {
+            return redirect()->route('admin.dashboard'); // Sesuaikan dengan rute admin
+        }
+    
+        // Jika bukan admin, redirect ke dashboard biasa
         return redirect()->route('dashboard');
-}
+    }
+    
 
 
     public function register_page()
