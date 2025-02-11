@@ -18,6 +18,10 @@ class DashboardController extends Controller
         $presensi = Presensi::where('nomor_induk', Auth::user()->nomor_induk)->get();
 
         // Return the user's dashboard view with absensi data
-        return view('home.dashboard_user', compact('absensi', 'presensi'));
+        if (Auth::user()->status == 'admin') {
+            return view('home.dashboard_admin');
+        } else {
+            return view('home.dashboard_user', compact('absensi', 'presensi'));
+        }
     }
 }
