@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
         // Dashboard - Redirect berdasarkan role
         Route::get('/dashboard', function () {
             $user = auth()->user();
-            return view($user->role === 'admin' ? 'home.dashboard_admin' : 'home.dashboard_user');
+            return view($user->status === 'admin' ? 'home.dashboard_admin' : 'home.dashboard_user');
         })->name('dashboard');
     
     // Logout
