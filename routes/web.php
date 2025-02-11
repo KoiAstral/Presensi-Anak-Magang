@@ -40,12 +40,7 @@ Route::middleware('guest')->group(function () {
 
 // Authenticated routes
 Route::middleware('auth')->group(function () {
-        // Dashboard - Redirect berdasarkan role
-        Route::get('/dashboard', function () {
-            $user = auth()->user();
-            return view($user->status === 'admin' ? 'home.dashboard_admin' : 'home.dashboard_user');
-        })->name('dashboard');
-    
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');    
     // Logout
     Route::get('/logout', [AuthController::class, 'logout_page'])->name('logout');
 });
@@ -59,12 +54,6 @@ Route::prefix('admin')->group(function () {
 // absensi routes
 Route::get('/pengajuan_absensi', [AbsensiController::class, 'formAbsensi'])->name('form.absensi');
 Route::post('/storeabsensi', [AbsensiController::class, 'store'])->name('store.absensi');
-
-
-
-Route::get('/dashboard_user', [DashboardController::class, 'index'])->name('home.dashboard_user')->middleware('auth');
-
-
 
 
 // profile routes
