@@ -38,7 +38,7 @@
     <div class="h-screen flex flex-col">
         <header class="bg-white border-b-2 border-[#396E66] p-3 flex items-center space-x-2">
             <button onclick="window.history.back()" class="p-2">
-                <img src="/images/back.png" alt="Back" class="h-8 w-8">
+                <img src="/svg/back.svg" alt="Back" class="h-8 w-8">
             </button>
             <h1 class="text-lg font-semibold">Form Pengajuan Izin / Sakit</h1>
         </header>
@@ -55,14 +55,14 @@
 
                     <!-- Nomor Induk -->
                     <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/nisn.png" alt="Nomor Induk" class="h-6 w-6 mr-2">
+                        <img src="/svg/nomor_induk.svg" alt="Nomor Induk" class="h-6 w-6 mr-2">
                         <input type="text" name="nomor_induk" placeholder="Nomor Induk" 
                             class="w-full bg-transparent text-gray-700 focus:outline-none" required>
                     </div>
 
                     <!-- Waktu Absensi -->
                     <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/time.png" alt="Waktu Absensi" class="h-6 w-6 mr-2">
+                        <img src="/svg/clock.svg" alt="Waktu Absensi" class="h-6 w-6 mr-2">
                         <input type="time" id="waktu_absensi" name="waktu_absensi" required
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
@@ -82,21 +82,21 @@
 
                     <!-- Keterangan -->
                     <div class="mb-5 flex border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/alasan.png" alt="Keterangan" class="h-6 w-6 mr-2">
+                        <img src="/svg/alasan.svg" alt="Keterangan" class="h-6 w-6 mr-2">
                         <textarea name="keterangan" placeholder="Jelaskan alasan izin / sakit" rows="3"
                             class="w-full bg-transparent text-gray-700 focus:outline-none resize-none" required></textarea>
                     </div>
 
                     <!-- Tanggal Mulai -->
                     <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/date.png" alt="Tanggal Mulai" class="h-6 w-6 mr-2">
+                        <img src="/svg/Calendar2.svg" alt="Tanggal Mulai" class="h-6 w-6 mr-2">
                         <input type="date" id="tanggal_mulai" name="tanggal_mulai" required
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
 
                     <!-- Tanggal Akhir -->
                     <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/date.png" alt="Tanggal Akhir" class="h-6 w-6 mr-2">
+                        <img src="/svg/Calendar2.svg" alt="Tanggal Akhir" class="h-6 w-6 mr-2">
                         <input type="date" name="tanggal_akhir" id="tanggal_akhir" required
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>

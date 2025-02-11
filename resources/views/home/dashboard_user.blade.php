@@ -35,32 +35,32 @@
             <header class="bg-white border-b-2 border-[#396E66] p-4 flex items-center justify-between z-50 relative">
                 <h1 class="text-lg font-semibold">Presensi Magang Sekretariat DPRD Kab. Banjar</h1>
                 <div id="profileMenu" class="flex items-center space-x-2 cursor-pointer">
-                    <img src="/images/akun.png" alt="Icon" class="h-10 w-10 rounded-full">
+                    <img src="/svg/Account.svg" alt="Icon" class="h-10 w-10 rounded-full">
                     <div>
                         <span class="text-sm font-bold text-black">Azizah Nur Octaviani</span>
                         <p class="text-gray-500 text-xs mt-1 font-light">543221192</p>
                     </div>
-                    <img id="arrowIcon" src="/images/panah.png" alt="Arrow" class="h-8 w-8 transition-transform duration-300">
+                    <img id="arrowIcon" src="/svg/back.svg" alt="Arrow" class="h-8 w-8 transition-transform duration-300">
                 </div>
 
                 <div id="modalProfile" class="absolute top-16 right-0 bg-white shadow-lg rounded-md w-64 hidden flex flex-col overflow-hidden">
                     <a href="/profile" class="flex items-center px-4 py-2 w-full text-left hover:bg-gray-200 font-semibold text-black">
-                        <img src="/images/detail_profile.png" alt="Icon" class="h-6 w-8 mr-2">
+                        <img src="/svg/profile.svg" alt="Icon" class="h-6 w-8 mr-2">
                         <span>Detail Profil</span>
                     </a>
                     <a id="btnLogout" class="flex items-center px-4 py-2 w-full text-left hover:bg-gray-200 font-semibold text-black cursor-pointer">
-                        <img src="/images/logout2.png" alt="Icon" class="h-6 w-8 mr-2">
+                        <img src="/svg/logout.svg" alt="Icon" class="h-6 w-8 mr-2">
                         <span>Logout</span>
                     </a>
                 </div>
             </header>
-
+        </div>
             <main class="p-6">
                 <div class="flex justify-center space-x-6">
                     <div class="bg-[#396E66]/20 p-6 rounded-md w-1/3">
                         <div class="flex items-center justify-between">
                             <h2 class="text-xl font-bold text-black">Presensi Kehadiran</h2>
-                            <img src="/images/presensi.png" alt="Icon" class="h-12 w-12">
+                            <img src="/svg/presensi.svg" alt="Icon" class="h-12 w-12">
                         </div>
                         <p class="text-sm font-light text-gray-600 mt-2">Anda belum melakukan presensi hari ini.</p>
                         <button id="btnPresensi" class="mt-4 bg-[#396E66] text-white font-bold px-4 py-2 rounded-md w-full">
@@ -71,7 +71,7 @@
                     <div class="bg-[#00307D]/20 p-6 rounded-md w-1/3">
                         <div class="flex items-center justify-between">
                             <h2 class="text-xl font-bold text-black">Pengajuan Izin</h2>
-                            <img src="/images/izin.png" alt="Icon" class="h-12 w-12">
+                            <img src="/svg/pengajuan_izin.svg" alt="Icon" class="h-12 w-12">
                         </div>
                         <p class="text-sm font-light text-gray-600 mt-2">Silahkan buat pengajuan izin jika diperlukan.</p>
                         <button class="mt-4 bg-[#00307D] text-white font-bold px-4 py-2 rounded-md w-full">
@@ -136,7 +136,7 @@
         <div class="bg-white rounded-md p-4 relative animate-slide-down w-96">
             <div class="flex items-center">
                 <p class="text-lg font-semibold mr-4">Terima kasih, presensi berhasil!</p>
-                <img src="/images/berhasil.png" alt="Presensi Berhasil" class="h-8 w-8">
+                <img src="/svg/Checked_Checkbox.svg" alt="Presensi Berhasil" class="h-8 w-8">
             </div>
         </div>
     </div>

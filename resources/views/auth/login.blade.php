@@ -123,7 +123,7 @@
                 <div class="mb-8">
                     <label for="nomor_induk" class="text-gray-700 font-medium block mb-2">Nomor Induk</label>
                     <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-white">
-                        <img src="{{ asset('images/User.png') }}" alt="User Icon" class="h-6 w-6 mr-2">
+                        <img src="{{ asset('/svg/nomor_induk.svg') }}" alt="User Icon" class="h-6 w-6 mr-2">
                         <input type="text" id="nomor_induk" name="nomor_induk"
                             placeholder="Masukkan Nomor Induk"
                             class="w-full bg-transparent text-gray-700 focus:outline-none"
@@ -142,7 +142,7 @@
                 <div class="mb-8">
                     <label for="password" class="text-gray-700 font-medium block mb-2">Password</label>
                     <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-white">
-                        <img src="{{ asset('images/password2.png') }}" alt="Password Icon" class="h-6 w-6 mr-2">
+                        <img src="{{ asset('/svg/Password2.svg') }}" alt="Password Icon" class="h-6 w-6 mr-2">
                         <input type="password" id="password" name="password"
                             placeholder="Masukkan Password"
                             class="w-full bg-transparent text-gray-700 focus:outline-none" required>

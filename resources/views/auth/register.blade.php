@@ -27,7 +27,7 @@
                 <!-- Nama -->
                 <div class="mb-5">
                     <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3">
-                        <img src="/images/nama.png" alt="Nama" class="h-6 w-6 mr-2">
+                        <img src="/svg/Name.svg" alt="Nama" class="h-6 w-6 mr-2">
                         <input type="text" name="nama" placeholder="Nama Lengkap" required class="w-full focus:outline-none" value="{{ old('nama') }}">
                     </div>
                     @error('nama')
@@ -38,7 +38,7 @@
                 <!-- Nomor Induk -->
                 <div class="mb-5">
                     <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3">
-                        <img src="/images/nisn.png" alt="NISN/NIM" class="h-6 w-6 mr-2">
+                        <img src="/svg/nomor_induk.svg" alt="NISN/NIM" class="h-6 w-6 mr-2">
                         <input type="text" name="nomor_induk" placeholder="Nomor Induk" required class="w-full focus:outline-none" value="{{ old('nomor_induk') }}">
                     </div>
                     @error('nomor_induk')
@@ -49,7 +49,7 @@
                 <!-- Asal Sekolah/Universitas -->
                 <div class="mb-5">
                     <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/asal.png" alt="Asal Sekolah Logo" class="h-6 w-6 mr-2">
+                        <img src="/svg/School.svg" alt="Asal Sekolah Logo" class="h-6 w-6 mr-2">
                         <input type="text" name="sekolah" placeholder="Sekolah" required class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
                     @error('sekolah')
@@ -60,7 +60,7 @@
                 <!-- Email -->
                 <div class="mb-5">
                     <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3">
-                        <img src="/images/email.png" alt="Email" class="h-6 w-6 mr-2">
+                        <img src="/svg/Email.svg" alt="Email" class="h-6 w-6 mr-2">
                         <input type="email" name="email" placeholder="Email" required class="w-full focus:outline-none" value="{{ old('email') }}">
                     </div>
                     @error('email')
@@ -71,7 +71,7 @@
                 <!-- Password -->
                 <div class="mb-5">
                     <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3">
-                        <img src="/images/password2.png" alt="Password" class="h-6 w-6 mr-2">
+                        <img src="/svg/password2.svg" alt="Password" class="h-6 w-6 mr-2">
                         <input type="password" name="password" placeholder="Password" required class="w-full focus:outline-none">
                     </div>
                     @error('password')
@@ -82,7 +82,7 @@
                 <!-- Konfirmasi Password -->
                 <div class="mb-5">
                     <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3">
-                        <img src="/images/password.png" alt="Konfirmasi Password" class="h-6 w-6 mr-2">
+                        <img src="/svg/password.svg" alt="Konfirmasi Password" class="h-6 w-6 mr-2">
                         <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" required class="w-full focus:outline-none">
                     </div>
                 </div>
