@@ -82,7 +82,7 @@ User::create([
     'sekolah'     => $request->sekolah,
     'email'       => $request->email,
     'password'    => Hash::make($request->password),
-    'status'      => $request->status,  // Make sure this is handled properly in the form
+    'status'      => 'siswa',  // Make sure this is handled properly in the form
 ]);
 
 // Redirect to login page with success message

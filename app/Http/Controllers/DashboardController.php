@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Absensi;
+use App\Models\Presensi;
 
 class DashboardController extends Controller
 {
@@ -14,7 +15,9 @@ class DashboardController extends Controller
         // Fetch the absensi data for the logged-in user
         $absensi = Absensi::where('nomor_induk', Auth::user()->nomor_induk)->get();
 
+        $presensi = Presensi::where('nomor_induk', Auth::user()->nomor_induk)->get();
+
         // Return the user's dashboard view with absensi data
-        return view('home.dashboard_user', compact('absensi'));
+        return view('home.dashboard_user', compact('absensi', 'presensi'));
     }
 }
