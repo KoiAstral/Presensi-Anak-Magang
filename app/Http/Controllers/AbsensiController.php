@@ -45,7 +45,7 @@ class AbsensiController extends Controller
             'status' => 'pending',
         ]);
 
-        return redirect()->route('home.dashboard_user')->with('success', 'Pengajuan berhasil dikirim.');
+        return redirect()->route('/dashboard')->with('success', 'Pengajuan berhasil dikirim.');
     }
 
     public function updateStatus(Request $request, $nomor_induk)
