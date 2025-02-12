@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="presensi-url" content="{{ route('presensi.store') }}">
+    <meta name="nomor-induk" content="{{ auth()->user()->nomor_induk }}">
     <title>Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
@@ -80,55 +83,45 @@
                     </div>
                 </div>
 
-                <div class="mt-8 mx-20">
-                    <table id="dataTable" class="display text-sm w-full border-collapse border border-gray-300">
+                <div class="w-full mx-auto">
+                    <table id="dataTable" class="display w-full">
                         <thead class="bg-[#EAEAEA]">
                             <tr>
-                                <th class="border border-gray-300 px-4 py-2">Tanggal</th>
-                                <th class="border border-gray-300 px-4 py-2">Waktu</th>|
-                                <th class="border border-gray-300 px-4 py-2">status</th>|
-                                <th class="border border-gray-300 px-4 py-2">detail</th>|
+                                <th class="border border-gray-300 px-6 py-4">No</th>
+                                <th class="border border-gray-300 px-6 py-4">Nomor Induk</th>
+                                <th class="border border-gray-300 px-6 py-4">Tanggal Presensi</th>
+                                <th class="border border-gray-300 px-6 py-4">Waktu Presensi</th>
+                                <th class="border border-gray-300 px-6 py-4">Status</th>
+                                <th class="border border-gray-300 px-6 py-4">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="px-4 py-2">13/02/2000</td>
-                                <td class="px-4 py-2">07.00</td>
-                                <td class="px-4 py-2">hadir</td>
-                                <td class="px-4 py-2"><a class="bg-[#396E66] text-white px-4 py-2" href="">Detail</a></td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-2">12/02/2000</td>
-                                <td class="px-4 py-2">07.30</td>
-                                <td class="px-4 py-2">hadir</td>
-                                <td class="px-4 py-2">hadir</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-2">11/02/2000</td>
-                                <td class="px-4 py-2">07.45</td>
-                                <td class="px-4 py-2">hair</td>
-                                <td class="px-4 py-2">hair</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-2">10/02/2000</td>
-                                <td class="px-4 py-2">09.00</td>
-                                <td class="px-4 py-2">alpha</td>
-                                <td class="px-4 py-2">alpha</td>
-                            </tr>
+                            @foreach ($presensi as $data)
+                                <tr>
+                                    <td class="px-6 py-4">{{ $loop->iteration }}</td>
+                                    <td class="px-6 py-4">{{ $data->nomor_induk }}</td>
+                                    <td class="px-6 py-4">{{ $data->tanggal_presensi }}</td>
+                                    <td class="px-6 py-4">{{ $data->waktu_presensi }}</td>
+                                    <td class="px-6 py-4">{{ $data->status }}</td>
+                                    <td class="px-6 py-4 flex items-center justify-start space-x-2">
+                                        <a href="/edit_data/{{ $data->id }}" class="flex items-center hover:opacity-75">
+                                            <img src="/images/edit.png" alt="Edit Icon" class="h-6 w-6">
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
-            </main>
-        </div>
-    </div>
-
     <div id="popupPresensi" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-md py-6 px-8 relative">
             <p class="text-center text-lg font-semibold mb-6 mt-4">Anda akan melakukan absensi untuk kehadiran hari ini.</p>
             <img id="closePopup" src="/svg/Close.svg" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
             <div class="flex justify-around">
                 <button id="btnBatal" class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
-                <button id="btnHadir" class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Hadir</button>
+                <a href="presensi">
+                    <button id="btnHadir" class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Hadir</button>
+                </a>
             </div>
         </div>
     </div>
@@ -159,46 +152,77 @@
 </html>
 <script>
     $(document).ready(function () {
-        // table
-        $('#dataTable').DataTable();
+    // Inisialisasi DataTable
+    $('#dataTable').DataTable();
 
-        // toggle profile
-        let isProfileOpen = false;
-        $('#profileMenu').on('click', function (e) {
-            e.stopPropagation();
-            $('#modalProfile').toggle();
-            isProfileOpen = !isProfileOpen;
-            const arrowIcon = $('#arrowIcon');
-            arrowIcon.css('transform', isProfileOpen ? 'rotate(180deg)' : 'rotate(0deg)');
-        });
-        $(document).on('click', function () {
-            $('#modalProfile').hide();
-            isProfileOpen = false;
-            $('#arrowIcon').css('transform', 'rotate(0deg)');
-        });
-
-        // pop up presensi
-        $('#btnPresensi').on('click', function () {
-            $('#popupPresensi').removeClass('hidden');
-        });
-        $('#closePopup, #btnBatal').on('click', function () {
-            $('#popupPresensi').addClass('hidden');
-        });
-        $('#btnHadir').on('click', function () {
-            $('#popupPresensi').addClass('hidden');
-            $('#popupKonfirmasi').removeClass('hidden');
-            setTimeout(() => {
-                $('#popupKonfirmasi').addClass('hidden');
-            }, 3000);
-        });
-
-        //pop up logout 
-        $('#btnLogout').on('click', function () {
-            $('#popupLogout').removeClass('hidden');
-        });
-        $('#closePopup, #btnBatal').on('click', function () {
-            $('#popupLogout').addClass('hidden');
-        });
+    // Toggle Profile Menu
+    let isProfileOpen = false;
+    $('#profileMenu').on('click', function (e) {
+        e.stopPropagation();
+        $('#modalProfile').toggle();
+        isProfileOpen = !isProfileOpen;
+        $('#arrowIcon').css('transform', isProfileOpen ? 'rotate(180deg)' : 'rotate(0deg)');
     });
+
+    $(document).on('click', function () {
+        $('#modalProfile').hide();
+        isProfileOpen = false;
+        $('#arrowIcon').css('transform', 'rotate(0deg)');
+    });
+
+    // Pop-up Presensi
+    $('#btnPresensi').on('click', function () {
+        $('#popupPresensi').removeClass('hidden');
+    });
+
+    $('#btnBatal').on('click', function () {
+        $('#popupPresensi').addClass('hidden');
+    });
+
+    $('#btnHadir').on('click', async function () {
+    let now = new Date();
+    let tanggal_presensi = now.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+    let waktu_presensi = now.toTimeString().split(' ')[0];  // Format: HH:MM:SS
+
+    let presensiUrl = document.querySelector('meta[name="presensi-url"]').getAttribute('content');
+    let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    let nomorInduk = document.querySelector('meta[name="nomor-induk"]').getAttribute('content');
+
+    try {
+        let response = await fetch(presensiUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": csrfToken
+            },
+            body: JSON.stringify({
+                nomor_induk: nomorInduk,
+                tanggal_presensi: tanggal_presensi,
+                waktu_presensi: waktu_presensi,
+                status: "Hadir"
+            })
+        });
+
+        let data = await response.json();
+        alert(data.message);
+        $('#popupPresensi').addClass('hidden');
+        $('#popupKonfirmasi').removeClass('hidden');
+        setTimeout(() => location.reload(), 2000);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});
+
+
+    // Pop-up Logout
+    $('#btnLogout').on('click', function () {
+        $('#popupLogout').removeClass('hidden');
+    });
+
+    $('#closePopup, #btnBatal').on('click', function () {
+        $('#popupLogout').addClass('hidden');
+    });
+});
+
 </script>
 
