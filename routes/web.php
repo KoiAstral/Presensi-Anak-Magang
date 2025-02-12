@@ -56,6 +56,12 @@ Route::get('/pengajuan_absensi', [AbsensiController::class, 'formAbsensi'])->nam
 Route::post('/storeabsensi', [AbsensiController::class, 'store'])->name('store.absensi');
 
 
+// Menampilkan data presensi untuk admin
+Route::get('/admin/presensi', [PresensiController::class, 'indexAdmin'])->name('presensi.index');
+
+// Menyimpan data presensi
+Route::post('/presensi', [PresensiController::class, 'store'])->name('presensi.store');
+
 // profile routes
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile_detail');
 
