@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,9 +27,11 @@
                 
                 <!-- Nama -->
                 <div class="mb-5">
-                    <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3">
+                    <div class="flex items-center border-2 rounded-lg px-4 py-3 
+                        {{ $errors->has('nama') ? 'border-red-500' : 'border-[#396E66]' }}">
                         <img src="/svg/Name.svg" alt="Nama" class="h-6 w-6 mr-2">
-                        <input type="text" name="nama" placeholder="Nama Lengkap" required class="w-full focus:outline-none" value="{{ old('nama') }}">
+                        <input type="text" name="nama" placeholder="Nama Lengkap" 
+                            class="w-full focus:outline-none" value="{{ old('nama') }}">
                     </div>
                     @error('nama')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
@@ -37,9 +40,11 @@
                 
                 <!-- Nomor Induk -->
                 <div class="mb-5">
-                    <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3">
+                    <div class="flex items-center border-2 rounded-lg px-4 py-3 
+                        {{ $errors->has('nomor_induk') ? 'border-red-500' : 'border-[#396E66]' }}">
                         <img src="/svg/nomor_induk.svg" alt="NISN/NIM" class="h-6 w-6 mr-2">
-                        <input type="text" name="nomor_induk" placeholder="Nomor Induk" required class="w-full focus:outline-none" value="{{ old('nomor_induk') }}">
+                        <input type="text" name="nomor_induk" placeholder="Nomor Induk" 
+                            class="w-full focus:outline-none" value="{{ old('nomor_induk') }}">
                     </div>
                     @error('nomor_induk')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
@@ -48,9 +53,11 @@
 
                 <!-- Asal Sekolah/Universitas -->
                 <div class="mb-5">
-                    <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                    <div class="flex items-center border-2 rounded-lg px-4 py-3 
+                        {{ $errors->has('sekolah') ? 'border-red-500' : 'border-[#396E66]' }}">
                         <img src="/svg/School.svg" alt="Asal Sekolah Logo" class="h-6 w-6 mr-2">
-                        <input type="text" name="sekolah" placeholder="Sekolah" required class="w-full bg-transparent text-gray-700 focus:outline-none">
+                        <input type="text" name="sekolah" placeholder="Sekolah" 
+                            class="w-full focus:outline-none" value="{{ old('sekolah') }}">
                     </div>
                     @error('sekolah')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
@@ -59,9 +66,11 @@
                 
                 <!-- Email -->
                 <div class="mb-5">
-                    <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3">
+                    <div class="flex items-center border-2 rounded-lg px-4 py-3 
+                        {{ $errors->has('email') ? 'border-red-500' : 'border-[#396E66]' }}">
                         <img src="/svg/Email.svg" alt="Email" class="h-6 w-6 mr-2">
-                        <input type="email" name="email" placeholder="Email" required class="w-full focus:outline-none" value="{{ old('email') }}">
+                        <input type="email" name="email" placeholder="Email" 
+                            class="w-full focus:outline-none" value="{{ old('email') }}">
                     </div>
                     @error('email')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
@@ -70,9 +79,11 @@
                 
                 <!-- Password -->
                 <div class="mb-5">
-                    <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3">
+                    <div class="flex items-center border-2 rounded-lg px-4 py-3 
+                        {{ $errors->has('password') ? 'border-red-500' : 'border-[#396E66]' }}">
                         <img src="/svg/password2.svg" alt="Password" class="h-6 w-6 mr-2">
-                        <input type="password" name="password" placeholder="Password" required class="w-full focus:outline-none">
+                        <input type="password" name="password" placeholder="Password" 
+                            class="w-full focus:outline-none" autocomplete="off">
                     </div>
                     @error('password')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
@@ -81,10 +92,15 @@
                 
                 <!-- Konfirmasi Password -->
                 <div class="mb-5">
-                    <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3">
+                    <div class="flex items-center border-2 rounded-lg px-4 py-3 
+                        {{ $errors->has('password_confirmation') ? 'border-red-500' : 'border-[#396E66]' }}">
                         <img src="/svg/password.svg" alt="Konfirmasi Password" class="h-6 w-6 mr-2">
-                        <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" required class="w-full focus:outline-none">
+                        <input type="password" name="password_confirmation" placeholder="Konfirmasi Password" 
+                            class="w-full focus:outline-none" autocomplete="off">
                     </div>
+                    @error('password_confirmation')
+                    <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
                 
                 <!-- Submit Button -->
