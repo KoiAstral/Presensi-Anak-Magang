@@ -61,17 +61,19 @@ class AuthController extends Controller
     'sekolah'      => 'required|string|max:255',
     'email'        => 'required|email|unique:users,email',          // Ensure unique email
     'password'     => 'required|string|min:6|confirmed',            // Ensure confirmation of password
+    'password_confirmation' => 'required',
 ], [
     'nama.required'         => 'Nama wajib diisi',
     'nomor_induk.required'  => 'Nomor induk wajib diisi',
     'nomor_induk.unique'    => 'Nomor induk sudah terdaftar',
-    'sekolah.required'      => 'required|string|max:255',
+    'sekolah.required'      => 'Sekolah wajib diisi',
     'email.required'        => 'Email wajib diisi',
     'email.email'           => 'Format email tidak valid',
     'email.unique'          => 'Email sudah terdaftar',
     'password.required'     => 'Password wajib diisi',
     'password.min'          => 'Password minimal 6 karakter',
     'password.confirmed'    => 'Konfirmasi password tidak cocok',
+    'password_confirmation.required' => 'Konfirmasi password harus diisi.',
 ]);
 
 // Create user and hash password before saving
