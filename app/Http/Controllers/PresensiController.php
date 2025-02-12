@@ -24,6 +24,8 @@ class PresensiController extends Controller
         $presensi->status = 'Hadir';
         $presensi->save();
 
-        return redirect()->back()->with('success', 'Presensi berhasil disimpan!');
+        return response()->json([
+            'message' => 'Anda berhasil presensi',
+        ]);
     }
 }
