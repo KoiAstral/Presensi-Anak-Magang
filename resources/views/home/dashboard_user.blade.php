@@ -92,7 +92,6 @@
                                 <th class="border border-gray-300 px-6 py-4">Tanggal Presensi</th>
                                 <th class="border border-gray-300 px-6 py-4">Waktu Presensi</th>
                                 <th class="border border-gray-300 px-6 py-4">Status</th>
-                                <th class="border border-gray-300 px-6 py-4">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -103,11 +102,6 @@
                                     <td class="px-6 py-4">{{ $data->tanggal_presensi }}</td>
                                     <td class="px-6 py-4">{{ $data->waktu_presensi }}</td>
                                     <td class="px-6 py-4">{{ $data->status }}</td>
-                                    <td class="px-6 py-4 flex items-center justify-start space-x-2">
-                                        <a href="/edit_data/{{ $data->id }}" class="flex items-center hover:opacity-75">
-                                            <img src="/images/edit.png" alt="Edit Icon" class="h-6 w-6">
-                                        </a>
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -119,9 +113,7 @@
             <img id="closePopup" src="/svg/Close.svg" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
             <div class="flex justify-around">
                 <button id="btnBatal" class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
-                <a href="presensi">
                     <button id="btnHadir" class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Hadir</button>
-                </a>
             </div>
         </div>
     </div>
@@ -203,8 +195,8 @@
             })
         });
 
-        let data = await response.json();
-        alert(data.message);
+        // let data = await response.json();
+        // alert(data.message);
         $('#popupPresensi').addClass('hidden');
         $('#popupKonfirmasi').removeClass('hidden');
         setTimeout(() => location.reload(), 2000);
