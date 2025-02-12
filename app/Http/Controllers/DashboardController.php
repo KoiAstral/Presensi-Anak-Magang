@@ -11,17 +11,17 @@ class DashboardController extends Controller
 {
     // Method to show the dashboard page
     public function index()
-    {
-        // Fetch the absensi data for the logged-in user
-        $absensi = Absensi::where('nomor_induk', Auth::user()->nomor_induk)->get();
+{
+    $user = Auth::user(); // Ambil data user yang sedang login
+    $absensi = Absensi::where('nomor_induk', $user->nomor_induk)->get();
+    
+    $presensi = Presensi::where('nomor_induk', $user->nomor_induk)->get();
 
-        $presensi = Presensi::where('nomor_induk', Auth::user()->nomor_induk)->get();
-
-        // Return the user's dashboard view with absensi data
-        if (Auth::user()->status == 'admin') {
-            return view('home.dashboard_admin');
-        } else {
-            return view('home.dashboard_user', compact('absensi', 'presensi'));
-        }
+    if ($user->status == 'admin') {
+        return view('home.dashboard_admin', compact('user'));
+    } else {
+        return view('home.dashboard_user', compact('user', 'absensi', 'presensi'));
     }
+}
+
 }
