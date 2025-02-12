@@ -40,8 +40,8 @@
                 <div id="profileMenu" class="flex items-center space-x-2 cursor-pointer">
                     <img src="/svg/Account.svg" alt="Icon" class="h-10 w-10 rounded-full">
                     <div>
-                        <span class="text-sm font-bold text-black">Azizah Nur Octaviani</span>
-                        <p class="text-gray-500 text-xs mt-1 font-light">543221192</p>
+                        <span class="text-sm font-bold text-black">{{ $user->nama}}</span>
+                        <p class="text-gray-500 text-xs mt-1 font-light">{{ $user->nomor_induk }}</p>
                     </div>
                     <img id="arrowIcon" src="/svg/back2.svg" alt="Arrow" class="h-8 w-8 transition-transform duration-300">
                 </div>
