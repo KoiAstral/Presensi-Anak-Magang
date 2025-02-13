@@ -64,4 +64,6 @@ Route::post('/presensi', [PresensiController::class, 'store'])->name('presensi.s
 
 // profile routes
 Route::get('/profile', [ProfileController::class, 'profile'])->name('profile_detail');
+Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+
 
