@@ -48,40 +48,53 @@
                 <div class="bg-[#EAEAEA] p-4 mb-4 rounded-md border-top-green shadow-md text-center">
                     <h2 class="text-lg font-bold text-black">Edit Profile</h2>
                 </div>
-                <form>
+                <form action="{{ route('profile.update') }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                
                     <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/nama.png" alt="Nama Lengkap Logo" class="h-6 w-6 mr-2">
-                        <input type="text" placeholder="Nama Lengkap" 
+                        <img src="/svg/Name.svg" alt="Nama Lengkap Logo" class="h-6 w-6 mr-2">
+                        <input type="text" name="nama" placeholder="Nama Lengkap" 
+                            value="{{ old('nama', auth()->user()->nama) }}" 
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
+                
                     <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/email.png" alt="Email Logo" class="h-6 w-6 mr-2">
-                        <input type="text" placeholder="Email" 
+                        <img src="/svg/Email.svg" alt="Email Logo" class="h-6 w-6 mr-2">
+                        <input type="email" name="email" placeholder="Email" 
+                            value="{{ old('email', auth()->user()->email) }}" 
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
+                
                     <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/nisn.png" alt="NISN Logo" class="h-6 w-6 mr-2">
-                        <input type="text" placeholder="Nomor induk" 
+                        <img src="/svg/nomor_induk.svg" alt="NISN Logo" class="h-6 w-6 mr-2">
+                        <input type="text" name="nisn" placeholder="Nomor Induk" 
+                            value="{{ old('nisn', auth()->user()->nomor_induk) }}" 
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
+                
                     <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/asal.png" alt="Sekolah/Universitas Logo" class="h-6 w-6 mr-2">
-                        <input type="text" placeholder="Sekolah/Universitas" 
+                        <img src="/svg/school.svg" alt="Sekolah/Universitas Logo" class="h-6 w-6 mr-2">
+                        <input type="text" name="asal_sekolah" placeholder="Sekolah/Universitas" 
+                            value="{{ old('asal_sekolah', auth()->user()->sekolah) }}" 
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
+                
                     <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/password.png" alt="Password Logo" class="h-6 w-6 mr-2">
-                        <input type="text" placeholder="Password lama" 
+                        <img src="/svg/Password.svg" alt="Password Logo" class="h-6 w-6 mr-2">
+                        <input type="password" name="password_lama" placeholder="Password Lama" 
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
+                
                     <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/password2.png" alt="Password Logo" class="h-6 w-6 mr-2">
-                        <input type="text" placeholder="Password baru" 
+                        <img src="/svg/password2.svg" alt="Password Baru" class="h-6 w-6 mr-2">
+                        <input type="password" name="password_baru" placeholder="Password Baru" 
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
+                
                     <button id="btnKirim" type="submit"
                             class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2">
-                            Kirim Perubahan
+                        Kirim Perubahan
                         <img src="/images/login.png" alt="Login Logo" class="h-6 w-6">
                     </button>
                 </form>
