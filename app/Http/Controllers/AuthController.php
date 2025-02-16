@@ -56,11 +56,11 @@ class AuthController extends Controller
     {
   // Validation rules
   $request->validate([
-    'nama'         => 'required|string|max:255',
-    'nomor_induk'  => 'required|string|unique:users,nomor_induk',  // Ensure unique nomor_induk
-    'sekolah'      => 'required|string|max:255',
-    'email'        => 'required|email|unique:users,email',          // Ensure unique email
-    'password'     => 'required|string|min:6|confirmed',            // Ensure confirmation of password
+    'nama'                  => 'required|string|max:255',
+    'nomor_induk'           => 'required|string|unique:users,nomor_induk',  // Ensure unique nomor_induk
+    'sekolah'               => 'required|string|max:255',
+    'email'                 => 'required|email|unique:users,email',          // Ensure unique email
+    'password'              => 'required|string|min:6|confirmed',            // Ensure confirmation of password
     'password_confirmation' => 'required',
 ], [
     'nama.required'         => 'Nama wajib diisi',
