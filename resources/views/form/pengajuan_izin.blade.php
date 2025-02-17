@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,30 +11,37 @@
         body {
             font-family: 'Montserrat', sans-serif;
         }
+
         .border-top-green {
             border-top: 4px solid #396E66;
         }
+
         .arrow-icon {
             transition: transform 0.2s ease;
         }
+
         .rotate-180 {
             transform: rotate(180deg);
         }
+
         @keyframes slide-down {
             from {
                 transform: translateY(-10px);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0);
                 opacity: 1;
             }
         }
+
         .animate-slide-down {
             animation: slide-down 0.3s ease-out forwards;
         }
     </style>
 </head>
+
 <body class="bg-gray-100">
     <div class="h-screen flex flex-col">
         <header class="bg-white border-b-2 border-[#396E66] p-3 flex items-center space-x-2">
@@ -50,13 +58,13 @@
                     <p class="text-medium text-gray-600">Silahkan isi data di bawah ini</p>
                 </div>
 
-                <form id="izinForm"  method="POST" action="{{ route('store.absensi') }}">
+                <form id="izinForm" method="POST" action="{{ route('store.absensi') }}">
                     @csrf
 
                     <!-- Nomor Induk -->
                     <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                         <img src="/svg/nomor_induk.svg" alt="Nomor Induk" class="h-6 w-6 mr-2">
-                        <input type="text" name="nomor_induk" placeholder="Nomor Induk" 
+                        <input type="text" name="nomor_induk" placeholder="Nomor Induk"
                             class="w-full bg-transparent text-gray-700 focus:outline-none" required>
                     </div>
 
@@ -68,15 +76,19 @@
                     </div>
 
                     <!-- Jenis Absensi -->
-                    <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent relative">
-                        <select id="jenis_absensi" name="jenis_absensi" required 
+                    <div
+                        class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent relative">
+                        <select id="jenis_absensi" name="jenis_absensi" required
                             class="w-full bg-transparent text-gray-700 focus:outline-none appearance-none pr-10">
                             <option value="" disabled selected>Pilih jenis absensi</option>
                             <option value="izin">Izin</option>
                             <option value="sakit">Sakit</option>
                         </select>
-                        <svg id="arrowIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700 absolute right-3 top-1/2 transform -translate-y-1/2 arrow-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <svg id="arrowIcon" xmlns="http://www.w3.org/2000/svg"
+                            class="h-5 w-5 text-gray-700 absolute right-3 top-1/2 transform -translate-y-1/2 arrow-icon"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
                         </svg>
                     </div>
 
@@ -112,7 +124,8 @@
         </main>
 
         <!-- Success Popup -->
-        <div id="popupSuccess" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center pt-16 z-50">
+        <div id="popupSuccess"
+            class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center pt-16 z-50">
             <div class="bg-white rounded-md p-5 w-96 relative animate-slide-down">
                 <div class="flex items-center justify-between">
                     <div class="flex flex-col items-start">
@@ -125,49 +138,49 @@
         </div>
     </div>
 
-    <script>     
-document.addEventListener("DOMContentLoaded", function () {
-    let inputTime = document.getElementById("waktu_absensi");
-    let now = new Date();
-    let hours = now.getHours().toString().padStart(2, '0');
-    let minutes = now.getMinutes().toString().padStart(2, '0');
-    inputTime.value = `${hours}:${minutes}`;
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let inputTime = document.getElementById("waktu_absensi");
+            let now = new Date();
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            inputTime.value = `${hours}:${minutes}`;
 
-    let year = now.getFullYear();
-    let month = (now.getMonth() + 1).toString().padStart(2, '0');
-    let day = now.getDate().toString().padStart(2, '0');
-    document.getElementById("tanggal_mulai").value = `${year}-${month}-${day}`;
-});
+            let year = now.getFullYear();
+            let month = (now.getMonth() + 1).toString().padStart(2, '0');
+            let day = now.getDate().toString().padStart(2, '0');
+            document.getElementById("tanggal_mulai").value = `${year}-${month}-${day}`;
+        });
 
-document.getElementById('jenis_absensi').addEventListener('click', function() {
-    document.getElementById('arrowIcon').classList.toggle('rotate-180');
-});
+        document.getElementById('jenis_absensi').addEventListener('click', function() {
+            document.getElementById('arrowIcon').classList.toggle('rotate-180');
+        });
 
-document.getElementById("tanggal_mulai").addEventListener("change", function() {
-        let tanggalMulai = this.value;
-        let tanggalAkhir = document.getElementById("tanggal_akhir");
+        document.getElementById("tanggal_mulai").addEventListener("change", function() {
+            let tanggalMulai = this.value;
+            let tanggalAkhir = document.getElementById("tanggal_akhir");
 
-        tanggalAkhir.min = tanggalMulai; // Set batas minimal pada tanggal akhir
-    });
+            tanggalAkhir.min = tanggalMulai; // Set batas minimal pada tanggal akhir
+        });
 
 
-document.getElementById('izinForm').addEventListener('submit', function(event) {
-    let tanggalMulai = document.getElementById('tanggal_mulai').value;
-    let tanggalAkhir = document.getElementById('tanggal_akhir').value;
+        document.getElementById('izinForm').addEventListener('submit', function(event) {
+            let tanggalMulai = document.getElementById('tanggal_mulai').value;
+            let tanggalAkhir = document.getElementById('tanggal_akhir').value;
 
-    if (new Date(tanggalAkhir) <= new Date(tanggalMulai)) {
-        event.preventDefault();
-        alert('Tanggal akhir tidak boleh sama atau lebih kecil dari tanggal mulai!');
-        return;
-    }
+            if (new Date(tanggalAkhir) < new Date(tanggalMulai)) {
+                event.preventDefault();
+                alert('Tanggal akhir tidak boleh lebih kecil dari tanggal mulai!');
+                return;
+            }
 
-    document.getElementById('popupSuccess').classList.remove('hidden');
+            document.getElementById('popupSuccess').classList.remove('hidden');
 
-    setTimeout(() => {
-        window.location.href = "/dashboard";
-    }, 5000);
-});
-
+            setTimeout(() => {
+                window.location.href = "/dashboard";
+            }, 5000);
+        });
     </script>
 </body>
+
 </html>
