@@ -65,7 +65,7 @@ Route::post('/presensi', [PresensiController::class, 'store'])->name('presensi.s
 // profile routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'profile']);
-    Route::post('/profile/update', [ProfileController::class, 'update']);
+    Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
 
 
