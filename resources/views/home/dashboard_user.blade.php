@@ -49,7 +49,7 @@
                 <div id="modalProfile" class="absolute top-16 right-0 bg-white shadow-lg rounded-md w-64 hidden flex flex-col overflow-hidden">
                     <a href="/profile" class="flex items-center px-4 py-2 w-full text-left hover:bg-gray-200 font-semibold text-black">
                         <img src="/svg/profile.svg" alt="Icon" class="h-6 w-8 mr-2">
-                        <span>Detail Profil</span>
+                        <span>Edit Profil</span>
                     </a>
                     <a id="btnLogout" class="flex items-center px-4 py-2 w-full text-left hover:bg-gray-200 font-semibold text-black cursor-pointer">
                         <img src="/svg/logout.svg" alt="Icon" class="h-6 w-8 mr-2">
