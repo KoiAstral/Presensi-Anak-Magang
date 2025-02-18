@@ -23,12 +23,16 @@
                 </div>
                 <div class="mt-4">
                     <a href="/data-siswa" class="flex items-center px-4 py-2 hover:bg-gray-700">
-                        <img src="/images/data.png" alt="Data Siswa Icon" class="h-6 w-6 mr-4">
+                        <img src="/svg/form.svg" alt="Data Siswa Icon" class="h-6 w-6 mr-4">
                         <span>Data Siswa/i Magang</span>
                     </a>
                     <a href="/riwayat-absensi" class="flex items-center px-4 py-2 hover:bg-gray-700">
-                        <img src="/images/riwayat.png" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
+                        <img src="/svg/time.svg" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
                         <span>Riwayat Absensi</span>
+                    </a>
+                    <a href="/konfirmasi-izin" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                        <img src="/svg/pengajuan_izin.svg" alt="Konfirmasi Izin Icon" class="h-6 w-6 mr-4">
+                        <span>Konfirmasi Pengajuan Izin</span>
                     </a>
                 </div>
             </div>
