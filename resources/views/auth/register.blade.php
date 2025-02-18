@@ -75,8 +75,7 @@
                     @error('email')
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
-                </div>
-                
+                </div>                
                 <!-- Password -->
                 <div class="mb-5">
                     <div class="flex items-center border-2 rounded-lg px-4 py-3 
