@@ -25,28 +25,36 @@ class AbsensiController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'nomor_induk' => 'required|string|max:20',
-            'waktu_absensi' => 'required',
-            'jenis_absensi' => 'required|in:izin,sakit',
-            'keterangan' => 'required|string|max:255',
-            'tanggal_mulai' => 'required|date',
-            'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai',
-        ]);
+{
+    $request->validate([
+        'nomor_induk' => 'required|string|max:20',
+        'waktu_absensi' => 'required',
+        'jenis_absensi' => 'required|in:izin,sakit',
+        'keterangan' => 'required|string|max:255',
+        'tanggal_mulai' => 'required|date',
+        'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai',
+    ], [
+        'nomor_induk.required' => 'Nomor induk wajib diisi',
+        'jenis_absensi.required' => 'Jenis absensi wajib diisi',
+        'jenis_absensi.in' => 'Jenis absensi harus berupa izin atau sakit',
+        'keterangan.required' => 'Keterangan wajib diisi',
+        'keterangan.max' => 'Keterangan maksimal 255 karakter',
+        'tanggal_akhir.after_or_equal' => 'Tanggal akhir harus setelah atau sama dengan tanggal mulai',
+    ]);
 
-        Absensi::create([
-            'nomor_induk' => $request->nomor_induk,
-            'waktu_absensi' => $request->waktu_absensi,
-            'jenis_absensi' => $request->jenis_absensi,
-            'keterangan' => $request->keterangan,
-            'tanggal_mulai' => $request->tanggal_mulai,
-            'tanggal_akhir' => $request->tanggal_akhir,
-            'status' => 'pending',
-        ]);
+    Absensi::create([
+        'nomor_induk' => $request->nomor_induk,
+        'waktu_absensi' => $request->waktu_absensi,
+        'jenis_absensi' => $request->jenis_absensi,
+        'keterangan' => $request->keterangan,
+        'tanggal_mulai' => $request->tanggal_mulai,
+        'tanggal_akhir' => $request->tanggal_akhir,
+        'status' => 'pending',
+    ]);
 
-        return redirect()->route('dashboard')->with('success', 'Pengajuan berhasil dikirim.');
-    }
+    return redirect()->route('dashboard')->with('success', 'Pengajuan berhasil dikirim.');
+}
+
 
     public function updateStatus(Request $request, $nomor_induk)
     {
