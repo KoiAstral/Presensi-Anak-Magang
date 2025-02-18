@@ -41,7 +41,6 @@
         }
     </style>
 </head>
-
 <body class="bg-gray-100">
     <div class="h-screen flex flex-col">
         <header class="bg-white border-b-2 border-[#396E66] p-3 flex items-center space-x-2">
@@ -50,76 +49,84 @@
             </button>
             <h1 class="text-lg font-semibold">Form Pengajuan Izin / Sakit</h1>
         </header>
-
         <main class="flex-1 flex items-start justify-center mt-10">
             <div class="w-full max-w-lg">
                 <div class="bg-[#EAEAEA] p-4 mb-4 rounded-md border-top-green shadow-md text-center">
                     <h2 class="text-lg font-bold text-black">Form Pengajuan</h2>
                     <p class="text-medium text-gray-600">Silahkan isi data di bawah ini</p>
                 </div>
-
                 <form id="izinForm" method="POST" action="{{ route('store.absensi') }}">
                     @csrf
-
                     <!-- Nomor Induk -->
-                    <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/svg/nomor_induk.svg" alt="Nomor Induk" class="h-6 w-6 mr-2">
-                        <input type="text" name="nomor_induk" placeholder="Nomor Induk"
-                            class="w-full bg-transparent text-gray-700 focus:outline-none" required>
+                    <div class="mb-5">
+                        <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                            <img src="/svg/nomor_induk.svg" alt="Nomor Induk" class="h-6 w-6 mr-2">
+                            <input type="text" name="nomor_induk" placeholder="Nomor Induk"
+                                class="w-full bg-transparent text-gray-700 focus:outline-none" value="{{ old('nomor_induk') }}">
+                        </div>
+                        @error('nomor_induk')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
-
-                    <!-- Waktu Absensi -->
-                    <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/svg/clock.svg" alt="Waktu Absensi" class="h-6 w-6 mr-2">
-                        <input type="time" id="waktu_absensi" name="waktu_absensi" required
-                            class="w-full bg-transparent text-gray-700 focus:outline-none">
+                    <div class="mb-5">
+                        <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                            <img src="/svg/clock.svg" alt="Waktu Absensi" class="h-6 w-6 mr-2">
+                            <input type="time" id="waktu_absensi" name="waktu_absensi"
+                                class="w-full bg-transparent text-gray-700 focus:outline-none" value="{{ old('waktu_absensi') }}">
+                        </div>
                     </div>
-
-                    <!-- Jenis Absensi -->
-                    <div
-                        class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent relative">
-                        <select id="jenis_absensi" name="jenis_absensi" required
-                            class="w-full bg-transparent text-gray-700 focus:outline-none appearance-none pr-10">
-                            <option value="" disabled selected>Pilih jenis absensi</option>
-                            <option value="izin">Izin</option>
-                            <option value="sakit">Sakit</option>
-                        </select>
-                        <svg id="arrowIcon" xmlns="http://www.w3.org/2000/svg"
-                            class="h-5 w-5 text-gray-700 absolute right-3 top-1/2 transform -translate-y-1/2 arrow-icon"
-                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
-                            </path>
-                        </svg>
-                    </div>
-
-                    <!-- Keterangan -->
-                    <div class="mb-5 flex border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/svg/alasan.svg" alt="Keterangan" class="h-6 w-6 mr-2">
-                        <textarea name="keterangan" placeholder="Jelaskan alasan izin / sakit" rows="3"
-                            class="w-full bg-transparent text-gray-700 focus:outline-none resize-none" required></textarea>
-                    </div>
-
-                    <!-- Tanggal Mulai -->
-                    <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/svg/Calendar2.svg" alt="Tanggal Mulai" class="h-6 w-6 mr-2">
-                        <input type="date" id="tanggal_mulai" name="tanggal_mulai" required
-                            class="w-full bg-transparent text-gray-700 focus:outline-none">
-                    </div>
-
-                    <!-- Tanggal Akhir -->
-                    <div class="mb-5 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/svg/Calendar2.svg" alt="Tanggal Akhir" class="h-6 w-6 mr-2">
-                        <input type="date" name="tanggal_akhir" id="tanggal_akhir" required
-                            class="w-full bg-transparent text-gray-700 focus:outline-none">
-                    </div>
-
-                    <!-- Submit Button -->
+                    <div class="mb-5">
+                        <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent relative">
+                            <select id="jenis_absensi" name="jenis_absensi"
+                                class="w-full bg-transparent text-gray-700 focus:outline-none appearance-none pr-10">
+                                <option value="" disabled {{ old('jenis_absensi') ? '' : 'selected' }}>Pilih jenis absensi</option>
+                                <option value="izin" {{ old('jenis_absensi') == 'izin' ? 'selected' : '' }}>Izin</option>
+                                <option value="sakit" {{ old('jenis_absensi') == 'sakit' ? 'selected' : '' }}>Sakit</option>
+                            </select>
+                            <svg id="arrowIcon" xmlns="http://www.w3.org/2000/svg"
+                                class="h-5 w-5 text-gray-700 absolute right-3 top-1/2 transform -translate-y-1/2 arrow-icon"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                        @error('jenis_absensi')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>               
+                    <div class="mb-5">
+                        <div class="flex border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                            <img src="/svg/alasan.svg" alt="Keterangan" class="h-6 w-6 mr-2">
+                            <textarea name="keterangan" placeholder="Jelaskan alasan izin / sakit" rows="3"
+                                class="w-full bg-transparent text-gray-700 focus:outline-none resize-none">{{ old('keterangan') }}</textarea>
+                        </div>
+                        @error('keterangan')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>                
+                    <div class="mb-5">
+                        <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                            <img src="/svg/Calendar2.svg" alt="Tanggal Mulai" class="h-6 w-6 mr-2">
+                            <input type="date" id="tanggal_mulai" name="tanggal_mulai"
+                                class="w-full bg-transparent text-gray-700 focus:outline-none" value="{{ old('tanggal_mulai') }}">
+                        </div>
+                    </div>                
+                    <div class="mb-5">
+                        <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
+                            <img src="/svg/Calendar2.svg" alt="Tanggal Akhir" class="h-6 w-6 mr-2">
+                            <input type="date" name="tanggal_akhir" id="tanggal_akhir"
+                                class="w-full bg-transparent text-gray-700 focus:outline-none" value="{{ old('tanggal_akhir') }}">
+                        </div>
+                        @error('tanggal_akhir')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>      
+                
                     <button id="btnKirim" type="submit"
                         class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2">
                         Kirim
                         <img src="/images/login.png" alt="Kirim" class="h-6 w-6">
                     </button>
-                </form>
+                </form>                
             </div>
         </main>
 
@@ -152,6 +159,12 @@
             document.getElementById("tanggal_mulai").value = `${year}-${month}-${day}`;
         });
 
+        document.getElementById("tanggal_mulai").addEventListener("change", function () {
+            let tanggalMulai = this.value;
+            let tanggalAkhir = document.getElementById("tanggal_akhir");
+            tanggalAkhir.min = tanggalMulai; 
+        });
+
         document.getElementById('jenis_absensi').addEventListener('click', function() {
             document.getElementById('arrowIcon').classList.toggle('rotate-180');
         });
@@ -167,12 +180,6 @@
         document.getElementById('izinForm').addEventListener('submit', function(event) {
             let tanggalMulai = document.getElementById('tanggal_mulai').value;
             let tanggalAkhir = document.getElementById('tanggal_akhir').value;
-
-            if (new Date(tanggalAkhir) < new Date(tanggalMulai)) {
-                event.preventDefault();
-                alert('Tanggal akhir tidak boleh lebih kecil dari tanggal mulai!');
-                return;
-            }
 
             document.getElementById('popupSuccess').classList.remove('hidden');
 
