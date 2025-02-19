@@ -86,12 +86,12 @@ class AuthController extends Controller
 
         // Create user and hash password before saving
         User::create([
-            'nama' => $request->nama,
+            'nama'        => $request->nama,
             'nomor_induk' => $request->nomor_induk,
-            'sekolah' => $request->sekolah,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'status' => 'siswa', // Make sure this is handled properly in the form
+            'sekolah'     => $request->sekolah,
+            'email'       => $request->email,
+            'password'    => Hash::make($request->password),
+            'status'      => 'siswa', // Make sure this is handled properly in the form
         ]);
 
         // Redirect to login page with success message
@@ -100,6 +100,9 @@ class AuthController extends Controller
 
     public function logout_page(Request $request)
     {
+
+        Auth::logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
