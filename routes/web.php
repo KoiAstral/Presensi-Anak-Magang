@@ -55,16 +55,12 @@ Route::prefix('admin')->group(function () {
 Route::get('/pengajuan_absensi', [AbsensiController::class, 'formAbsensi'])->name('form.absensi');
 Route::post('/storeabsensi', [AbsensiController::class, 'store'])->name('store.absensi');
 
-
-// Menampilkan data presensi untuk admin
-Route::get('/admin/presensi', [PresensiController::class, 'indexAdmin'])->name('presensi.index');
-
 // Menyimpan data presensi
 Route::post('/presensi', [PresensiController::class, 'store'])->name('presensi.store');
 
 // profile routes
 Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'profile']);
+    Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
 
@@ -72,6 +68,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/data-siswa', [UserController::class, 'index'])->name('data.siswa');
 Route::get('/riwayat-presensi', [AbsensiController::class, 'index'])->name('riwayat.presensi');
 Route::get('/konfirmasi-izin', [AbsensiController::class, 'konfirmasi'])->name('konfirmasi.izin');
+Route::get('/admin/presensi', [PresensiController::class, 'indexAdmin'])->name('presensi.index');
 
 
 
