@@ -65,9 +65,13 @@
                         <img src="/images/riwayat.png" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
                         <span>Riwayat Absensi</span>
                     </a>
+                    <a href="/konfirmasi-izin" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                        <img src="/svg/data_pengajuan.svg" alt="Konfirmasi Izin Icon" class="h-6 w-6 mr-4">
+                        <span>Konfirmasi Pengajuan Izin</span>
+                    </a>
                 </div>
             </div>
-            <div class="p-4" id="btnLogout">
+            <div class="p-4 flex items-center cursor-pointer" id="btnLogout">
                 <a class="flex items-center">
                     <img src="/images/logout.png" alt="Logout Icon" class="h-6 w-6 mr-4">
                     <span>Logout</span>
@@ -143,76 +147,73 @@
                 </div>
             </div>
 
-            <div id="popupLogout" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                <div class="bg-white rounded-md py-6 px-12 relative">
-                    <p class="text-center text-lg font-semibold mb-8 mt-4">Apakah anda yakin ingin Logout?</p>
-                    <img id="closePopup" src="/images/silang.png" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
-                    <div class="flex space-x-4 mt-4">
-                    <button id="btnBatal" class="bg-[#ECB131] text-white font-bold flex-1 py-2 rounded-md shadow">
-                        Batal
-                    </button>
-                    <a href="/login" class="bg-[#396E66] text-white font-bold flex-1 py-2 rounded-md shadow text-center inline-block">
-                        Ya
-                    </a>
-                </div>
+            <div id="logoutModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-white p-6 rounded-md shadow-md w-80">
+                    <h2 class="text-lg font-semibold mb-4">Confirm Logout</h2>
+                    <p class="mb-4">Are you sure you want to logout?</p>
+                    <div class="flex justify-end">
+                        <button id="cancelLogout" class="mr-2 px-4 py-2 bg-gray-200 rounded">Cancel</button>
+                        <a href="/logout" class="px-4 py-2 bg-red-500 text-white rounded">Logout</a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#dataTable').DataTable();
-        });
-        $('#dataTable').DataTable({
-            responsive: true, 
-            autoWidth: false,
-            columnDefs: [
-            { width: '20%', targets: 0 }, 
-            { width: '15%', targets: 1 }, 
-            { width: '25%', targets: 2 }, 
-            { width: '30%', targets: 3 }, 
-            { width: '10%', targets: 4 }, 
-        ],
-        });
-
-        const sidebarToggle = document.getElementById('sidebarToggle');
-        const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('mainContent');
-
-        sidebarToggle.addEventListener('click', () => {
-            if (sidebar.classList.contains('-translate-x-full')) {
-                sidebar.classList.remove('-translate-x-full');
-                sidebar.classList.add('translate-x-0');
-                mainContent.style.paddingLeft = "16rem"; 
-            } else {
-                sidebar.classList.add('-translate-x-full');
-                sidebar.classList.remove('translate-x-0');
-                mainContent.style.paddingLeft = "0";
-            }
-        });
-
-        $('#btnHapus').on('click', function () {
-            $('#popupHapus').removeClass('hidden');
-        });
-        $('#closePopup, #btnBatal').on('click', function () {
-            $('#popupHapus').addClass('hidden');
-        });
-        $('#btnYakin').on('click', function () {
-            $('#popupHapus').addClass('hidden');
-            $('#popupKonfirmasi').removeClass('hidden');
-            setTimeout(() => {
-                $('#popupKonfirmasi').addClass('hidden');
-            }, 3000);
-        });
-
-        $('#btnLogout').on('click', function () {
-            $('#popupLogout').removeClass('hidden');
-        });
-        $('#closePopup, #btnBatal').on('click', function () {
-            $('#popupLogout').addClass('hidden');
+        document.addEventListener("DOMContentLoaded", function () {
+            const sidebarToggle = document.getElementById("sidebarToggle");
+            const sidebar = document.getElementById("sidebar");
+            const mainContent = document.getElementById("mainContent");
+            const btnLogout = document.getElementById("btnLogout");
+            const logoutModal = document.getElementById("logoutModal");
+            const cancelLogout = document.getElementById("cancelLogout");
+    
+            // Toggle Sidebar
+            sidebarToggle.addEventListener("click", () => {
+                sidebar.classList.toggle("-translate-x-full");
+                sidebar.classList.toggle("translate-x-0");
+                mainContent.style.paddingLeft = sidebar.classList.contains("-translate-x-full") ? "0" : "16rem";
+            });
+    
+            // Show Logout Modal
+            btnLogout.addEventListener("click", () => {
+                logoutModal.classList.remove("hidden");
+            });
+    
+            // Hide Logout Modal
+            cancelLogout.addEventListener("click", () => {
+                logoutModal.classList.add("hidden");
+            });
+    
+            // DataTables Initialization
+            $("#dataTable").DataTable({
+                responsive: true,
+                autoWidth: false,
+                columnDefs: [
+                    { width: "10%", targets: 0 },
+                    { width: "20%", targets: 1 },
+                    { width: "20%", targets: 2 },
+                    { width: "20%", targets: 3 },
+                    { width: "15%", targets: 4 },
+                    { width: "15%", targets: 5 },
+                ],
+            });
+    
+            // Handle Delete Confirmation Popup
+            $("#popupHapus").on("click", "#closePopup, #btnBatal", function () {
+                $("#popupHapus").addClass("hidden");
+            });
+    
+            $("#popupHapus").on("click", "#btnYakin", function () {
+                $("#popupHapus").addClass("hidden");
+                $("#popupKonfirmasi").removeClass("hidden");
+    
+                setTimeout(() => {
+                    $("#popupKonfirmasi").addClass("hidden");
+                }, 3000);
+            });
         });
     </script>
 </body>
