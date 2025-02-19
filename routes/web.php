@@ -68,5 +68,12 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
 
+// admin route
+Route::get('/data-siswa', [UserController::class, 'index'])->name('data.siswa');
+Route::get('/riwayat-presensi', [AbsensiController::class, 'index'])->name('riwayat.presensi');
+Route::get('/konfirmasi-izin', [AbsensiController::class, 'konfirmasi'])->name('konfirmasi.izin');
+
+
+
 
 
