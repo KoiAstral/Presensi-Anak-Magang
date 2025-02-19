@@ -102,13 +102,13 @@
     </div>
     <script>
         $(document).ready(function() {
-            $('#btnKirim').on('click', function(event) {
-                // event.preventDefault();
+            $('form').on('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
                 $('#popupSuccess').removeClass('hidden');
                 setTimeout(function() {
                     $('#popupSuccess').addClass('hidden');
-                    window.location.href = "/dashboard";
-                }, 2000);
+                    $('form').unbind('submit').submit(); // Re-enable form submission
+                }, 2000); // Reduce delay to 2 seconds for better UX
             });
         });
     </script>
