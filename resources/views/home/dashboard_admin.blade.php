@@ -19,7 +19,7 @@
             <div>
                 <div class="px-4 pt-3 pb-2 flex items-center border-b border-gray-300">
                     <img src="/images/username.png" alt="User Icon" class="h-10 w-10 mr-4">
-                    <span class="text-lg font-semibold">Username</span>
+                    <span class="text-lg font-semibold">{{$user->nama}}</span>
                 </div>
                 <div class="mt-4">
                     <a href="/data-siswa" class="flex items-center px-4 py-2 hover:bg-gray-700">
@@ -31,7 +31,7 @@
                         <span>Riwayat Absensi</span>
                     </a>
                     <a href="/konfirmasi-izin" class="flex items-center px-4 py-2 hover:bg-gray-700">
-                        <img src="/svg/pengajuan_izin.svg" alt="Konfirmasi Izin Icon" class="h-6 w-6 mr-4">
+                        <img src="/svg/data_pengajuan.svg" alt="Konfirmasi Izin Icon" class="h-6 w-6 mr-4">
                         <span>Konfirmasi Pengajuan Izin</span>
                     </a>
                 </div>
