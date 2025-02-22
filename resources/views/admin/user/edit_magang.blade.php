@@ -43,33 +43,39 @@
                     <h2 class="text-lg font-bold text-black">Edit data anak magang</h2>
                     <p class="text-medium text-gray-600">Silahkan edit data dibawah ini.</p>
                 </div>
-                <form>
+                <form action="{{ route('admin.user.update_magang', $user->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <!-- Nama -->
                     <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/nama.png" alt="Nama Lengkap Logo" class="h-6 w-6 mr-2">
-                        <input type="text" placeholder="Nama Lengkap" 
+                        <img src="/svg/name.svg" alt="Nama Lengkap Logo" class="h-6 w-6 mr-2">
+                        <input type="text" name="nama" value="{{ old('nama', $user->nama) }}"
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
+                    <!-- Sekolah -->
                     <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/nisn.png" alt="NISN Logo" class="h-6 w-6 mr-2">
-                        <input type="text" placeholder="NISN/NIM" 
+                        <img src="/svg/School.svg" alt="Sekolah/Universitas Logo" class="h-6 w-6 mr-2">
+                        <input type="text" name="sekolah" value="{{ old('sekolah', $user->sekolah) }}"
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
+                    <!-- Nomor Induk -->
                     <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/asal.png" alt="Sekolah/Universitas Logo" class="h-6 w-6 mr-2">
-                        <input type="text" placeholder="Sekolah/Universitas" 
+                        <img src="/svg/nomor_induk.svg" alt="NISN Logo" class="h-6 w-6 mr-2">
+                        <input type="text" name="nomor_induk" value="{{ old('nomor_induk', $user->nomor_induk) }}"
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
+                    <!-- Email -->
                     <div class="mb-8 flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                        <img src="/images/email.png" alt="Email Logo" class="h-6 w-6 mr-2">
-                        <input type="text" placeholder="Email" 
+                        <img src="/svg/email.svg" alt="Email Logo" class="h-6 w-6 mr-2">
+                        <input type="email" name="email" value="{{ old('email', $user->email) }}"
                             class="w-full bg-transparent text-gray-700 focus:outline-none">
                     </div>
-                    <button id="btnKirim" type="submit"
-                            class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2">
-                            Kirim
-                        <img src="/images/login.png" alt="Login Logo" class="h-6 w-6">
+                    <!-- Tombol Submit -->
+                    <button id="btnkirim" type="submit" class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2">
+                        Kirim
+                        <img src="/svg/login.svg" alt="Login Logo" class="h-6 w-6">
                     </button>
-                </form>
+                </form>                   
             </div>
         </main>
         <div id="popupSuccess" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
