@@ -19,8 +19,6 @@ class ProfileController extends Controller
     {
         $user = Auth::user(); // Get the logged-in user
 
-        dd($user);
-
         // Validate the incoming data
         $request->validate([
             'nama' => 'required|string|max:255',
@@ -35,8 +33,8 @@ class ProfileController extends Controller
             'email' => $request->input('email'),
             'nomor_induk' => $request->input('nomor_induk'),
             'sekolah' => $request->input('sekolah'),
-        ]);
+        ]);        
 
-        return redirect()->route('profile')->with('success', 'Profile updated successfully!');
+        return redirect()->route('dashboard')->with('success', 'Profile updated successfully!');
     }
 }
