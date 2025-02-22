@@ -35,7 +35,6 @@ class UserController extends Controller
             'sekolah' => 'required|string|max:255',
             'nomor_induk' => 'required|string|max:50|unique:users,nomor_induk,' . $user->id,
             'email' => 'required|email|unique:users,email,' . $user->id,
-            'status' => 'required|in:siswa',
         ]);
 
         $user->update($request->all());
