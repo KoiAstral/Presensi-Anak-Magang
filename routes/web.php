@@ -70,6 +70,15 @@ Route::get('/riwayat-presensi', [AbsensiController::class, 'index'])->name('riwa
 Route::get('/konfirmasi-izin', [AbsensiController::class, 'konfirmasi'])->name('konfirmasi.izin');
 Route::get('/admin/presensi', [PresensiController::class, 'indexAdmin'])->name('presensi.index');
 
+Route::prefix('admin/user')->middleware('auth')->group(function () {
+    Route::get('/data-magang', [UserController::class, 'index'])->name('admin.user.data_magang'); // Menampilkan daftar magang
+    Route::get('/edit/{user}', [UserController::class, 'edit'])->name('admin.user.edit_magang'); // Form edit
+    Route::put('/update/{user}', [UserController::class, 'update'])->name('admin.user.update_magang'); // Update data
+    Route::delete('/delete/{user}', [UserController::class, 'destroy'])->name('admin.user.delete_magang'); // Hapus data
+});
+
+
+
 
 
 
