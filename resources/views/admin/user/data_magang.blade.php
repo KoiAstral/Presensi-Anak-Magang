@@ -57,13 +57,17 @@
                 </div>
                 <div class="border-1"></div>
                 <div class="mt-4">
+                    <a href="/dashboard" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                        <img src="/svg/home.svg" alt="Home Icon" class="h-6 w-6 mr-4">
+                        <span>Home</span>
+                    </a>
                     <a href="/data-siswa" class="flex items-center px-4 py-2 hover:bg-gray-700">
                         <img src="/svg/form.svg" alt="Data Siswa Icon" class="h-6 w-6 mr-4">
                         <span>Data Siswa/i Magang</span>
                     </a>
                     <a href="/riwayat-absensi" class="flex items-center px-4 py-2 hover:bg-gray-700">
                         <img src="/svg/time.svg" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
-                        <span>Riwayat Absensi</span>
+                        <span>Riwayat Presensi</span>
                     </a>
                     <a href="/konfirmasi-izin" class="flex items-center px-4 py-2 hover:bg-gray-700">
                         <img src="/svg/data_pengajuan.svg" alt="Konfirmasi Izin Icon" class="h-6 w-6 mr-4">
@@ -115,14 +119,14 @@
                                 <td class="px-6 py-4">{{ $data->email }}</td>
                                 <td class="px-6 py-4">{{ $data->status }}</td>
                                 <td class="px-6 py-4 flex items-center justify-start space-x-2">
-                                    <a href="/edit_data/{{ $data->id }}" class="flex items-center hover:opacity-75">
-                                        <img src="/images/edit.png" alt="Edit Icon" class="h-6 w-6">
+                                    <a href="{{ route('admin.user.edit_magang', $data->id) }}" class="flex items-center hover:opacity-75">
+                                        <img src="/svg/edit.svg" alt="Edit Icon" class="h-6 w-6">
                                     </a>
-                                    <form action="/delete_data/{{ $data->id }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
+                                    <form action="{{ route('admin.user.delete_magang', $data->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="flex items-center hover:opacity-75">
-                                            <img src="/images/delete.png" alt="Delete Icon" class="h-6 w-6">
+                                            <img src="/svg/delete.svg" alt="Delete Icon" class="h-6 w-6">
                                         </button>
                                     </form>
                                 </td>
