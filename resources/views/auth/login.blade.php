@@ -58,7 +58,7 @@
                 <!-- Submit Button -->
                 <button type="submit"
                         class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all">
-                    <img src="{{ asset('images/login.png') }}" alt="Login Icon" class="h-6 w-6">
+                    <img src="{{ asset('svg/login.svg') }}" alt="Login Icon" class="h-6 w-6">
                     Login
                 </button>
                 <!-- Register Link --> 
