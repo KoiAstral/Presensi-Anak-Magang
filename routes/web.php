@@ -66,9 +66,12 @@ Route::middleware(['auth'])->group(function () {
 
 // admin route
 Route::get('/data-siswa', [UserController::class, 'index'])->name('data.siswa');
-Route::get('/riwayat-presensi', [AbsensiController::class, 'index'])->name('riwayat.presensi');
-Route::get('/konfirmasi-izin', [AbsensiController::class, 'konfirmasi'])->name('konfirmasi.izin');
 Route::get('/riwayat-presensi', [PresensiController::class, 'indexAdmin'])->name('presensi.index');
+Route::get('/konfirmasi-pengajuan', [AbsensiController::class, 'indexAdmin'])->name('konfirmasi-pengajuan');
+Route::post('/absensi/updatestatus', [AbsensiController::class, 'updateStatus'])->name('absensi.updatestatus');
+
+
+
 
 Route::prefix('admin/user')->middleware('auth')->group(function () {
     Route::get('/data-magang', [UserController::class, 'index'])->name('admin.user.data_magang'); // Menampilkan daftar magang
