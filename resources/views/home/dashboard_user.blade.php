@@ -108,6 +108,36 @@
                         </tbody>
                     </table>
                 </div>
+                <div class="w-full mx-auto mt-6">
+                    <table id="dataTableAbsensi" class="display w-full">
+                        <thead class="bg-[#EAEAEA]">
+                            <tr>
+                                <th class="border border-gray-300 px-6 py-4">No</th>
+                                <th class="border border-gray-300 px-6 py-4">Nomor Induk</th>
+                                <th class="border border-gray-300 px-6 py-4">Waktu Absensi</th>
+                                <th class="border border-gray-300 px-6 py-4">Jenis Absensi</th>
+                                <th class="border border-gray-300 px-6 py-4">Keterangan</th>
+                                <th class="border border-gray-300 px-6 py-4">Tanggal Mulai</th>
+                                <th class="border border-gray-300 px-6 py-4">Tanggal Akhir</th>
+                                <th class="border border-gray-300 px-6 py-4">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($absensi as $data)
+                                <tr>
+                                    <td class="px-6 py-4">{{ $loop->iteration }}</td>
+                                    <td class="px-6 py-4">{{ $data->nomor_induk }}</td>
+                                    <td class="px-6 py-4">{{ $data->waktu_absensi }}</td>
+                                    <td class="px-6 py-4">{{ $data->jenis_absensi }}</td>
+                                    <td class="px-6 py-4">{{ $data->keterangan }}</td>
+                                    <td class="px-6 py-4">{{ $data->tanggal_mulai }}</td>
+                                    <td class="px-6 py-4">{{ $data->tanggal_akhir }}</td>
+                                    <td class="px-6 py-4">{{ $data->status }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
     <div id="popupPresensi" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-md py-6 px-8 relative">
             <p class="text-center text-lg font-semibold mb-6 mt-4">Anda akan melakukan absensi untuk kehadiran hari ini.</p>
@@ -141,12 +171,11 @@
         </div>
         </div>
     </div>
-</body>
-</html>
 <script>
     $(document).ready(function () {
     // Inisialisasi DataTable
     $('#dataTable').DataTable();
+    $('#dataTableAbsensi').DataTable(); // FIXED: Initialize the second table
 
     // Toggle Profile Menu
     let isProfileOpen = false;
@@ -168,54 +197,65 @@
         $('#popupPresensi').removeClass('hidden');
     });
 
-    $('#btnBatal').on('click', function () {
+    $('#btnBatalPresensi').on('click', function () { // FIXED: Unique ID for "Batal" in presensi
         $('#popupPresensi').addClass('hidden');
     });
 
     $('#btnHadir').on('click', async function () {
-    let now = new Date();
-    let tanggal_presensi = now.toISOString().split('T')[0]; // Format: YYYY-MM-DD
-    let waktu_presensi = now.toTimeString().split(' ')[0];  // Format: HH:MM:SS
+        let now = new Date();
+        let tanggal_presensi = now.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+        let waktu_presensi = now.toTimeString().split(' ')[0];  // Format: HH:MM:SS
 
-    let presensiUrl = document.querySelector('meta[name="presensi-url"]').getAttribute('content');
-    let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    let nomorInduk = document.querySelector('meta[name="nomor-induk"]').getAttribute('content');
+        let presensiUrl = document.querySelector('meta[name="presensi-url"]').getAttribute('content');
+        let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        let nomorInduk = document.querySelector('meta[name="nomor-induk"]').getAttribute('content');
 
-    try {
-        let response = await fetch(presensiUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "X-CSRF-TOKEN": csrfToken
-            },
-            body: JSON.stringify({
-                nomor_induk: nomorInduk,
-                tanggal_presensi: tanggal_presensi,
-                waktu_presensi: waktu_presensi,
-                status: "Hadir"
-            })
-        });
+        try {
+            let response = await fetch(presensiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": csrfToken
+                },
+                body: JSON.stringify({
+                    nomor_induk: nomorInduk,
+                    tanggal_presensi: tanggal_presensi,
+                    waktu_presensi: waktu_presensi,
+                    status: "Hadir"
+                })
+            });
 
-        // let data = await response.json();
-        // alert(data.message);
-        $('#popupPresensi').addClass('hidden');
-        $('#popupKonfirmasi').removeClass('hidden');
-        setTimeout(() => location.reload(), 2000);
-    } catch (error) {
-        console.error('Error:', error);
-    }
-});
+            if (!response.ok) { // FIXED: Check response status
+                alert("Gagal melakukan presensi.");
+                return;
+            }
 
+            let data = await response.json(); // FIXED: Handle JSON response
+            alert(data.message); 
+
+            $('#popupPresensi').addClass('hidden');
+            $('#popupKonfirmasi').removeClass('hidden');
+            setTimeout(() => location.reload(), 2000);
+        } catch (error) {
+            console.error('Error:', error);
+            alert("Terjadi kesalahan, coba lagi.");
+        }
+    });
 
     // Pop-up Logout
     $('#btnLogout').on('click', function () {
         $('#popupLogout').removeClass('hidden');
     });
 
-    $('#closePopup, #btnBatal').on('click', function () {
+    $('#closePopupLogout, #btnBatalLogout').on('click', function () { // FIXED: Unique IDs
         $('#popupLogout').addClass('hidden');
+    });
+
+    $('#closePopupPresensi').on('click', function () { // FIXED: Unique ID for closing presensi pop-up
+        $('#popupPresensi').addClass('hidden');
     });
 });
 
 </script>
-
+</body>
+</html>
