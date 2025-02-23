@@ -17,8 +17,11 @@ class PresensiController extends Controller
 
     public function store()
     {
+        $user = Auth::user(); // Fetch the logged-in user
+
         $presensi = new Presensi();
-        $presensi->nomor_induk = Auth::user()->nomor_induk;
+        $presensi->nama = $user->nama; // Make sure your User model has 'name'
+        $presensi->nomor_induk = $user->nomor_induk;
         $presensi->tanggal_presensi = Carbon::now()->toDateString();
         $presensi->waktu_presensi = Carbon::now()->toTimeString();
         $presensi->status = 'Hadir';
