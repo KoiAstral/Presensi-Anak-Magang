@@ -139,17 +139,24 @@
                                     <td class="px-6 py-4">{{ $data->tanggal_akhir }}</td>
                                     <td class="px-6 py-4">{{ $data->status }}</td>
                                     <td class="px-6 py-4 flex items-center justify-start space-x-2">
-                                        <form action="{{ route('absensi.updatestatus', ['id' => $data->id, 'status' => 'approved']) }}" method="POST">
-                                            <button type="button" data-approve class="flex items-center hover:opacity-75">
+                                        <form action="{{ route('absensi.updatestatus', $data->id) }}" method="POST">
+                                            @csrf
+                                            <input type="text" hidden value="approved" name="status">
+                                            <button type="button" data-approve
+                                                class="flex items-center hover:opacity-75">
                                                 <img src="/svg/Done.svg" alt="Approve Icon" class="h-6 w-6">
                                             </button>
                                         </form>
-                                        <form action="{{ route('absensi.updatestatus', ['id' => $data->id, 'status' => 'rejected']) }}" method="POST">
-                                            <button type="button" data-reject class="flex items-center hover:opacity-75">
+                                        <form
+                                            action="{{ route('absensi.updatestatus', ['id' => $data->id, 'status' => 'rejected']) }}"
+                                            method="POST">
+                                            <button type="button" data-reject
+                                                class="flex items-center hover:opacity-75">
                                                 <img src="/svg/Denied.svg" alt="Reject Icon" class="h-6 w-6">
+                                                @csrf
                                             </button>
                                         </form>
-                                    </td>                                    
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -157,53 +164,50 @@
                 </div>
             </main>
             <div id="popupRejected"
-            class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div class="bg-white rounded-md py-6 px-8 relative">
-                <p class="text-center text-lg font-semibold mb-6 mt-4">Anda yakin ingin menolak data ini?</p>
-                <img id="closePopupRejected" src="/images/silang.png" alt="Close pop up"
-                    class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
-                <div class="flex justify-around space-x-4">
-                    <button id="btnBatalReject"
-                        class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
-                    <button id="btnYakinReject"
-                        class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Yakin</button>
+                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-white rounded-md py-6 px-8 relative">
+                    <p class="text-center text-lg font-semibold mb-6 mt-4">Anda yakin ingin menolak data ini?</p>
+                    <div class="flex justify-around space-x-4">
+                        <button id="btnBatalReject"
+                            class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
+                        <button id="btnYakinReject"
+                            class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Yakin</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="popupRejectedConfirm"
-            class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
-            <div class="bg-white rounded-md p-4 relative animate-slide-down w-80">
-                <div class="flex items-center">
-                    <p class="text-lg font-semibold ml-4 mr-2">Data berhasil ditolak!</p>
-                    <img src="/images/berhasil.png" alt="Reject Berhasil" class="h-8 w-8">
+            <div id="popupRejectedConfirm"
+                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
+                <div class="bg-white rounded-md p-4 relative animate-slide-down w-80">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold ml-4 mr-2">Data berhasil ditolak!</p>
+                        <img src="/svg/Success.svg" alt="Reject Berhasil" class="h-8 w-8">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="popupApproved"
-            class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div class="bg-white rounded-md py-6 px-8 relative">
-                <p class="text-center text-lg font-semibold mb-6 mt-4">Anda yakin ingin menyetujui data ini?</p>
-                <img id="closePopupApproved" src="/images/silang.png" alt="Close pop up"
-                    class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
-                <div class="flex justify-around space-x-4">
-                    <button id="btnBatalApprove"
-                        class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
-                    <button id="btnYakinApprove"
-                        class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Yakin</button>
+            <div id="popupApproved"
+                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div class="bg-white rounded-md py-6 px-8 relative">
+                    <p class="text-center text-lg font-semibold mb-6 mt-4">Anda yakin ingin menyetujui data ini?</p>
+                    <div class="flex justify-around space-x-4">
+                        <button id="btnBatalApprove"
+                            class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
+                        <button id="btnYakinApprove"
+                            class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Yakin</button>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div id="popupApprovedConfirm"
-            class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
-            <div class="bg-white rounded-md p-4 relative animate-slide-down w-80">
-                <div class="flex items-center">
-                    <p class="text-lg font-semibold ml-4 mr-2">Data berhasil disetujui!</p>
-                    <img src="/images/berhasil.png" alt="Approve Berhasil" class="h-8 w-8">
+            <div id="popupApprovedConfirm"
+                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
+                <div class="bg-white rounded-md p-4 relative animate-slide-down w-80">
+                    <div class="flex items-center">
+                        <p class="text-lg font-semibold ml-4 mr-2">Data berhasil disetujui!</p>
+                        <img src="/svg/Success.svg" alt="Approve Berhasil" class="h-8 w-8">
+                    </div>
                 </div>
             </div>
-        </div>
 
-            <div id="logoutModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
+            <div id="logoutModal"
+                class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
                 <div class="bg-white p-6 rounded-md shadow-md w-80">
                     <h2 class="text-lg font-semibold mb-4">Confirm Logout</h2>
                     <p class="mb-4">Are you sure you want to logout?</p>
@@ -214,107 +218,75 @@
                 </div>
             </div>
         </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            // Sidebar Toggle
-            const sidebarToggle = document.getElementById("sidebarToggle");
-            const sidebar = document.getElementById("sidebar");
-            const mainContent = document.getElementById("mainContent");
-    
-            sidebarToggle.addEventListener("click", () => {
-                sidebar.classList.toggle("-translate-x-full");
-                sidebar.classList.toggle("translate-x-0");
-                mainContent.style.paddingLeft = sidebar.classList.contains("-translate-x-full") ? "0" : "16rem";
-            });
-    
-            // Logout Modal
-            const btnLogout = document.getElementById("btnLogout");
-            const logoutModal = document.getElementById("logoutModal");
-            const cancelLogout = document.getElementById("cancelLogout");
-    
-            btnLogout.addEventListener("click", () => {
-                logoutModal.classList.remove("hidden");
-            });
-    
-            cancelLogout.addEventListener("click", () => {
-                logoutModal.classList.add("hidden");
-            });
-    
-            // DataTables Initialization
-            $("#dataTable").DataTable({
-                responsive: true,
-                autoWidth: false,
-                scrollX: true,
-                columnDefs: [
-                    { width: "10%", targets: 0 },
-                    { width: "20%", targets: 1 },
-                    { width: "20%", targets: 2 },
-                    { width: "20%", targets: 3 },
-                    { width: "15%", targets: 4 },
-                    { width: "15%", targets: 5 },
-                ],
-            });
-    
-            // Handle Delete Confirmation Popup
-            $("#popupHapus").on("click", "#closePopup, #btnBatal", function () {
-                $("#popupHapus").addClass("hidden");
-            });
-    
-            $("#popupHapus").on("click", "#btnYakin", function () {
-                $("#popupHapus").addClass("hidden");
-                $("#popupKonfirmasi").removeClass("hidden");
-    
-                setTimeout(() => {
-                    $("#popupKonfirmasi").addClass("hidden");
-                }, 3000);
-            });
-    
-            // Approval & Rejection Popups
-            const approveButtons = document.querySelectorAll("button[data-approve]");
-            const rejectButtons = document.querySelectorAll("button[data-reject]");
-    
-            const popupApproved = document.getElementById("popupApproved");
-            const popupRejected = document.getElementById("popupRejected");
-    
-            const btnYakinApprove = document.getElementById("btnYakinApprove");
-            const btnYakinReject = document.getElementById("btnYakinReject");
-    
-            let approveForm, rejectForm;
-    
-            approveButtons.forEach(button => {
-                button.addEventListener("click", function () {
-                    popupApproved.classList.remove("hidden");
-                    approveForm = this.closest("form");
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Sidebar Toggle
+                const sidebarToggle = document.getElementById("sidebarToggle");
+                const sidebar = document.getElementById("sidebar");
+                const mainContent = document.getElementById("mainContent");
+
+                sidebarToggle.addEventListener("click", () => {
+                    sidebar.classList.toggle("-translate-x-full");
+                    sidebar.classList.toggle("translate-x-0");
+                });
+
+                // Logout Modal
+                const btnLogout = document.getElementById("btnLogout");
+                const logoutModal = document.getElementById("logoutModal");
+                const cancelLogout = document.getElementById("cancelLogout");
+
+                btnLogout.addEventListener("click", () => {
+                    logoutModal.classList.remove("hidden");
+                });
+
+                cancelLogout.addEventListener("click", () => {
+                    logoutModal.classList.add("hidden");
+                });
+
+                // DataTables Initialization
+                if ($("#dataTable").length) {
+                    $("#dataTable").DataTable({
+                        responsive: true,
+                        autoWidth: false,
+                        scrollX: true
+                    });
+                }
+
+                // Approval & Rejection Popups
+                const popupApproved = document.getElementById("popupApproved");
+                const popupRejected = document.getElementById("popupRejected");
+
+                let approveForm, rejectForm;
+
+                document.addEventListener("click", function(event) {
+                    if (event.target.closest("button[data-approve]")) {
+                        popupApproved.classList.remove("hidden");
+                        approveForm = event.target.closest("form");
+                    } else if (event.target.closest("button[data-reject]")) {
+                        popupRejected.classList.remove("hidden");
+                        rejectForm = event.target.closest("form");
+                    }
+                });
+
+                document.getElementById("btnYakinApprove").addEventListener("click", function() {
+                    if (approveForm) approveForm.submit();
+                });
+
+                document.getElementById("btnYakinReject").addEventListener("click", function() {
+                    if (rejectForm) rejectForm.submit();
+                });
+
+                document.getElementById("btnBatalApprove").addEventListener("click", function() {
+                    popupApproved.classList.add("hidden");
+                });
+
+                document.getElementById("btnBatalReject").addEventListener("click", function() {
+                    popupRejected.classList.add("hidden");
                 });
             });
-    
-            rejectButtons.forEach(button => {
-                button.addEventListener("click", function () {
-                    popupRejected.classList.remove("hidden");
-                    rejectForm = this.closest("form");
-                });
-            });
-    
-            btnYakinApprove.addEventListener("click", function () {
-                if (approveForm) approveForm.submit();
-            });
-    
-            btnYakinReject.addEventListener("click", function () {
-                if (rejectForm) rejectForm.submit();
-            });
-    
-            document.getElementById("btnBatalApprove").addEventListener("click", function () {
-                popupApproved.classList.add("hidden");
-            });
-    
-            document.getElementById("btnBatalReject").addEventListener("click", function () {
-                popupRejected.classList.add("hidden");
-            });
-        });
-    </script>
-    
+        </script>
 </body>
 
 </html>
