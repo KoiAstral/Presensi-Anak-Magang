@@ -53,7 +53,7 @@
             <div>
                 <div class="px-4 pt-3 pb-2 flex items-center border-b border-gray-300">
                     <img src="/images/username.png" alt="User Icon" class="h-10 w-10 mr-4">
-                    <span class="text-sm font-semibold"></span>
+                    <span class="text-sm font-semibold">Admin User</span>
                 </div>
                 <div class="border-1"></div>
                 <div class="mt-4">
