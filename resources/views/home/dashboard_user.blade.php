@@ -82,12 +82,12 @@
                         </button>
                     </div>
                 </div>
-
                 <div class="w-full mx-auto">
                     <table id="dataTable" class="display w-full">
                         <thead class="bg-[#EAEAEA]">
                             <tr>
                                 <th class="border border-gray-300 px-6 py-4">No</th>
+                                <th class="border border-gray-300 px-6 py-4">Nama</th>
                                 <th class="border border-gray-300 px-6 py-4">Nomor Induk</th>
                                 <th class="border border-gray-300 px-6 py-4">Tanggal Presensi</th>
                                 <th class="border border-gray-300 px-6 py-4">Waktu Presensi</th>
@@ -98,6 +98,7 @@
                             @foreach ($presensi as $data)
                                 <tr>
                                     <td class="px-6 py-4">{{ $loop->iteration }}</td>
+                                    <td class="px-6 py-4">{{ $data->nama }}</td>
                                     <td class="px-6 py-4">{{ $data->nomor_induk }}</td>
                                     <td class="px-6 py-4">{{ $data->tanggal_presensi }}</td>
                                     <td class="px-6 py-4">{{ $data->waktu_presensi }}</td>
