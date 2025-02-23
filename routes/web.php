@@ -71,8 +71,6 @@ Route::get('/konfirmasi-pengajuan', [AbsensiController::class, 'indexAdmin'])->n
 Route::post('/absensi/updatestatus/{id}', [AbsensiController::class, 'updateStatus'])->name('absensi.updatestatus');
 
 
-
-
 Route::prefix('admin/user')->middleware('auth')->group(function () {
     Route::get('/data-magang', [UserController::class, 'index'])->name('admin.user.data_magang'); // Menampilkan daftar magang
     Route::get('/edit/{user}', [UserController::class, 'edit'])->name('admin.user.edit_magang'); // Form edit
