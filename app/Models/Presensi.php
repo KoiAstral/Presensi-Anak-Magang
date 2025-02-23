@@ -29,6 +29,7 @@ class Presensi extends Model
      * @var array
      */
     protected $fillable = [
+        'nama',
         'nomor_induk',
         'tanggal_presensi',
         'waktu_presensi',
