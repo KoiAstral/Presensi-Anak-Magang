@@ -56,13 +56,12 @@ class AbsensiController extends Controller
 }
 
 
-    public function updateStatus(Request $request, $nomor_induk)
+    public function updateStatus(Request $request, $id)
     {
         $request->validate([
             'status' => 'required|in:approved,rejected',
         ]);
-
-        $absensi = Absensi::where('nomor_induk', $nomor_induk)->firstOrFail();
+        $absensi = Absensi::where('id', $id)->firstOrFail();
         $absensi->status = $request->status;
         $absensi->save();
 
