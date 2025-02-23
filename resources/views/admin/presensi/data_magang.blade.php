@@ -69,7 +69,7 @@
                         <img src="/images/riwayat.png" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
                         <span>Riwayat Presensi</span>
                     </a>
-                    <a href="/konfirmasi-izin" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                    <a href="/konfirmasi-pengajuan" class="flex items-center px-4 py-2 hover:bg-gray-700">
                         <img src="/svg/data_pengajuan.svg" alt="Konfirmasi Izin Icon" class="h-6 w-6 mr-4">
                         <span>Konfirmasi Pengajuan Izin</span>
                     </a>
@@ -106,7 +106,6 @@
                                 <th class="border border-gray-300 px-6 py-4">Tanggal presensi</th>
                                 <th class="border border-gray-300 px-6 py-4">waktu presensi</th>
                                 <th class="border border-gray-300 px-6 py-4">status</th>
-                                <th class="border border-gray-300 px-6 py-4">aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -118,13 +117,6 @@
                                 <td class="px-6 py-4">{{$data->tanggal_presensi}}</td>
                                 <td class="px-6 py-4">{{$data->waktu_presensi}}</td>
                                 <td class="px-6 py-4">{{$data->status}}</td>
-                                <td class="px-6 py-4 flex items-center justify-start space-x-2">
-                                    <a href="/edit_data" class="flex items-center hover:opacity-75">
-                                        <img src="/images/edit.png" alt="Edit Icon" class="h-6 w-6">
-                                    </a>
-                                    <button id="btnHapus" class="flex items-center hover:opacity-75">
-                                        <img src="/images/hapus.png" alt="Delete Icon" class="h-6 w-6">
-                                    </button>
                                 </td>
                             </tr>
                             @endforeach
