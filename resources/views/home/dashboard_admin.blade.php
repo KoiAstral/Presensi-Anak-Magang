@@ -34,7 +34,7 @@
                         <img src="/svg/time.svg" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
                         <span>Riwayat presensi</span>
                     </a>                    
-                    <a href="/konfirmasi-izin" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                    <a href="/konfirmasi-pengajuan" class="flex items-center px-4 py-2 hover:bg-gray-700">
                         <img src="/svg/data_pengajuan.svg" alt="Konfirmasi Izin Icon" class="h-6 w-6 mr-4">
                         <span>Konfirmasi Pengajuan Izin</span>
                     </a>
