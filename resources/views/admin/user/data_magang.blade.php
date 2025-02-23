@@ -65,7 +65,7 @@
                         <img src="/svg/form.svg" alt="Data Siswa Icon" class="h-6 w-6 mr-4">
                         <span>Data Siswa/i Magang</span>
                     </a>
-                    <a href="/riwayat-absensi" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                    <a href="/riwayat-presensi" class="flex items-center px-4 py-2 hover:bg-gray-700">
                         <img src="/svg/time.svg" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
                         <span>Riwayat Presensi</span>
                     </a>

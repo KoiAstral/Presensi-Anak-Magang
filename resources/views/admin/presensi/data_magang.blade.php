@@ -61,11 +61,11 @@
                         <img src="/svg/home.svg" alt="Home Icon" class="h-6 w-6 mr-4">
                         <span>Home</span>
                     </a>
-                    <a href="/data_magang" class="flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700">
+                    <a href="/data-siswa" class="flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700">
                         <img src="/images/data.png" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
                         <span>Data Anak Magang</span>
                     </a>
-                    <a href="/riwayat_absensi" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                    <a href="/riwayat-presensi" class="flex items-center px-4 py-2 hover:bg-gray-700">
                         <img src="/images/riwayat.png" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
                         <span>Riwayat Presensi</span>
                     </a>
@@ -101,7 +101,7 @@
                         <thead class="bg-[#EAEAEA]">
                             <tr>
                                 <th class="border border-gray-300 px-6 py-4">No</th>
-                                <th class="border border-gray-300 px-6 py-4">id presensi</th>
+                                <th class="border border-gray-300 px-6 py-4">nama</th>
                                 <th class="border border-gray-300 px-6 py-4">nomor induk</th>
                                 <th class="border border-gray-300 px-6 py-4">Tanggal presensi</th>
                                 <th class="border border-gray-300 px-6 py-4">waktu presensi</th>
@@ -113,7 +113,7 @@
                             @foreach ($presensi as $data )
                             <tr>
                                 <td class="px-6 py-4">{{$loop->iteration}}</td>
-                                <td class="px-6 py-4">{{$data->id_presensi}}</td>
+                                <td class="px-6 py-4">{{$data->nama}}</td>
                                 <td class="px-6 py-4">{{$data->nomor_induk}}</td>
                                 <td class="px-6 py-4">{{$data->tanggal_presensi}}</td>
                                 <td class="px-6 py-4">{{$data->waktu_presensi}}</td>
