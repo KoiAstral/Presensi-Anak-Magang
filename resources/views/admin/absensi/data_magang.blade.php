@@ -58,11 +58,9 @@
         }
     </style>
 </head>
-
 <body class="bg-gray-100">
     <div class="relative h-screen overflow-hidden">
-        <div id="sidebar"
-            class="bg-black text-white w-64 h-full fixed top-0 left-0 -translate-x-full transition-transform z-40 flex flex-col justify-between">
+        <div id="sidebar" class="bg-black text-white w-64 h-full fixed top-0 left-0 -translate-x-full transition-transform z-40 flex flex-col justify-between">
             <div>
                 <div class="px-4 pt-3 pb-2 flex items-center border-b border-gray-300">
                     <img src="/images/username.png" alt="User Icon" class="h-10 w-10 mr-4">
@@ -148,12 +146,12 @@
                                             </button>
                                         </form>
                                         <form
-                                            action="{{ route('absensi.updatestatus', ['id' => $data->id, 'status' => 'rejected']) }}"
-                                            method="POST">
+                                        action="{{ route('absensi.updatestatus', ['id' => $data->id, 'status' => 'rejected']) }}"
+                                        method="POST">
+                                        @csrf
                                             <button type="button" data-reject
                                                 class="flex items-center hover:opacity-75">
                                                 <img src="/svg/Denied.svg" alt="Reject Icon" class="h-6 w-6">
-                                                @csrf
                                             </button>
                                         </form>
                                     </td>
@@ -230,6 +228,7 @@
                 sidebarToggle.addEventListener("click", () => {
                     sidebar.classList.toggle("-translate-x-full");
                     sidebar.classList.toggle("translate-x-0");
+                    mainContent.style.paddingLeft = sidebar.classList.contains("-translate-x-full") ? "0" : "16rem";
                 });
 
                 // Logout Modal
@@ -256,36 +255,68 @@
 
                 // Approval & Rejection Popups
                 const popupApproved = document.getElementById("popupApproved");
-                const popupRejected = document.getElementById("popupRejected");
+    const popupRejected = document.getElementById("popupRejected");
+    const popupApprovedConfirm = document.getElementById("popupApprovedConfirm");
+    const popupRejectedConfirm = document.getElementById("popupRejectedConfirm");
 
-                let approveForm, rejectForm;
+    let approveForm, rejectForm;
 
-                document.addEventListener("click", function(event) {
-                    if (event.target.closest("button[data-approve]")) {
-                        popupApproved.classList.remove("hidden");
-                        approveForm = event.target.closest("form");
-                    } else if (event.target.closest("button[data-reject]")) {
-                        popupRejected.classList.remove("hidden");
-                        rejectForm = event.target.closest("form");
-                    }
-                });
+    document.addEventListener("click", function (event) {
+        if (event.target.closest("button[data-approve]")) {
+            popupApproved.classList.remove("hidden");
+            approveForm = event.target.closest("form");
+        } else if (event.target.closest("button[data-reject]")) {
+            popupRejected.classList.remove("hidden");
+            rejectForm = event.target.closest("form");
+        }
+    });
 
-                document.getElementById("btnYakinApprove").addEventListener("click", function() {
-                    if (approveForm) approveForm.submit();
-                });
+    document.getElementById("btnYakinApprove").addEventListener("click", function () {
+        if (approveForm) {
+            submitForm(approveForm, popupApproved, popupApprovedConfirm);
+        }
+    });
 
-                document.getElementById("btnYakinReject").addEventListener("click", function() {
-                    if (rejectForm) rejectForm.submit();
-                });
+    document.getElementById("btnYakinReject").addEventListener("click", function () {
+        if (rejectForm) {
+            submitForm(rejectForm, popupRejected, popupRejectedConfirm);
+        }
+    });
 
-                document.getElementById("btnBatalApprove").addEventListener("click", function() {
-                    popupApproved.classList.add("hidden");
-                });
+    document.getElementById("btnBatalApprove").addEventListener("click", function () {
+        popupApproved.classList.add("hidden");
+    });
 
-                document.getElementById("btnBatalReject").addEventListener("click", function() {
-                    popupRejected.classList.add("hidden");
-                });
-            });
+    document.getElementById("btnBatalReject").addEventListener("click", function () {
+        popupRejected.classList.add("hidden");
+    });
+
+    function submitForm(form, confirmPopup, successPopup) {
+        const formData = new FormData(form);
+        fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: {
+                "X-Requested-With": "XMLHttpRequest",
+                "X-CSRF-TOKEN": document.querySelector("input[name='_token']").value,
+            },
+        })
+        .then(response => {
+            if (response.ok) {
+                confirmPopup.classList.add("hidden");
+                successPopup.classList.remove("hidden");
+
+                setTimeout(() => {
+                    successPopup.classList.add("hidden");
+                    location.reload();
+                }, 2000);
+            } else {
+                console.error("Gagal memperbarui data");
+            }
+        })
+        .catch(error => console.error("Terjadi kesalahan:", error));
+    }
+});
         </script>
 </body>
 
