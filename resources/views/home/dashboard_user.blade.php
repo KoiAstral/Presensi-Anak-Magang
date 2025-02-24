@@ -175,7 +175,7 @@
     $(document).ready(function () {
     // Inisialisasi DataTable
     $('#dataTable').DataTable();
-    $('#dataTableAbsensi').DataTable(); // FIXED: Initialize the second table
+    $('#dataTableAbsensi').DataTable();
 
     // Toggle Profile Menu
     let isProfileOpen = false;
@@ -197,7 +197,7 @@
         $('#popupPresensi').removeClass('hidden');
     });
 
-    $('#btnBatalPresensi').on('click', function () { // FIXED: Unique ID for "Batal" in presensi
+    $('#btnBatalPresensi').on('click', function () {
         $('#popupPresensi').addClass('hidden');
     });
 
@@ -225,20 +225,21 @@
                 })
             });
 
-            if (!response.ok) { // FIXED: Check response status
-                alert("Gagal melakukan presensi.");
-                return;
+            if (!response.ok) {
+                $('#popupKonfirmasi .popup-message').text("Gagal melakukan presensi.");
+            } else {
+                let data = await response.json();
+                $('#popupKonfirmasi .popup-message').text(data.message);
             }
-
-            let data = await response.json(); // FIXED: Handle JSON response
-            alert(data.message); 
 
             $('#popupPresensi').addClass('hidden');
             $('#popupKonfirmasi').removeClass('hidden');
             setTimeout(() => location.reload(), 2000);
         } catch (error) {
             console.error('Error:', error);
-            alert("Terjadi kesalahan, coba lagi.");
+            $('#popupKonfirmasi .popup-message').text("Terjadi kesalahan, coba lagi.");
+            $('#popupPresensi').addClass('hidden');
+            $('#popupKonfirmasi').removeClass('hidden');
         }
     });
 
@@ -247,15 +248,14 @@
         $('#popupLogout').removeClass('hidden');
     });
 
-    $('#closePopupLogout, #btnBatalLogout').on('click', function () { // FIXED: Unique IDs
+    $('#closePopupLogout, #btnBatalLogout').on('click', function () {
         $('#popupLogout').addClass('hidden');
     });
 
-    $('#closePopupPresensi').on('click', function () { // FIXED: Unique ID for closing presensi pop-up
+    $('#closePopupPresensi').on('click', function () {
         $('#popupPresensi').addClass('hidden');
     });
 });
-
 </script>
 </body>
 </html>
