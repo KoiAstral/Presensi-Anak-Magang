@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Absensi extends Model
 {
     use HasFactory;
@@ -29,7 +30,7 @@ class Absensi extends Model
      * @var array
      */
     protected $fillable = [
-        'nomor_induk',
+        'user_id',
         'waktu_absensi',
         'jenis_absensi',
         'keterangan',
@@ -37,6 +38,11 @@ class Absensi extends Model
         'tanggal_akhir',
         'status',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
     /**
      * Indicates if the model should be timestamped.
