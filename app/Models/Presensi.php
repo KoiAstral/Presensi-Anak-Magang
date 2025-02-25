@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Presensi extends Model
 {
     use HasFactory;
@@ -21,7 +22,7 @@ class Presensi extends Model
      *
      * @var string
      */
-    protected $primaryKey = 'id_presensi';
+    protected $primaryKey = 'id';
 
     /**
      * The attributes that are mass assignable.
@@ -29,13 +30,18 @@ class Presensi extends Model
      * @var array
      */
     protected $fillable = [
-        'nama',
-        'nomor_induk',
+        'user_id',
         'tanggal_presensi',
         'waktu_presensi',
         'status',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    
     /**
      * Indicates if the model should be timestamped.
      *
@@ -46,8 +52,4 @@ class Presensi extends Model
     /**
      * Define relationships.
      */
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
 }
