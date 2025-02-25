@@ -12,10 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('presensi', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nama');
-            $table->string('nomor_induk');
-            $table->foreign('nomor_induk')->references('nomor_induk')->on('users')->onDelete('cascade');
+            $table->id();
+            $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->date('tanggal_presensi');
             $table->time('waktu_presensi');
             $table->string('status')->default('approved');
