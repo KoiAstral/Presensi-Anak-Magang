@@ -57,17 +57,6 @@
                 </div>
                 <form id="izinForm" method="POST" action="{{ route('store.absensi') }}">
                     @csrf
-                    <!-- Nomor Induk -->
-                    <div class="mb-5">
-                        <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
-                            <img src="/svg/nomor_induk.svg" alt="Nomor Induk" class="h-6 w-6 mr-2">
-                            <input type="text" name="nomor_induk" placeholder="Nomor Induk"
-                                class="w-full bg-transparent text-gray-700 focus:outline-none" value="{{ old('nomor_induk') }}">
-                        </div>
-                        @error('nomor_induk')
-                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
                     <div class="mb-5">
                         <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-transparent">
                             <img src="/svg/clock.svg" alt="Waktu Absensi" class="h-6 w-6 mr-2">
