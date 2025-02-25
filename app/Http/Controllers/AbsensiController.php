@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Absensi;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AbsensiController extends Controller
 {
     public function indexAdmin()
     {
-        $absensi = Absensi::all();
-        return view('admin.absensi.data_magang', compact('absensi'));
+        $absensi = Absensi::with('user')->get();
+        
+        $user = Auth::user();
+        return view('admin.absensi.data_absensi', compact('absensi', 'user'));
     }
 
     public function formAbsensi()
@@ -26,15 +29,14 @@ class AbsensiController extends Controller
 
     public function store(Request $request)
 {
+    $user = Auth::user();
     $request->validate([
-        'nomor_induk' => 'required|string|max:20',
         'waktu_absensi' => 'required',
         'jenis_absensi' => 'required|in:izin,sakit',
         'keterangan' => 'required|string|max:255',
         'tanggal_mulai' => 'required|date',
         'tanggal_akhir' => 'required|date|after_or_equal:tanggal_mulai',
     ], [
-        'nomor_induk.required' => 'Nomor induk wajib diisi',
         'jenis_absensi.required' => 'Jenis absensi wajib diisi',
         'jenis_absensi.in' => 'Jenis absensi harus berupa izin atau sakit',
         'keterangan.required' => 'Keterangan wajib diisi',
@@ -43,7 +45,7 @@ class AbsensiController extends Controller
     ]);
 
     Absensi::create([
-        'nomor_induk' => $request->nomor_induk,
+        'user_id' => $user->id,
         'waktu_absensi' => $request->waktu_absensi,
         'jenis_absensi' => $request->jenis_absensi,
         'keterangan' => $request->keterangan,

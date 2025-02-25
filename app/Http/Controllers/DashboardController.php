@@ -13,13 +13,12 @@ class DashboardController extends Controller
     public function index()
 {
     $user = Auth::user(); // Ambil data user yang sedang login
-    $absensi = Absensi::where('nomor_induk', $user->nomor_induk)->get();
-    
-    $presensi = Presensi::where('nomor_induk', $user->nomor_induk)->get();
 
     if ($user->status == 'admin') {
         return view('home.dashboard_admin', compact('user'));
     } else {
+        $presensi = Presensi::where('user_id', $user->id)->get();
+        $absensi = Absensi::where('user_id', $user->id)->get();
         return view('home.dashboard_user', compact('user', 'absensi', 'presensi'));
     }
 }
