@@ -61,12 +61,12 @@
                         <img src="/svg/home.svg" alt="Home Icon" class="h-6 w-6 mr-4">
                         <span>Home</span>
                     </a>
-                    <a href="/data-siswa" class="flex items-center px-4 py-2 hover:bg-gray-700">
-                        <img src="/svg/form.svg" alt="Data Siswa Icon" class="h-6 w-6 mr-4">
-                        <span>Data Siswa/i Magang</span>
+                    <a href="/data-siswa" class="flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700">
+                        <img src="/images/data.png" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
+                        <span>Data Anak Magang</span>
                     </a>
                     <a href="/riwayat-presensi" class="flex items-center px-4 py-2 hover:bg-gray-700">
-                        <img src="/svg/time.svg" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
+                        <img src="/images/riwayat.png" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
                         <span>Riwayat Presensi</span>
                     </a>
                     <a href="/konfirmasi-pengajuan" class="flex items-center px-4 py-2 hover:bg-gray-700">
@@ -96,39 +96,27 @@
                 <div class="bg-[#EAEAEA] p-4 mb-6 rounded-md border-t-4 border-[#396E66] shadow-md text-center w-full max-w-md">
                     <h2 class="text-lg font-bold text-black">Data Anak Magang</h2>
                 </div>
-                <div class="w-full mx-auto">
+                <div class="w-full max-w-5xl mx-auto">
                     <table id="dataTable" class="display w-full">
                         <thead class="bg-[#EAEAEA]">
                             <tr>
                                 <th class="border border-gray-300 px-6 py-4">No</th>
-                                <th class="border border-gray-300 px-6 py-4">Nama</th>
-                                <th class="border border-gray-300 px-6 py-4">Sekolah</th>
-                                <th class="border border-gray-300 px-6 py-4">Nomor Induk</th>
-                                <th class="border border-gray-300 px-6 py-4">Email</th>
-                                <th class="border border-gray-300 px-6 py-4">Status</th>
-                                <th class="border border-gray-300 px-6 py-4">Aksi</th>
+                                <th class="border border-gray-300 px-6 py-4">nomor induk</th>
+                                <th class="border border-gray-300 px-6 py-4">nama</th>
+                                <th class="border border-gray-300 px-6 py-4">Tanggal presensi</th>
+                                <th class="border border-gray-300 px-6 py-4">waktu presensi</th>
+                                <th class="border border-gray-300 px-6 py-4">status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $data)
+                            @foreach ($presensi as $data )
                             <tr>
-                                <td class="px-6 py-4">{{ $loop->iteration }}</td>
-                                <td class="px-6 py-4">{{ $data->nama }}</td>
-                                <td class="px-6 py-4">{{ $data->sekolah }}</td>
-                                <td class="px-6 py-4">{{ $data->nomor_induk }}</td>
-                                <td class="px-6 py-4">{{ $data->email }}</td>
-                                <td class="px-6 py-4">{{ $data->status }}</td>
-                                <td class="px-6 py-4 flex items-center justify-start space-x-2">
-                                    <a href="{{ route('admin.user.edit_magang', $data->id) }}" class="flex items-center hover:opacity-75">
-                                        <img src="/svg/edit.svg" alt="Edit Icon" class="h-6 w-6">
-                                    </a>
-                                    <form action="{{ route('admin.user.delete_magang', $data->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="flex items-center hover:opacity-75">
-                                            <img src="/svg/delete.svg" alt="Delete Icon" class="h-6 w-6">
-                                        </button>
-                                    </form>
+                                <td class="px-6 py-4">{{$loop->iteration}}</td>
+                                <td class="px-6 py-4">{{ $data->user->nomor_induk }}</td>
+                                <td class="px-6 py-4">{{ $data->user->nama }}</td>
+                                <td class="px-6 py-4">{{$data->tanggal_presensi}}</td>
+                                <td class="px-6 py-4">{{$data->waktu_presensi}}</td>
+                                <td class="px-6 py-4">{{$data->status}}</td>
                                 </td>
                             </tr>
                             @endforeach
