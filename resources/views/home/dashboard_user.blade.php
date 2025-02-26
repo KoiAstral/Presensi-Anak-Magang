@@ -83,6 +83,7 @@
                     </div>
                 </div>
                 <div class="w-full mx-auto">
+                    <h2 class="text-lg font-semibold mt-6">Riwayat Presensi</h2>
                     <table id="dataTable" class="display w-full">
                         <thead class="bg-[#EAEAEA]">
                             <tr>
@@ -105,6 +106,7 @@
                     </table>
                 </div>
                 <div class="w-full mx-auto mt-6">
+                    <h2 class="text-lg font-semibold mt-6">Riwayat Pengajuan Izin</h2>
                     <table id="dataTableAbsensi" class="display w-full">
                         <thead class="bg-[#EAEAEA]">
                             <tr>
