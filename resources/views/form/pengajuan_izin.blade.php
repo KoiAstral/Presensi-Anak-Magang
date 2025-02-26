@@ -45,7 +45,7 @@
     <div class="h-screen flex flex-col">
         <header class="bg-white border-b-2 border-[#396E66] p-3 flex items-center space-x-2">
             <button onclick="window.history.back()" class="p-2">
-                <img src="/svg/back.svg" alt="Back" class="h-8 w-8">
+                <img src="/svg/back_green.svg" alt="Back" class="h-8 w-8">
             </button>
             <h1 class="text-lg font-semibold">Form Pengajuan Izin / Sakit</h1>
         </header>
