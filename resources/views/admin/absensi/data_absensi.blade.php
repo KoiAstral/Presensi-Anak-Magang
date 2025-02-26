@@ -108,7 +108,7 @@
             <main id="content" class="p-6 flex flex-col items-center mx-auto">
                 <div
                     class="bg-[#EAEAEA] p-4 mb-6 rounded-md border-t-4 border-[#396E66] shadow-md text-center w-full max-w-md">
-                    <h2 class="text-lg font-bold text-black">Data Anak Magang</h2>
+                    <h2 class="text-lg font-bold text-black">Konfirmasi pengajuan Izin</h2>
                 </div>
                 <div class="w-full mx-auto">
                     <table id="dataTable" class="display w-full">
