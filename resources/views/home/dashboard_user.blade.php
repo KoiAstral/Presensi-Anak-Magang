@@ -83,15 +83,15 @@
                 </div>
                 <div class="flex border-b border-gray-300">
                     <button class="tab-btn px-6 py-2 font-semibold focus:outline-none text-gray-600 border-b-2 border-transparent hover:text-[#396E66] hover:border-[#396E66]" data-target="tab-presensi">
-                        Riwayat Presensi
+                        Table Presensi
                     </button>
-                    <button class="tab-btn px-6 py-2 font-semibold focus:outline-none text-gray-600 border-b-2 border-transparent hover:text-[#00307D] hover:border-[#00307D]" data-target="tab-izin">
-                        Riwayat Pengajuan Izin
+                    <button class="tab-btn px-6 py-2 font-semibold focus:outline-none text-gray-600 border-b-2 border-transparent hover:text-[#00307D] hover:border-[#00307D]" data-target="tab-absensi">
+                        Table Absensi
                     </button>
                 </div>
                 <div class="w-full mx-auto mt-6">
                     <div id="tab-presensi" class="tab-content">
-                        <h2 class="text-lg font-semibold mt-6">Riwayat Presensi</h2>
+                        <h2 class="text-lg font-semibold mt-6">Table Presensi</h2>
                         <table id="dataTable" class="display w-full">
                             <thead class="bg-[#EAEAEA]">
                                 <tr>
@@ -113,8 +113,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="tab-izin" class="tab-content hidden">
-                        <h2 class="text-lg font-semibold mt-6">Riwayat Pengajuan Izin</h2>
+                    <div id="tab-absensi" class="tab-content hidden">
+                        <h2 class="text-lg font-semibold mt-6">Table Absensi</h2>
                         <table id="dataTableAbsensi" class="display w-full">
                             <thead class="bg-[#EAEAEA]">
                                 <tr>
