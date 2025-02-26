@@ -49,7 +49,7 @@
                 <div id="modalProfile" class="absolute top-16 right-0 bg-white shadow-lg rounded-md w-64 hidden flex flex-col overflow-hidden">
                     <a href="/profile" class="flex items-center px-4 py-2 w-full text-left hover:bg-gray-200 font-semibold text-black">
                         <img src="/svg/profile.svg" alt="Icon" class="h-6 w-8 mr-2">
-                        <span>Edit Profil</span>
+                        <span>Detail Profile</span>
                     </a>
                     <a id="btnLogout" class="flex items-center px-4 py-2 w-full text-left hover:bg-gray-200 font-semibold text-black cursor-pointer">
                         <img src="/svg/logout.svg" alt="Icon" class="h-6 w-8 mr-2">
@@ -70,7 +70,6 @@
                             Presensi
                         </button>
                     </div>
-
                     <div class="bg-[#00307D]/20 p-6 rounded-md w-1/3">
                         <div class="flex items-center justify-between">
                             <h2 class="text-xl font-bold text-black">Pengajuan Izin</h2>
@@ -82,57 +81,67 @@
                         </button>
                     </div>
                 </div>
-                <div class="w-full mx-auto">
-                    <h2 class="text-lg font-semibold mt-6">Riwayat Presensi</h2>
-                    <table id="dataTable" class="display w-full">
-                        <thead class="bg-[#EAEAEA]">
-                            <tr>
-                                <th class="border border-gray-300 px-6 py-4">No</th>
-                                <th class="border border-gray-300 px-6 py-4">Tanggal Presensi</th>
-                                <th class="border border-gray-300 px-6 py-4">Waktu Presensi</th>
-                                <th class="border border-gray-300 px-6 py-4">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($presensi as $data)
-                                <tr>
-                                    <td class="px-6 py-4">{{ $loop->iteration }}</td>
-                                    <td class="px-6 py-4">{{ $data->tanggal_presensi }}</td>
-                                    <td class="px-6 py-4">{{ $data->waktu_presensi }}</td>
-                                    <td class="px-6 py-4">{{ $data->status }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div class="flex border-b border-gray-300">
+                    <button class="tab-btn px-6 py-2 font-semibold focus:outline-none text-gray-600 border-b-2 border-transparent hover:text-[#396E66] hover:border-[#396E66]" data-target="tab-presensi">
+                        Riwayat Presensi
+                    </button>
+                    <button class="tab-btn px-6 py-2 font-semibold focus:outline-none text-gray-600 border-b-2 border-transparent hover:text-[#00307D] hover:border-[#00307D]" data-target="tab-izin">
+                        Riwayat Pengajuan Izin
+                    </button>
                 </div>
                 <div class="w-full mx-auto mt-6">
-                    <h2 class="text-lg font-semibold mt-6">Riwayat Pengajuan Izin</h2>
-                    <table id="dataTableAbsensi" class="display w-full">
-                        <thead class="bg-[#EAEAEA]">
-                            <tr>
-                                <th class="border border-gray-300 px-6 py-4">No</th>
-                                <th class="border border-gray-300 px-6 py-4">Waktu Absensi</th>
-                                <th class="border border-gray-300 px-6 py-4">Jenis Absensi</th>
-                                <th class="border border-gray-300 px-6 py-4">Keterangan</th>
-                                <th class="border border-gray-300 px-6 py-4">Tanggal Mulai</th>
-                                <th class="border border-gray-300 px-6 py-4">Tanggal Akhir</th>
-                                <th class="border border-gray-300 px-6 py-4">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($absensi as $data)
+                    <div id="tab-presensi" class="tab-content">
+                        <h2 class="text-lg font-semibold mt-6">Riwayat Presensi</h2>
+                        <table id="dataTable" class="display w-full">
+                            <thead class="bg-[#EAEAEA]">
                                 <tr>
-                                    <td class="px-6 py-4">{{ $loop->iteration }}</td>
-                                    <td class="px-6 py-4">{{ $data->waktu_absensi }}</td>
-                                    <td class="px-6 py-4">{{ $data->jenis_absensi }}</td>
-                                    <td class="px-6 py-4">{{ $data->keterangan }}</td>
-                                    <td class="px-6 py-4">{{ $data->tanggal_mulai }}</td>
-                                    <td class="px-6 py-4">{{ $data->tanggal_akhir }}</td>
-                                    <td class="px-6 py-4">{{ $data->status }}</td>
+                                    <th class="border border-gray-300 px-6 py-4">No</th>
+                                    <th class="border border-gray-300 px-6 py-4">Tanggal Presensi</th>
+                                    <th class="border border-gray-300 px-6 py-4">Waktu Presensi</th>
+                                    <th class="border border-gray-300 px-6 py-4">Status</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($presensi as $data)
+                                    <tr>
+                                        <td class="px-6 py-4">{{ $loop->iteration }}</td>
+                                        <td class="px-6 py-4">{{ $data->tanggal_presensi }}</td>
+                                        <td class="px-6 py-4">{{ $data->waktu_presensi }}</td>
+                                        <td class="px-6 py-4">{{ $data->status }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="tab-izin" class="tab-content hidden">
+                        <h2 class="text-lg font-semibold mt-6">Riwayat Pengajuan Izin</h2>
+                        <table id="dataTableAbsensi" class="display w-full">
+                            <thead class="bg-[#EAEAEA]">
+                                <tr>
+                                    <th class="border border-gray-300 px-6 py-4">No</th>
+                                    <th class="border border-gray-300 px-6 py-4">Waktu Absensi</th>
+                                    <th class="border border-gray-300 px-6 py-4">Jenis Absensi</th>
+                                    <th class="border border-gray-300 px-6 py-4">Keterangan</th>
+                                    <th class="border border-gray-300 px-6 py-4">Tanggal Mulai</th>
+                                    <th class="border border-gray-300 px-6 py-4">Tanggal Akhir</th>
+                                    <th class="border border-gray-300 px-6 py-4">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($absensi as $data)
+                                    <tr>
+                                        <td class="px-6 py-4">{{ $loop->iteration }}</td>
+                                        <td class="px-6 py-4">{{ $data->waktu_absensi }}</td>
+                                        <td class="px-6 py-4">{{ $data->jenis_absensi }}</td>
+                                        <td class="px-6 py-4">{{ $data->keterangan }}</td>
+                                        <td class="px-6 py-4">{{ $data->tanggal_mulai }}</td>
+                                        <td class="px-6 py-4">{{ $data->tanggal_akhir }}</td>
+                                        <td class="px-6 py-4">{{ $data->status }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
     <div id="popupPresensi" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-md py-6 px-8 relative">
@@ -168,10 +177,34 @@
         </div>
     </div>
 <script>
-    $(document).ready(function () {
+     document.addEventListener("DOMContentLoaded", function () {
+    const tabButtons = document.querySelectorAll(".tab-btn");
+    const tabContents = document.querySelectorAll(".tab-content");
+
+    tabButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            // Hapus kelas aktif dari semua tab
+            tabButtons.forEach(btn => btn.classList.remove("text-[#396E66]", "border-[#396E66]", "text-[#00307D]", "border-[#00307D]"));
+
+            // Tambahkan kelas aktif ke tab yang diklik
+            if (this.dataset.target === "tab-presensi") {
+                this.classList.add("text-[#396E66]", "border-[#396E66]");
+            } else {
+                this.classList.add("text-[#00307D]", "border-[#00307D]");
+            }
+
+            // Sembunyikan semua konten tab
+            tabContents.forEach(content => content.classList.add("hidden"));
+
+            // Tampilkan konten tab yang sesuai
+            document.getElementById(this.dataset.target).classList.remove("hidden");
+        });
+    });
+});
+
+$(document).ready(function () {
     // Inisialisasi DataTable
-    $('#dataTable').DataTable();
-    $('#dataTableAbsensi').DataTable();
+    $('#dataTable, #dataTableAbsensi').DataTable();
 
     // Toggle Profile Menu
     let isProfileOpen = false;
@@ -193,7 +226,7 @@
         $('#popupPresensi').removeClass('hidden');
     });
 
-    $('#btnBatalPresensi').on('click', function () {
+    $('#btnBatalPresensi, #closePopupPresensi').on('click', function () {
         $('#popupPresensi').addClass('hidden');
     });
 
@@ -202,9 +235,14 @@
         let tanggal_presensi = now.toISOString().split('T')[0]; // Format: YYYY-MM-DD
         let waktu_presensi = now.toTimeString().split(' ')[0];  // Format: HH:MM:SS
 
-        let presensiUrl = document.querySelector('meta[name="presensi-url"]').getAttribute('content');
-        let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        let nomorInduk = document.querySelector('meta[name="nomor-induk"]').getAttribute('content');
+        let presensiUrl = $('meta[name="presensi-url"]').attr('content');
+        let csrfToken = $('meta[name="csrf-token"]').attr('content');
+        let nomorInduk = $('meta[name="nomor-induk"]').attr('content');
+
+        if (!presensiUrl || !csrfToken || !nomorInduk) {
+            console.error('Meta tag tidak ditemukan');
+            return;
+        }
 
         try {
             let response = await fetch(presensiUrl, {
@@ -221,12 +259,8 @@
                 })
             });
 
-            if (!response.ok) {
-                $('#popupKonfirmasi .popup-message').text("Gagal melakukan presensi.");
-            } else {
-                let data = await response.json();
-                $('#popupKonfirmasi .popup-message').text(data.message);
-            }
+            let message = response.ok ? (await response.json()).message : "Gagal melakukan presensi.";
+            $('#popupKonfirmasi .popup-message').text(message);
 
             $('#popupPresensi').addClass('hidden');
             $('#popupKonfirmasi').removeClass('hidden');
@@ -247,11 +281,8 @@
     $('#closePopupLogout, #btnBatalLogout').on('click', function () {
         $('#popupLogout').addClass('hidden');
     });
-
-    $('#closePopupPresensi').on('click', function () {
-        $('#popupPresensi').addClass('hidden');
-    });
 });
+
 </script>
 </body>
 </html>
