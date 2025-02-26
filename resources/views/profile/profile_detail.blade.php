@@ -23,7 +23,7 @@
     <div class="h-screen flex flex-col">
         <header class="bg-white border-b-2 border-[#396E66] p-2 flex items-center space-x-2">
             <button onclick="window.history.back()" class="p-2">
-                <img src="/images/back.png" alt="Back" class="h-10 w-10">
+                <img src="/svg/Back_green.svg" alt="Back" class="h-10 w-10">
             </button>
             <h1 class="text-lg font-semibold">Profile Saya</h1>
         </header>
