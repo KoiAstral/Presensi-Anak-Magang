@@ -16,8 +16,11 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->date('tanggal_presensi');
             $table->time('waktu_presensi');
-            $table->string('status')->default('approved');
+            $table->string('status')->default('hadir');
             $table->timestamps();
+
+
+            $table->unique(['user_id', 'tanggal_presensi']);
         });
     }
 
