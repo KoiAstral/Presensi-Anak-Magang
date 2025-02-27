@@ -23,6 +23,17 @@ class PresensiController extends Controller
     public function store()
     {
         $user = Auth::user(); // Fetch the logged-in user
+        $today = Carbon::now()->toDateString();
+
+        $existingPresensi = Presensi::where('user_id', $user->id)
+        ->whereDate('tanggal_presensi', $today)
+        ->first();
+
+        if ($existingPresensi) {
+            return response()->json([
+                'message' => 'Anda sudah melakukan presensi hari ini.',
+            ], 400);
+        }
 
         $presensi = new Presensi();
         $presensi->user_id = $user->id; 
