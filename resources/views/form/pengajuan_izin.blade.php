@@ -113,7 +113,7 @@
                     <button id="btnKirim" type="submit"
                         class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2">
                         Kirim
-                        <img src="/images/login.png" alt="Kirim" class="h-6 w-6">
+                        <img src="/svg/Login.svg" alt="Kirim" class="h-6 w-6">
                     </button>
                 </form>                
             </div>
@@ -128,7 +128,7 @@
                         <p class="text-lg font-semibold">Pengajuan berhasil!</p>
                         <p class="text-sm font-medium">Menunggu konfirmasi admin.</p>
                     </div>
-                    <img src="/images/berhasil.png" alt="Success" class="h-8 w-8 ml-4">
+                    <img src="/svg/Checked_Checkbox.svg" alt="Success" class="h-8 w-8 ml-4">
                 </div>
             </div>
         </div>
