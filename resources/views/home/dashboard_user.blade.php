@@ -145,7 +145,7 @@
                 </div>
     <div id="popupPresensi" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-md py-6 px-8 relative">
-            <p class="text-center text-lg font-semibold mb-6 mt-4">Anda akan melakukan absensi untuk kehadiran hari ini.</p>
+            <p class="text-center text-lg font-semibold mb-6 mt-4">Anda akan melakukan presensi untuk kehadiran hari ini.</p>
             <img id="closePopup" src="/svg/Close.svg" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
             <div class="flex justify-around">
                 <button id="btnBatal" class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
@@ -231,6 +231,13 @@ $(document).ready(function () {
     });
 
     $('#btnHadir').on('click', async function () {
+
+        const presensiButton = document.getElementById("btnHadir");
+        if (presensiButton) {
+            presensiButton.disable = true;
+            presensiButton.innerText = "Presensi sudah di lakukan"
+        }
+
         let now = new Date();
         let tanggal_presensi = now.toISOString().split('T')[0]; // Format: YYYY-MM-DD
         let waktu_presensi = now.toTimeString().split(' ')[0];  // Format: HH:MM:SS
