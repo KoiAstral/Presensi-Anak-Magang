@@ -171,11 +171,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
     <div id="popupLogout" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-md py-6 px-12 relative">
             <p class="text-center text-lg font-semibold mb-8 mt-4">Apakah anda yakin ingin Logout?</p>
@@ -212,6 +207,7 @@
 
     $(document).ready(function () {
         let dataTable = $('#dataTable').DataTable();
+        let dataTableAbsensi = $('#dataTableAbsensi').DataTable();
         let isProfileOpen = false;
 
         $('#profileMenu').on('click', function (e) {
