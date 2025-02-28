@@ -64,15 +64,18 @@
             </main>
         </div>
 
-        <!-- Logout Confirmation Modal -->
-        <div id="logoutModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
-            <div class="bg-white p-6 rounded-md shadow-md w-80">
-                <h2 class="text-lg font-semibold mb-4">Confirm Logout</h2>
-                <p class="mb-4">Are you sure you want to logout?</p>
-                <div class="flex justify-end">
-                    <button id="cancelLogout" class="mr-2 px-4 py-2 bg-gray-200 rounded">Cancel</button>
-                    <a href="/logout" class="px-4 py-2 bg-red-500 text-white rounded">Logout</a>
-                </div>
+        <div id="logoutModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-md py-6 px-12 relative">
+                <p class="text-center text-lg font-semibold mb-8 mt-4">Apakah anda yakin ingin Logout?</p>
+                <img id="closePopup" src="/svg/Close.svg" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
+                <div class="flex space-x-4 mt-4">
+                <button id="cancelLogout" class="bg-[#ECB131] text-white font-bold flex-1 py-2 rounded-md shadow">
+                    Batal
+                </button>
+                <a href="{{route('logout')}}" class="bg-[#396E66] text-white font-bold flex-1 py-2 rounded-md shadow text-center inline-block">
+                    Ya
+                </a>
+            </div>
             </div>
         </div>
     </div>
@@ -84,6 +87,7 @@
         const logoutButton = document.getElementById('logoutButton');
         const logoutModal = document.getElementById('logoutModal');
         const cancelLogout = document.getElementById('cancelLogout');
+        const closePopup = document.getElementById('closePopup');
 
         // Toggle sidebar
         sidebarToggle.addEventListener('click', () => {
@@ -105,6 +109,11 @@
 
         // Hide logout modal
         cancelLogout.addEventListener('click', () => {
+            logoutModal.classList.add('hidden');
+        });
+
+        // Close modal when clicking the close button
+        closePopup.addEventListener('click', () => {
             logoutModal.classList.add('hidden');
         });
     </script>

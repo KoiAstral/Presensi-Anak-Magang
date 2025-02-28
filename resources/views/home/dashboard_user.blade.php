@@ -153,7 +153,7 @@
             </div>
         </div>
     </div>
-    <div id="popupKonfirmasi" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
+    <div id="popupBerhasilPresensi" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
         <div class="bg-white rounded-md p-4 relative animate-slide-down w-96">
             <div class="flex items-center">
                 <p class="text-lg font-semibold mr-4">Terima kasih, presensi berhasil!</p>
@@ -161,6 +161,20 @@
             </div>
         </div>
     </div>
+    <div id="popupSudahPresensi" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
+    <div class="bg-white rounded-md p-4 relative animate-slide-down w-auto max-w-sm">
+        <div class="flex items-center justify-center gap-3">
+            <p class="text-lg text-red-600 font-semibold whitespace-nowrap">
+                Anda sudah melakukan presensi!
+            </p>
+            <img src="/svg/warning.svg" alt="Warning" class="h-10 w-10">
+        </div>
+    </div>
+</div>
+
+
+
+
 
     <div id="popupLogout" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
         <div class="bg-white rounded-md py-6 px-12 relative">
@@ -177,116 +191,127 @@
         </div>
     </div>
 <script>
-     document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
+    let sudahPresensi = false; // Status awal presensi
+
     const tabButtons = document.querySelectorAll(".tab-btn");
     const tabContents = document.querySelectorAll(".tab-content");
 
     tabButtons.forEach(button => {
         button.addEventListener("click", function () {
-            // Hapus kelas aktif dari semua tab
             tabButtons.forEach(btn => btn.classList.remove("text-[#396E66]", "border-[#396E66]", "text-[#00307D]", "border-[#00307D]"));
-
-            // Tambahkan kelas aktif ke tab yang diklik
             if (this.dataset.target === "tab-presensi") {
                 this.classList.add("text-[#396E66]", "border-[#396E66]");
             } else {
                 this.classList.add("text-[#00307D]", "border-[#00307D]");
             }
-
-            // Sembunyikan semua konten tab
             tabContents.forEach(content => content.classList.add("hidden"));
-
-            // Tampilkan konten tab yang sesuai
             document.getElementById(this.dataset.target).classList.remove("hidden");
         });
     });
-});
 
-$(document).ready(function () {
-    // Inisialisasi DataTable
-    $('#dataTable, #dataTableAbsensi').DataTable();
+    $(document).ready(function () {
+        let dataTable = $('#dataTable').DataTable();
+        let isProfileOpen = false;
 
-    // Toggle Profile Menu
-    let isProfileOpen = false;
-    $('#profileMenu').on('click', function (e) {
-        e.stopPropagation();
-        $('#modalProfile').toggle();
-        isProfileOpen = !isProfileOpen;
-        $('#arrowIcon').css('transform', isProfileOpen ? 'rotate(180deg)' : 'rotate(0deg)');
-    });
+        $('#profileMenu').on('click', function (e) {
+            e.stopPropagation();
+            $('#modalProfile').toggle();
+            isProfileOpen = !isProfileOpen;
+            $('#arrowIcon').css('transform', isProfileOpen ? 'rotate(180deg)' : 'rotate(0deg)');
+        });
 
-    $(document).on('click', function () {
-        $('#modalProfile').hide();
-        isProfileOpen = false;
-        $('#arrowIcon').css('transform', 'rotate(0deg)');
-    });
+        $(document).on('click', function () {
+            $('#modalProfile').hide();
+            isProfileOpen = false;
+            $('#arrowIcon').css('transform', 'rotate(0deg)');
+        });
 
-    // Pop-up Presensi
-    $('#btnPresensi').on('click', function () {
-        $('#popupPresensi').removeClass('hidden');
-    });
+        $('#btnPresensi').on('click', function () {
+            if (sudahPresensi) {
+                $('#popupSudahPresensi').removeClass('hidden'); // Pop-up khusus jika sudah presensi
+                
+                setTimeout(() => {
+                    $('#popupSudahPresensi').addClass('hidden');
+                }, 2000);
+                return;
+            }
+            $('#popupPresensi').removeClass('hidden');
+        });
 
-    $('#btnBatalPresensi, #closePopupPresensi').on('click', function () {
-        $('#popupPresensi').addClass('hidden');
-    });
-
-    $('#btnHadir').on('click', async function () {
-
-        const presensiButton = document.getElementById("btnHadir");
-        if (presensiButton) {
-            presensiButton.disable = true;
-            presensiButton.innerText = "Presensi sudah di lakukan"
-        }
-
-        let now = new Date();
-        let tanggal_presensi = now.toISOString().split('T')[0]; // Format: YYYY-MM-DD
-        let waktu_presensi = now.toTimeString().split(' ')[0];  // Format: HH:MM:SS
-
-        let presensiUrl = $('meta[name="presensi-url"]').attr('content');
-        let csrfToken = $('meta[name="csrf-token"]').attr('content');
-        let nomorInduk = $('meta[name="nomor-induk"]').attr('content');
-
-        if (!presensiUrl || !csrfToken || !nomorInduk) {
-            console.error('Meta tag tidak ditemukan');
-            return;
-        }
-
-        try {
-            let response = await fetch(presensiUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": csrfToken
-                },
-                body: JSON.stringify({
-                    nomor_induk: nomorInduk,
-                    tanggal_presensi: tanggal_presensi,
-                    waktu_presensi: waktu_presensi,
-                    status: "Hadir"
-                })
-            });
-
-            let message = response.ok ? (await response.json()).message : "Gagal melakukan presensi.";
-            $('#popupKonfirmasi .popup-message').text(message);
-
+        $('#btnBatal, #closePopup').on('click', function () {
             $('#popupPresensi').addClass('hidden');
-            $('#popupKonfirmasi').removeClass('hidden');
-            setTimeout(() => location.reload(), 2000);
-        } catch (error) {
-            console.error('Error:', error);
-            $('#popupKonfirmasi .popup-message').text("Terjadi kesalahan, coba lagi.");
-            $('#popupPresensi').addClass('hidden');
-            $('#popupKonfirmasi').removeClass('hidden');
-        }
-    });
+        });
 
-    // Pop-up Logout
-    $('#btnLogout').on('click', function () {
-        $('#popupLogout').removeClass('hidden');
-    });
+        $('#btnHadir').on('click', async function () {
+            if (sudahPresensi) {
+                $('#popupSudahPresensi').removeClass('hidden');
 
-    $('#closePopupLogout, #btnBatalLogout').on('click', function () {
-        $('#popupLogout').addClass('hidden');
+                setTimeout(() => {
+                    $('#popupSudahPresensi').addClass('hidden');
+                }, 2000);
+                return;
+            }
+
+            let now = new Date();
+            let tanggal_presensi = now.toISOString().split('T')[0];
+            let waktu_presensi = now.toTimeString().split(' ')[0];
+
+            let presensiUrl = $('meta[name="presensi-url"]').attr('content');
+            let csrfToken = $('meta[name="csrf-token"]').attr('content');
+            let nomorInduk = $('meta[name="nomor-induk"]').attr('content');
+
+            try {
+                let response = await fetch(presensiUrl, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRF-TOKEN": csrfToken
+                    },
+                    body: JSON.stringify({
+                        nomor_induk: nomorInduk,
+                        tanggal_presensi: tanggal_presensi,
+                        waktu_presensi: waktu_presensi,
+                        status: "Hadir"
+                    })
+                });
+
+                if (response.ok) {
+                    $('#popupPresensi').addClass('hidden');
+                    $('#popupBerhasilPresensi').removeClass('hidden'); // Pop-up berhasil presensi
+
+                    sudahPresensi = true;
+
+                    // Tambahkan data ke tabel tanpa refresh
+                    let newRow = dataTable.row.add([
+                        dataTable.rows().count() + 1,
+                        tanggal_presensi,
+                        waktu_presensi,
+                        "Hadir"
+                    ]).draw().node();
+
+                    $(newRow).addClass("bg-green-100");
+
+                    setTimeout(() => {
+                        $('#popupBerhasilPresensi').addClass('hidden');
+                    }, 2000);
+
+                } else {
+                    alert("Gagal melakukan presensi. Coba lagi.");
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert("Terjadi kesalahan, coba lagi.");
+            }
+        });
+
+        $('#btnLogout').on('click', function () {
+            $('#popupLogout').removeClass('hidden');
+        });
+
+        $('#closePopupLogout, #btnBatalLogout').on('click', function () {
+            $('#popupLogout').addClass('hidden');
+        });
     });
 });
 
