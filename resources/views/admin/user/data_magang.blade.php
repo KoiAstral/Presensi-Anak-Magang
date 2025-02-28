@@ -150,7 +150,7 @@
                 <div class="bg-white rounded-md p-4 relative animate-slide-down w-80">
                     <div class="flex items-center">
                         <p class="text-lg font-semibold ml-4 mr-2">Data berhasil dihapus!</p>
-                        <img src="/images/berhasil.png" alt="Hapus Berhasil" class="h-8 w-8">
+                        <img src="/svg/Checked_Checkbox" alt="Hapus Berhasil" class="h-8 w-8">
                     </div>
                 </div>
             </div>
