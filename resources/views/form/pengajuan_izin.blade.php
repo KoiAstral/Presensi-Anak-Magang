@@ -164,19 +164,6 @@
 
             tanggalAkhir.min = tanggalMulai; // Set batas minimal pada tanggal akhir
         });
-
-
-        document.getElementById('izinForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            let tanggalMulai = document.getElementById('tanggal_mulai').value;
-            let tanggalAkhir = document.getElementById('tanggal_akhir').value;
-
-            document.getElementById('popupSuccess').classList.remove('hidden');
-
-            setTimeout(() => {
-                this.submit();
-            }, 5000);
-        });
     </script>
 </body>
 
