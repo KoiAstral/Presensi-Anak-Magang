@@ -30,6 +30,7 @@ class AbsensiController extends Controller
     public function store(Request $request)
 {
     $user = Auth::user();
+    
     $request->validate([
         'waktu_absensi' => 'required',
         'jenis_absensi' => 'required|in:izin,sakit',
