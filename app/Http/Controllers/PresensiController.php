@@ -31,6 +31,7 @@ class PresensiController extends Controller
 
         if ($existingPresensi) {
             return response()->json([
+                'status' => 'error',
                 'message' => 'Anda sudah melakukan presensi hari ini.',
             ], 400);
         }
