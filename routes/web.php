@@ -53,7 +53,7 @@ Route::prefix('admin')->group(function () {
 
 // absensi routes
 Route::get('/pengajuan_absensi', [AbsensiController::class, 'formAbsensi'])->name('form.absensi');
-Route::post('/storeabsensi', [AbsensiController::class, 'store'])->name('store.absensi');
+Route::post('/absensi/store', [AbsensiController::class, 'store'])->name('store.absensi');
 
 // Menyimpan data presensi
 Route::post('/presensi', [PresensiController::class, 'store'])->name('presensi.store');
