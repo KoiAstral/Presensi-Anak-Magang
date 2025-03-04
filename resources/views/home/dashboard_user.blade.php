@@ -220,119 +220,114 @@
                     </div>
                 </div>
             </div>
+            @if(session()->has('success'))
             <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    // Tab Navigation
-                    const tabButtons = document.querySelectorAll(".tab-btn");
-                    const tabContents = document.querySelectorAll(".tab-content");
-
-                    tabButtons.forEach(button => {
-                        button.addEventListener("click", function() {
-                            tabButtons.forEach(btn => btn.classList.remove("text-[#396E66]",
-                                "border-[#396E66]", "text-[#00307D]", "border-[#00307D]"));
-
-                            this.classList.add(this.dataset.target === "tab-presensi" ? "text-[#396E66]" :
-                                "text-[#00307D]",
-                                this.dataset.target === "tab-presensi" ? "border-[#396E66]" :
-                                "border-[#00307D]");
-
-                            tabContents.forEach(content => content.classList.add("hidden"));
-                            document.getElementById(this.dataset.target).classList.remove("hidden");
-                        });
-                    });
-
-                    $(document).ready(function() {
-                        let dataTable = $('#dataTable').DataTable();
-                        let dataTableAbsensi = $('#dataTableAbsensi').DataTable();
-                        let isProfileOpen = false;
-
-                        // Profile Dropdown
-                        $('#profileMenu').on('click', function(e) {
-                            e.stopPropagation();
-                            $('#modalProfile').toggle();
-                            isProfileOpen = !isProfileOpen;
-                            $('#arrowIcon').css('transform', isProfileOpen ? 'rotate(180deg)' :
-                                'rotate(0deg)');
-                        });
-
-                        $(document).on('click', function() {
-                            $('#modalProfile').hide();
-                            isProfileOpen = false;
-                            $('#arrowIcon').css('transform', 'rotate(0deg)');
-                        });
-
-                        // Popup Presensi
-                        $('#btnPresensi').on('click', function() {
-                            $('#popupPresensi').removeClass('hidden');
-                        });
-
-                        $('#btnBatal, #closePopup').on('click', function() {
-                            $('#popupPresensi').addClass('hidden');
-                        });
-
-                        $('#btnHadir').on('click', async function() {
-                            let now = new Date();
-                            let tanggal_presensi = now.toISOString().split('T')[0];
-                            let waktu_presensi = now.toTimeString().split(' ')[0];
-
-                            let presensiUrl = $('meta[name="presensi-url"]').attr('content');
-                            let csrfToken = $('meta[name="csrf-token"]').attr('content');
-                            let nomorInduk = $('meta[name="nomor-induk"]').attr('content');
-
-                            try {
-                                let response = await fetch(presensiUrl, {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json",
-                                        "X-CSRF-TOKEN": csrfToken
-                                    },
-                                    body: JSON.stringify({
-                                        nomor_induk: nomorInduk,
-                                        tanggal_presensi: tanggal_presensi,
-                                        waktu_presensi: waktu_presensi,
-                                        status: "Hadir"
-                                    })
-                                });
-
-                                if (response.ok) {
-                                    $('#popupPresensi').addClass('hidden');
-                                    $('#popupBerhasilPresensi').removeClass('hidden');
-                                    setTimeout(() => {
-                                        $('#popupBerhasilPresensi').addClass('hidden');
-                                        location.reload();
-                                    }, 2000);
-                                } else {
-                                    $('#popupSudahPresensi').removeClass('hidden');
-                                    setTimeout(() => {
-                                        $('#popupSudahPresensi').addClass('hidden');
-                                    }, 2000);
-                                    $('#popupPresensi').addClass('hidden');
-                                }
-                            } catch (error) {
-                                console.error('Error:', error);
-                                alert("Terjadi kesalahan, coba lagi.");
-                            }
-                        });
-
-                        // Popup Success
-                        let popup = document.getElementById("popupSuccess");
-                        if (popup) {
-                            popup.classList.remove("hidden");
-                            setTimeout(() => {
-                                popup.classList.add("hidden");
-                            }, 3000);
-                        }
-
-                        // Logout Popup
-                        $('#btnLogout').on('click', function() {
-                            $('#popupLogout').removeClass('hidden');
-                        });
-
-                        $('#closePopupLogout, #btnBatalLogout').on('click', function() {
-                            $('#popupLogout').addClass('hidden');
-                        });
-                    });
+                document.addEventListener("DOMContentLoaded", function () {
+                    let popup = document.getElementById("popupSuccess");
+                    if (popup) {
+                        popup.classList.remove("hidden");
+                        setTimeout(() => {
+                            popup.classList.add("hidden");
+                        }, 3000);
+                    }
                 });
             </script>
+        @endif
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                const tabButtons = document.querySelectorAll(".tab-btn");
+                const tabContents = document.querySelectorAll(".tab-content");
+        
+                // Handle Tab Switching
+                tabButtons.forEach(button => {
+                    button.addEventListener("click", function() {
+                        tabButtons.forEach(btn => btn.classList.remove("text-[#396E66]", "border-[#396E66]", "text-[#00307D]", "border-[#00307D]"));
+                        this.classList.add(this.dataset.target === "tab-presensi" ? "text-[#396E66]" : "text-[#00307D]", this.dataset.target === "tab-presensi" ? "border-[#396E66]" : "border-[#00307D]");
+                        tabContents.forEach(content => content.classList.add("hidden"));
+                        document.getElementById(this.dataset.target).classList.remove("hidden");
+                    });
+                });
+        
+                // Initialize DataTables
+                $(document).ready(function() {
+                    $('#dataTable').DataTable();
+                    $('#dataTableAbsensi').DataTable();
+                });
+        
+                // Profile Dropdown Toggle
+                let isProfileOpen = false;
+                $('#profileMenu').on('click', function(e) {
+                    e.stopPropagation();
+                    $('#modalProfile').toggle();
+                    isProfileOpen = !isProfileOpen;
+                    $('#arrowIcon').css('transform', isProfileOpen ? 'rotate(180deg)' : 'rotate(0deg)');
+                });
+        
+                $(document).on('click', function() {
+                    $('#modalProfile').hide();
+                    isProfileOpen = false;
+                    $('#arrowIcon').css('transform', 'rotate(0deg)');
+                });
+        
+                // Presensi Popup
+                $('#btnPresensi').on('click', function() {
+                    $('#popupPresensi').removeClass('hidden');
+                });
+        
+                $('#btnBatal, #closePopup').on('click', function() {
+                    $('#popupPresensi').addClass('hidden');
+                });
+        
+                // Handle Presensi Action
+                $('#btnHadir').on('click', async function() {
+                    let now = new Date();
+                    let presensiUrl = $('meta[name="presensi-url"]').attr('content');
+                    let csrfToken = $('meta[name="csrf-token"]').attr('content');
+                    let nomorInduk = $('meta[name="nomor-induk"]').attr('content');
+        
+                    try {
+                        let response = await fetch(presensiUrl, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "X-CSRF-TOKEN": csrfToken
+                            },
+                            body: JSON.stringify({
+                                nomor_induk: nomorInduk,
+                                tanggal_presensi: now.toISOString().split('T')[0],
+                                waktu_presensi: now.toTimeString().split(' ')[0],
+                                status: "Hadir"
+                            })
+                        });
+        
+                        $('#popupPresensi').addClass('hidden');
+                        if (response.ok) {
+                            $('#popupBerhasilPresensi').removeClass('hidden');
+                            setTimeout(() => {
+                                $('#popupBerhasilPresensi').addClass('hidden');
+                                location.reload();
+                            }, 2000);
+                        } else {
+                            $('#popupSudahPresensi').removeClass('hidden');
+                            setTimeout(() => {
+                                $('#popupSudahPresensi').addClass('hidden');
+                            }, 2000);
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                        alert("Terjadi kesalahan, coba lagi.");
+                    }
+                });
+        
+                // Logout Popup
+                $('#btnLogout').on('click', function() {
+                    $('#popupLogout').removeClass('hidden');
+                });
+        
+                $('#closePopupLogout, #btnBatalLogout').on('click', function() {
+                    $('#popupLogout').addClass('hidden');
+                });
+            });
+        </script>        
 </body>
 </html>
