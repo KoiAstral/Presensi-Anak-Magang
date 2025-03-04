@@ -82,21 +82,22 @@
             <div class="bg-white rounded-md px-2 py-4 relative animate-slide-down w-full max-w-lg">
                 <div class="flex items-center">
                     <p class="text-lg font-semibold mr-2 ml-6">Pembaharuan data anak magang berhasil!</p>
-                    <img src="/images/berhasil.png" alt="Presensi Berhasil" class="h-8 w-8">
+                    <img src="/svg/Checked_Checkbox.svg" alt="Presensi Berhasil" class="h-8 w-8">
                 </div>
             </div>
         </div>
-    <script>
-        $(document).ready(function() {
-            $('#btnKirim').on('click', function(event) {
-                event.preventDefault();
-                $('#popupSuccess').removeClass('hidden');
-                setTimeout(function() {
-                    $('#popupSuccess').addClass('hidden');
-                    window.location.href = "/data_magang";
-                }, 2000);
+        <script>
+            $(document).ready(function() {
+                $('#btnkirim').on('click', function(event) {
+                    event.preventDefault(); // Mencegah form terkirim langsung
+                    $('#popupSuccess').removeClass('hidden');
+        
+                    setTimeout(function() {
+                        $('#popupSuccess').addClass('hidden');
+                        $('form').submit(); // Mengirimkan form setelah popup ditampilkan
+                    }, 3000);
+                });
             });
-        });
-    </script>
+        </script>
 </body>
 </html>
