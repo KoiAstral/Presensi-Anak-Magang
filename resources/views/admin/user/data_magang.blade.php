@@ -179,7 +179,7 @@
                 </div>
             </div>
             @if (session('success'))
-                <div id="popupSuccessEdit"
+                <div id="popupSuccess"
                     class="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
                     <div class="bg-white rounded-md px-2 py-4 relative animate-slide-down w-full max-w-lg">
                         <div class="flex items-center">
@@ -304,7 +304,7 @@
                     }
                 });
 
-                let popup = document.getElementById("popupSuccessEdit");
+                let popup = document.getElementById("popupSuccess");
                 if (popup) {
                     setTimeout(() => {
                         popup.classList.add("hidden");
