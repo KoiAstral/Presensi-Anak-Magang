@@ -174,7 +174,7 @@
                 <div class="bg-white rounded-md p-4 relative animate-slide-down w-80">
                     <div class="flex items-center">
                         <p class="text-lg font-semibold ml-4 mr-2">Data berhasil dihapus!</p>
-                        <img src="/svg/Checked_Checkbox" alt="Hapus Berhasil" class="h-8 w-8">
+                        <img src="/svg/Checked_Checkbox.svg" alt="Hapus Berhasil" class="h-8 w-8">
                     </div>
                 </div>
             </div>
@@ -183,7 +183,7 @@
                     class="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
                     <div class="bg-white rounded-md px-2 py-4 relative animate-slide-down w-full max-w-lg">
                         <div class="flex items-center">
-                            <p class="text-lg font-semibold mr-2 ml-6">Pembaharuan data anak magang berhasil!</p>
+                            <p class="text-lg font-semibold mr-2 ml-6">Pembaruan data anak magang berhasil!</p>
                             <img src="/svg/Checked_Checkbox.svg" alt="Presensi Berhasil" class="h-8 w-8">
                         </div>
                     </div>
