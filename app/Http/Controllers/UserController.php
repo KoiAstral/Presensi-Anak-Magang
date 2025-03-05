@@ -48,7 +48,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('admin.user.data_magang')->with('success', 'User berhasil dihapus.');
+        return redirect()->route('admin.user.data_magang');
 
     }
 }
