@@ -22,7 +22,7 @@
                     <span class="text-lg font-semibold">{{$user->nama}}</span>
                 </div>
                 <div class="mt-4">
-                    <a href="/dashboard" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                    <a href="/dashboard" class="flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700">
                         <img src="/svg/home.svg" alt="Home Icon" class="h-6 w-6 mr-4">
                         <span>Home</span>
                     </a>

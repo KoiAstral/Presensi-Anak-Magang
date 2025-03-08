@@ -61,12 +61,12 @@
                         <img src="/svg/home.svg" alt="Home Icon" class="h-6 w-6 mr-4">
                         <span>Home</span>
                     </a>
-                    <a href="/data-siswa" class="flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700">
-                        <img src="/svg/form.svg" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
+                    <a href="/data-siswa" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                        <img src="/images/data.png" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
                         <span>Data Anak Magang</span>
                     </a>
-                    <a href="/riwayat-presensi" class="flex items-center px-4 py-2 hover:bg-gray-700">
-                        <img src="/svg/time.svg" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
+                    <a href="/riwayat-presensi" class="flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700">
+                        <img src="/images/riwayat.png" alt="Riwayat Absensi Icon" class="h-6 w-6 mr-4">
                         <span>Riwayat Presensi</span>
                     </a>
                     <a href="/konfirmasi-pengajuan" class="flex items-center px-4 py-2 hover:bg-gray-700">
