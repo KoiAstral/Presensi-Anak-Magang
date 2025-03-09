@@ -74,7 +74,7 @@
                         <img src="/svg/home.svg" alt="Home Icon" class="h-6 w-6 mr-4">
                         <span>Home</span>
                     </a>
-                    <a href="/data-siswa" class="flex items-center px-4 py-2 hover:bg-gray-700">
+                    <a href="/data-siswa" class="flex items-center px-4 py-2 bg-gray-600 hover:bg-gray-700">
                         <img src="/svg/form.svg" alt="Data Siswa Icon" class="h-6 w-6 mr-4">
                         <span>Data Siswa/i Magang</span>
                     </a>
