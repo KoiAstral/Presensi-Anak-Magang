@@ -64,40 +64,39 @@
             </header>
             <main class="p-6">
                 <h2 class="text-xl font-semibold">Selamat datang di Dashboard!</h2>
-            </main>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <!-- Total Users (Data Siswa) -->
-            <a href="{{ route('data.siswa') }}"
-                class="bg-white shadow-md rounded-lg p-4 flex items-center hover:bg-gray-100 transition">
-                <img src="/svg/Account.svg" alt="User Icon" class="h-10 w-10 mr-4">
-                <div>
-                    <h3 class="text-lg font-semibold">Total Users</h3>
-                    <p class="text-gray-600 text-xl font-bold">{{ $totalUsers }}</p>
+            
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <!-- Total Users (Data Siswa) -->
+                    <a href="{{ route('data.siswa') }}"
+                        class="bg-white shadow-md rounded-lg p-4 flex items-center hover:bg-gray-100 transition">
+                        <img src="/svg/Account.svg" alt="User Icon" class="h-10 w-10 mr-4">
+                        <div>
+                            <h3 class="text-lg font-semibold">Total Users</h3>
+                            <p class="text-gray-600 text-xl font-bold">{{ $totalUsers }}</p>
+                        </div>
+                    </a>
+            
+                    <!-- Siswa Hadir -->
+                    <a href="{{ route('presensi.index') }}"
+                        class="bg-white shadow-md rounded-lg p-4 flex items-center hover:bg-gray-100 transition">
+                        <img src="/svg/checked_checkbox.svg" alt="Check Icon" class="h-10 w-10 mr-4">
+                        <div>
+                            <h3 class="text-lg font-semibold">Siswa Hadir</h3>
+                            <p class="text-green-600 text-xl font-bold">{{ $totalHadir }}</p>
+                        </div>
+                    </a>
+            
+                    <!-- Siswa Absensi (Konfirmasi Pengajuan) -->
+                    <a href="{{ route('konfirmasi-pengajuan') }}"
+                        class="bg-white shadow-md rounded-lg p-4 flex items-center hover:bg-gray-100 transition">
+                        <img src="/svg/Denied.svg" alt="Cross Icon" class="h-10 w-10 mr-4">
+                        <div>
+                            <h3 class="text-lg font-semibold">Siswa Absensi</h3>
+                            <p class="text-red-600 text-xl font-bold">{{ $totalAbsensi }}</p>
+                        </div>
+                    </a>
                 </div>
-            </a>
-
-            <!-- Siswa Hadir -->
-            <a href="{{ route('presensi.index') }}"
-                class="bg-white shadow-md rounded-lg p-4 flex items-center hover:bg-gray-100 transition">
-                <img src="/svg/checked_checkbox.svg" alt="Check Icon" class="h-10 w-10 mr-4">
-                <div>
-                    <h3 class="text-lg font-semibold">Siswa Hadir</h3>
-                    <p class="text-green-600 text-xl font-bold">{{ $totalHadir }}</p>
-                </div>
-            </a>
-
-            <!-- Siswa Absensi (Konfirmasi Pengajuan) -->
-            <a href="{{ route('konfirmasi-pengajuan') }}"
-                class="bg-white shadow-md rounded-lg p-4 flex items-center hover:bg-gray-100 transition">
-                <img src="/svg/Denied.svg" alt="Cross Icon" class="h-10 w-10 mr-4">
-                <div>
-                    <h3 class="text-lg font-semibold">Siswa Absensi</h3>
-                    <p class="text-red-600 text-xl font-bold">{{ $totalAbsensi }}</p>
-                </div>
-            </a>
-        </div>
-        </main>
+            </main>            
         <div id="logoutModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div class="bg-white rounded-md py-6 px-12 relative">
                 <p class="text-center text-lg font-semibold mb-8 mt-4">Apakah anda yakin ingin Logout?</p>
