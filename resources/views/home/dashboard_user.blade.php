@@ -91,12 +91,12 @@
             </div>
             <div class="flex border-b border-gray-300">
                 <button
-                    class="tab-btn px-6 py-2 font-semibold focus:outline-none text-gray-600 border-b-2 border-transparent hover:text-[#396E66] hover:border-[#396E66]"
+                    class="tab-btn px-6 py-2 font-semibold focus:outline-none text-gray-600 border-b-2 hover:text-[#396E66] hover:border-[#396E66]"
                     data-target="tab-presensi">
                     Table Presensi
                 </button>
                 <button
-                    class="tab-btn px-6 py-2 font-semibold focus:outline-none text-gray-600 border-b-2 border-transparent hover:text-[#00307D] hover:border-[#00307D]"
+                    class="tab-btn px-6 py-2 font-semibold focus:outline-none text-gray-600 border-b-2 hover:text-[#00307D] hover:border-[#00307D]"
                     data-target="tab-absensi">
                     Table Absensi
                 </button>
@@ -238,15 +238,27 @@
                 const tabButtons = document.querySelectorAll(".tab-btn");
                 const tabContents = document.querySelectorAll(".tab-content");
         
-                // Handle Tab Switching
+                function updateTabStyles(activeTab) {
+                    tabButtons.forEach(button => {
+                        button.classList.remove("text-[#396E66]", "border-[#396E66]", "text-[#00307D]", "border-[#00307D]");
+                        if (button.dataset.target === activeTab) {
+                            if (activeTab === "tab-presensi") {
+                                button.classList.add("text-[#396E66]", "border-[#396E66]");
+                            } else {
+                                button.classList.add("text-[#00307D]", "border-[#00307D]");
+                            }
+                        }
+                    });
+                }
                 tabButtons.forEach(button => {
-                    button.addEventListener("click", function() {
-                        tabButtons.forEach(btn => btn.classList.remove("text-[#396E66]", "border-[#396E66]", "text-[#00307D]", "border-[#00307D]"));
-                        this.classList.add(this.dataset.target === "tab-presensi" ? "text-[#396E66]" : "text-[#00307D]", this.dataset.target === "tab-presensi" ? "border-[#396E66]" : "border-[#00307D]");
+                    button.addEventListener("click", function () {
                         tabContents.forEach(content => content.classList.add("hidden"));
                         document.getElementById(this.dataset.target).classList.remove("hidden");
+                        updateTabStyles(this.dataset.target);
                     });
                 });
+                // Set default active tab
+                updateTabStyles("tab-presensi");
         
                 // Initialize DataTables
                 $(document).ready(function() {
