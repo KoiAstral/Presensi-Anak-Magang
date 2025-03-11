@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Magang</title>
+    <title>Data Absensi</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
@@ -38,7 +37,7 @@
 
         #dataTable th:nth-child(4),
         #dataTable td:nth-child(4) {
-            min-width: 200px;
+            min-width: 150px;
         }
 
         @keyframes slide-down {
@@ -106,11 +105,10 @@
                 <h1 class="text-lg font-semibold">Presensi Magang Sekretariat DPRD Kab. Banjar</h1>
             </header>
             <main id="content" class="p-6 flex flex-col items-center mx-auto">
-                <div
-                    class="bg-[#EAEAEA] p-4 mb-6 rounded-md border-t-4 border-[#396E66] shadow-md text-center w-full max-w-md">
+                <div class="bg-[#EAEAEA] p-4 mb-6 rounded-md border-t-4 border-[#396E66] shadow-md text-center w-full max-w-md">
                     <h2 class="text-lg font-bold text-black">Konfirmasi pengajuan Izin</h2>
                 </div>
-                <div class="w-full mx-auto">
+                <div class="overflow-x-auto w-full">
                     <table id="dataTable" class="display w-full">
                         <thead class="bg-[#EAEAEA]">
                             <tr>
@@ -142,17 +140,13 @@
                                         <form action="{{ route('absensi.updatestatus', $data->id) }}" method="POST">
                                             @csrf
                                             <input type="text" hidden value="approved" name="status">
-                                            <button type="button" data-approve
-                                                class="flex items-center hover:opacity-75">
+                                            <button type="button" data-approve class="flex items-center hover:opacity-75">
                                                 <img src="/svg/Done.svg" alt="Approve Icon" class="h-6 w-6">
                                             </button>
                                         </form>
-                                        <form
-                                        action="{{ route('absensi.updatestatus', ['id' => $data->id, 'status' => 'rejected']) }}"
-                                        method="POST">
+                                        <form action="{{ route('absensi.updatestatus', ['id' => $data->id, 'status' => 'rejected']) }}" method="POST">
                                         @csrf
-                                            <button type="button" data-reject
-                                                class="flex items-center hover:opacity-75">
+                                            <button type="button" data-reject class="flex items-center hover:opacity-75">
                                                 <img src="/svg/Denied.svg" alt="Reject Icon" class="h-6 w-6">
                                             </button>
                                         </form>
@@ -163,20 +157,17 @@
                     </table>
                 </div>
             </main>
-            <div id="popupRejected"
-                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+
+            <div id="popupRejected" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                 <div class="bg-white rounded-md py-6 px-8 relative">
                     <p class="text-center text-lg font-semibold mb-6 mt-4">Anda yakin ingin menolak data ini?</p>
                     <div class="flex justify-around space-x-4">
-                        <button id="btnBatalReject"
-                            class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
-                        <button id="btnYakinReject"
-                            class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Yakin</button>
+                        <button id="btnBatalReject" class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
+                        <button id="btnYakinReject" class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Yakin</button>
                     </div>
                 </div>
             </div>
-            <div id="popupRejectedConfirm"
-                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
+            <div id="popupRejectedConfirm" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
                 <div class="bg-white rounded-md p-4 relative animate-slide-down w-80">
                     <div class="flex items-center">
                         <p class="text-lg font-semibold ml-4 mr-2">Data berhasil ditolak!</p>
@@ -184,20 +175,16 @@
                     </div>
                 </div>
             </div>
-            <div id="popupApproved"
-                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div id="popupApproved" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                 <div class="bg-white rounded-md py-6 px-8 relative">
                     <p class="text-center text-lg font-semibold mb-6 mt-4">Anda yakin ingin menyetujui data ini?</p>
                     <div class="flex justify-around space-x-4">
-                        <button id="btnBatalApprove"
-                            class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
-                        <button id="btnYakinApprove"
-                            class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Yakin</button>
+                        <button id="btnBatalApprove" class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
+                        <button id="btnYakinApprove" class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Yakin</button>
                     </div>
                 </div>
             </div>
-            <div id="popupApprovedConfirm"
-                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
+            <div id="popupApprovedConfirm" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
                 <div class="bg-white rounded-md p-4 relative animate-slide-down w-80">
                     <div class="flex items-center">
                         <p class="text-lg font-semibold ml-4 mr-2">Data berhasil disetujui!</p>
@@ -205,132 +192,132 @@
                     </div>
                 </div>
             </div>
-
             <div id="logoutModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                 <div class="bg-white rounded-md py-6 px-12 relative">
                     <p class="text-center text-lg font-semibold mb-8 mt-4">Apakah anda yakin ingin Logout?</p>
                     <img id="closePopup" src="/svg/Close.svg" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
                     <div class="flex space-x-4 mt-4">
-                    <button id="cancelLogout" class="bg-[#ECB131] text-white font-bold flex-1 py-2 rounded-md shadow">
-                        Batal
-                    </button>
-                    <a href="{{route('logout')}}" class="bg-[#396E66] text-white font-bold flex-1 py-2 rounded-md shadow text-center inline-block">
-                        Ya
-                    </a>
-                </div>
+                        <button id="cancelLogout" class="bg-[#ECB131] text-white font-bold flex-1 py-2 rounded-md shadow">
+                            Batal
+                        </button>
+                        <a href="{{route('logout')}}" class="bg-[#396E66] text-white font-bold flex-1 py-2 rounded-md shadow text-center inline-block">
+                            Ya
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
+
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                // Sidebar Toggle
-                const sidebarToggle = document.getElementById("sidebarToggle");
-                const sidebar = document.getElementById("sidebar");
-                const mainContent = document.getElementById("mainContent");
+            $(document).ready(function() {
+                $('#dataTable').DataTable({
+                    responsive: true, 
+                    autoWidth: false,
+                });
+            });
 
-                sidebarToggle.addEventListener("click", () => {
-                    sidebar.classList.toggle("-translate-x-full");
-                    sidebar.classList.toggle("translate-x-0");
-                    mainContent.style.paddingLeft = sidebar.classList.contains("-translate-x-full") ? "0" : "16rem";
+            document.addEventListener("DOMContentLoaded", function() {
+                //Sidebar
+                const sidebarToggle = document.getElementById('sidebarToggle');
+                const sidebar = document.getElementById('sidebar');
+                const mainContent = document.getElementById('mainContent');
+                sidebarToggle.addEventListener('click', () => {
+                    if (sidebar.classList.contains('-translate-x-full')) {
+                        sidebar.classList.remove('-translate-x-full');
+                        sidebar.classList.add('translate-x-0');
+                        mainContent.classList.add('pl-64'); 
+                    } else {
+                        sidebar.classList.add('-translate-x-full');
+                        sidebar.classList.remove('translate-x-0');
+                        mainContent.classList.remove('pl-64');
+                    }
+                    setTimeout(() => {
+                        window.dispatchEvent(new Event('resize')); 
+                    }, 300);
                 });
 
-                // Logout Modal
+                // Logout
                 const logoutButton = document.getElementById('logoutButton');
                 const logoutModal = document.getElementById('logoutModal');
                 const cancelLogout = document.getElementById('cancelLogout');
                 const closePopup = document.getElementById('closePopup');
-
-                // Show logout modal
                 logoutButton.addEventListener('click', () => {
                     logoutModal.classList.remove('hidden');
                 });
-
-                // Hide logout modal
                 cancelLogout.addEventListener('click', () => {
                     logoutModal.classList.add('hidden');
                 });
-
-                // Close modal when clicking the close button
                 closePopup.addEventListener('click', () => {
                     logoutModal.classList.add('hidden');
                 });
 
-                // DataTables Initialization
-                if ($("#dataTable").length) {
-                    $("#dataTable").DataTable({
-                        responsive: true,
-                        autoWidth: false,
-                        scrollX: true
-                    });
-                }
-
-                // Approval & Rejection Popups
+                // Approved and Reject
+                const approveButtons = document.querySelectorAll("button[data-approve]");
+                const rejectButtons = document.querySelectorAll("button[data-reject]");
                 const popupApproved = document.getElementById("popupApproved");
-    const popupRejected = document.getElementById("popupRejected");
-    const popupApprovedConfirm = document.getElementById("popupApprovedConfirm");
-    const popupRejectedConfirm = document.getElementById("popupRejectedConfirm");
+                const popupRejected = document.getElementById("popupRejected");
+                const popupApprovedConfirm = document.getElementById("popupApprovedConfirm");
+                const popupRejectedConfirm = document.getElementById("popupRejectedConfirm");
+                let approveForm, rejectForm;
 
-    let approveForm, rejectForm;
+                approveButtons.forEach(button => {
+                    button.addEventListener("click", function () {
+                        popupApproved.classList.remove("hidden"); 
+                        approveForm = this.closest("form"); 
+                    });
+                });
+                rejectButtons.forEach(button => {
+                    button.addEventListener("click", function () {
+                        popupRejected.classList.remove("hidden"); 
+                        rejectForm = this.closest("form"); 
+                    });
+                });
 
-    document.addEventListener("click", function (event) {
-        if (event.target.closest("button[data-approve]")) {
-            popupApproved.classList.remove("hidden");
-            approveForm = event.target.closest("form");
-        } else if (event.target.closest("button[data-reject]")) {
-            popupRejected.classList.remove("hidden");
-            rejectForm = event.target.closest("form");
-        }
-    });
+                document.getElementById("btnYakinApprove").addEventListener("click", function () {
+                    if (approveForm) {
+                        submitForm(approveForm, popupApproved, popupApprovedConfirm);
+                    }
+                });
+                document.getElementById("btnYakinReject").addEventListener("click", function () {
+                    if (rejectForm) {
+                        submitForm(rejectForm, popupRejected, popupRejectedConfirm);
+                    }
+                });
+                document.getElementById("btnBatalApprove").addEventListener("click", function () {
+                    popupApproved.classList.add("hidden");
+                });
+                document.getElementById("btnBatalReject").addEventListener("click", function () {
+                    popupRejected.classList.add("hidden");
+                });
 
-    document.getElementById("btnYakinApprove").addEventListener("click", function () {
-        if (approveForm) {
-            submitForm(approveForm, popupApproved, popupApprovedConfirm);
-        }
-    });
+                function submitForm(form, confirmPopup, successPopup) {
+                    const formData = new FormData(form);
+                    fetch(form.action, {
+                        method: form.method,
+                        body: formData,
+                        headers: {
+                            "X-Requested-With": "XMLHttpRequest",
+                            "X-CSRF-TOKEN": document.querySelector("input[name='_token']").value,
+                        },
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            confirmPopup.classList.add("hidden");
+                            successPopup.classList.remove("hidden");
 
-    document.getElementById("btnYakinReject").addEventListener("click", function () {
-        if (rejectForm) {
-            submitForm(rejectForm, popupRejected, popupRejectedConfirm);
-        }
-    });
-
-    document.getElementById("btnBatalApprove").addEventListener("click", function () {
-        popupApproved.classList.add("hidden");
-    });
-
-    document.getElementById("btnBatalReject").addEventListener("click", function () {
-        popupRejected.classList.add("hidden");
-    });
-
-    function submitForm(form, confirmPopup, successPopup) {
-        const formData = new FormData(form);
-        fetch(form.action, {
-            method: form.method,
-            body: formData,
-            headers: {
-                "X-Requested-With": "XMLHttpRequest",
-                "X-CSRF-TOKEN": document.querySelector("input[name='_token']").value,
-            },
-        })
-        .then(response => {
-            if (response.ok) {
-                confirmPopup.classList.add("hidden");
-                successPopup.classList.remove("hidden");
-
-                setTimeout(() => {
-                    successPopup.classList.add("hidden");
-                    location.reload();
-                }, 2000);
-            } else {
-                console.error("Gagal memperbarui data");
-            }
-        })
-        .catch(error => console.error("Terjadi kesalahan:", error));
-    }
-});
+                            setTimeout(() => {
+                                successPopup.classList.add("hidden");
+                                location.reload();
+                            }, 2000);
+                        } else {
+                            console.error("Gagal memperbarui data");
+                        }
+                    })
+                    .catch(error => console.error("Terjadi kesalahan:", error));
+                }
+            });
         </script>
-</body>
-
+    </body>
 </html>
