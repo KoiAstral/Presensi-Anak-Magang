@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Magang</title>
+    <title>Data Presensi</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
@@ -124,25 +124,6 @@
                     </table>
                 </div>
             </main>
-            <div id="popupHapus" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                <div class="bg-white rounded-md py-6 px-8 relative">
-                    <p class="text-center text-lg font-semibold mb-6 mt-4">Anda yakin mengahapus data ini?</p>
-                    <img id="closePopup" src="/images/silang.png" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
-                    <div class="flex justify-around space-x-4">
-                        <button id="btnBatal" class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
-                        <button id="btnYakin" class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Yakin</button>
-                    </div>
-                </div>
-            </div>
-            <div id="popupKonfirmasi" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
-                <div class="bg-white rounded-md p-4 relative animate-slide-down w-80">
-                    <div class="flex items-center">
-                        <p class="text-lg font-semibold ml-4 mr-2">Data berhasil dihapus!</p>
-                        <img src="/images/berhasil.png" alt="Hapus Berhasil" class="h-8 w-8">
-                    </div>
-                </div>
-            </div>
-
             <div id="logoutModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                 <div class="bg-white rounded-md py-6 px-12 relative">
                     <p class="text-center text-lg font-semibold mb-8 mt-4">Apakah anda yakin ingin Logout?</p>
@@ -158,68 +139,43 @@
                 </div>
             </div>
         </div>
-
+    </div>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable({
+                responsive: true, 
+                autoWidth: false,
+            });
+        });
+
         document.addEventListener("DOMContentLoaded", function () {
+            //Sidebar
             const sidebarToggle = document.getElementById("sidebarToggle");
             const sidebar = document.getElementById("sidebar");
             const mainContent = document.getElementById("mainContent");
-            const logoutButton = document.getElementById('logoutButton');
-            const logoutModal = document.getElementById('logoutModal');
-            const cancelLogout = document.getElementById('cancelLogout');
-            const closePopup = document.getElementById('closePopup');
-    
-            // Toggle Sidebar
             sidebarToggle.addEventListener("click", () => {
                 sidebar.classList.toggle("-translate-x-full");
                 sidebar.classList.toggle("translate-x-0");
                 mainContent.style.paddingLeft = sidebar.classList.contains("-translate-x-full") ? "0" : "16rem";
             });
-    
-            // Show logout modal
+
+            //Logout
+            const logoutButton = document.getElementById('logoutButton');
+            const logoutModal = document.getElementById('logoutModal');
+            const cancelLogout = document.getElementById('cancelLogout');
+            const closePopup = document.getElementById('closePopup');
             logoutButton.addEventListener('click', () => {
                 logoutModal.classList.remove('hidden');
             });
-
-            // Hide logout modal
             cancelLogout.addEventListener('click', () => {
                 logoutModal.classList.add('hidden');
             });
-
-            // Close modal when clicking the close button
             closePopup.addEventListener('click', () => {
                 logoutModal.classList.add('hidden');
-            });
-    
-            // DataTables Initialization
-            $("#dataTable").DataTable({
-                responsive: true,
-                autoWidth: false,
-                columnDefs: [
-                    { width: "10%", targets: 0 },
-                    { width: "20%", targets: 1 },
-                    { width: "20%", targets: 2 },
-                    { width: "20%", targets: 3 },
-                    { width: "15%", targets: 4 },
-                    { width: "15%", targets: 5 },
-                ],
-            });
-    
-            // Handle Delete Confirmation Popup
-            $("#popupHapus").on("click", "#closePopup, #btnBatal", function () {
-                $("#popupHapus").addClass("hidden");
-            });
-    
-            $("#popupHapus").on("click", "#btnYakin", function () {
-                $("#popupHapus").addClass("hidden");
-                $("#popupKonfirmasi").removeClass("hidden");
-    
-                setTimeout(() => {
-                    $("#popupKonfirmasi").addClass("hidden");
-                }, 3000);
-            });
+            });    
         });
     </script>
 </body>

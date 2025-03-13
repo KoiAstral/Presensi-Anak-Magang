@@ -59,102 +59,75 @@
                 <h1 class="text-lg font-semibold">Presensi Magang Sekretariat DPRD Kab. Banjar</h1>
             </header>
             <main id="content" class="p-6 flex flex-col items-center mx-auto">
-            <h2 class="text-xl font-semibold mb-6">Selamat datang di Dashboard!</h2>
+                <h2 class="text-xl font-semibold mb-6">Selamat datang di Dashboard!</h2>       
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <a href="{{ route('data.siswa') }}"
+                        class="bg-white shadow-md rounded-lg p-4 flex items-center hover:bg-gray-100 transition w-full min-w-[300px] md:min-w-[400px]">
+                        <img src="/svg/Account.svg" alt="User Icon" class="h-10 w-10 mr-4">
+                        <div>
+                            <h3 class="text-lg font-semibold">Total Users</h3>
+                            <p class="text-gray-600 text-xl font-bold">{{ $totalUsers }}</p>
+                        </div>
+                    </a>
+
+                    <a href="{{ route('presensi.index') }}"
+                        class="bg-white shadow-md rounded-lg p-4 flex items-center hover:bg-gray-100 transition w-full min-w-[300px] md:min-w-[400px]">
+                        <img src="/svg/checked_checkbox.svg" alt="Check Icon" class="h-10 w-10 mr-4">
+                        <div>
+                            <h3 class="text-lg font-semibold">Siswa Hadir</h3>
+                            <p class="text-green-600 text-xl font-bold">{{ $totalHadir }}</p>
+                        </div>
+                    </a>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <!-- Total Users (Data Siswa) -->
-                <a href="{{ route('data.siswa') }}"
-                    class="bg-white shadow-md rounded-lg p-4 flex items-center hover:bg-gray-100 transition w-full min-w-[300px] md:min-w-[400px]">
-                    <img src="/svg/Account.svg" alt="User Icon" class="h-10 w-10 mr-4">
-                    <div>
-                        <h3 class="text-lg font-semibold">Total Users</h3>
-                        <p class="text-gray-600 text-xl font-bold">{{ $totalUsers }}</p>
-                    </div>
-                </a>
-        
-                <!-- Siswa Hadir -->
-                <a href="{{ route('presensi.index') }}"
-                    class="bg-white shadow-md rounded-lg p-4 flex items-center hover:bg-gray-100 transition w-full min-w-[300px] md:min-w-[400px]">
-                    <img src="/svg/checked_checkbox.svg" alt="Check Icon" class="h-10 w-10 mr-4">
-                    <div>
-                        <h3 class="text-lg font-semibold">Siswa Hadir</h3>
-                        <p class="text-green-600 text-xl font-bold">{{ $totalHadir }}</p>
-                    </div>
-                </a>
-        
-                <!-- Siswa Absensi (Konfirmasi Pengajuan) -->
-                <a href="{{ route('konfirmasi-pengajuan') }}"
-                    class="bg-white shadow-md rounded-lg p-4 flex items-center hover:bg-gray-100 transition w-full min-w-[300px] md:min-w-[400px]">
-                    <img src="/svg/Denied.svg" alt="Cross Icon" class="h-10 w-10 mr-4">
-                    <div>
-                        <h3 class="text-lg font-semibold">Siswa Absensi</h3>
-                        <p class="text-red-600 text-xl font-bold">{{ $totalAbsensi }}</p>
-                    </div>
-                </a>
-            </div>
+                    <a href="{{ route('konfirmasi-pengajuan') }}"
+                        class="bg-white shadow-md rounded-lg p-4 flex items-center hover:bg-gray-100 transition w-full min-w-[300px] md:min-w-[400px]">
+                        <img src="/svg/Denied.svg" alt="Cross Icon" class="h-10 w-10 mr-4">
+                        <div>
+                            <h3 class="text-lg font-semibold">Siswa Absensi</h3>
+                            <p class="text-red-600 text-xl font-bold">{{ $totalAbsensi }}</p>
+                        </div>
+                    </a>
+                </div>
             </main>
-            <div id="popupHapus" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                <div class="bg-white rounded-md py-6 px-8 relative">
-                    <p class="text-center text-lg font-semibold mb-6 mt-4">Anda yakin mengahapus data ini?</p>
-                    <img id="closePopup" src="/images/silang.png" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
-                    <div class="flex justify-around space-x-4">
-                        <button id="btnBatal" class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
-                        <button id="btnYakin" class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Yakin</button>
-                    </div>
-                </div>
-            </div>
-            <div id="popupKonfirmasi" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
-                <div class="bg-white rounded-md p-4 relative animate-slide-down w-80">
-                    <div class="flex items-center">
-                        <p class="text-lg font-semibold ml-4 mr-2">Data berhasil dihapus!</p>
-                        <img src="/images/berhasil.png" alt="Hapus Berhasil" class="h-8 w-8">
-                    </div>
-                </div>
-            </div>
 
             <div id="logoutModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                 <div class="bg-white rounded-md py-6 px-12 relative">
                     <p class="text-center text-lg font-semibold mb-8 mt-4">Apakah anda yakin ingin Logout?</p>
                     <img id="closePopup" src="/svg/Close.svg" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
                     <div class="flex space-x-4 mt-4">
-                    <button id="cancelLogout" class="bg-[#ECB131] text-white font-bold flex-1 py-2 rounded-md shadow">
-                        Batal
-                    </button>
-                    <a href="{{route('logout')}}" class="bg-[#396E66] text-white font-bold flex-1 py-2 rounded-md shadow text-center inline-block">
-                        Ya
-                    </a>
-                </div>
+                        <button id="cancelLogout" class="bg-[#ECB131] text-white font-bold flex-1 py-2 rounded-md shadow">
+                            Batal
+                        </button>
+                        <a href="{{route('logout')}}" class="bg-[#396E66] text-white font-bold flex-1 py-2 rounded-md shadow text-center inline-block">
+                            Ya
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            //Sidebar
             const sidebarToggle = document.getElementById("sidebarToggle");
             const sidebar = document.getElementById("sidebar");
             const mainContent = document.getElementById("mainContent");
-            const logoutButton = document.getElementById('logoutButton');
-            const logoutModal = document.getElementById('logoutModal');
-            const cancelLogout = document.getElementById('cancelLogout');
-            const closePopup = document.getElementById('closePopup');
-    
-            // Toggle Sidebar
             sidebarToggle.addEventListener("click", () => {
                 sidebar.classList.toggle("-translate-x-full");
                 sidebar.classList.toggle("translate-x-0");
                 mainContent.style.paddingLeft = sidebar.classList.contains("-translate-x-full") ? "0" : "16rem";
             });
     
-            // Show logout modal
+            // Logout
+            const logoutButton = document.getElementById('logoutButton');
+            const logoutModal = document.getElementById('logoutModal');
+            const cancelLogout = document.getElementById('cancelLogout');
+            const closePopup = document.getElementById('closePopup');
             logoutButton.addEventListener('click', () => {
                 logoutModal.classList.remove('hidden');
             });
-
-            // Hide logout modal
             cancelLogout.addEventListener('click', () => {
                 logoutModal.classList.add('hidden');
             });
-
-            // Close modal when clicking the close button
             closePopup.addEventListener('click', () => {
                 logoutModal.classList.add('hidden');
             });

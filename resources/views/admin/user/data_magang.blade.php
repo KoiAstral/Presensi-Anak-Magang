@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,11 +57,9 @@
         }
     </style>
 </head>
-
 <body class="bg-gray-100">
     <div class="relative h-screen overflow-hidden">
-        <div id="sidebar"
-            class="bg-black text-white w-64 h-full fixed top-0 left-0 -translate-x-full transition-transform z-40 flex flex-col justify-between">
+        <div id="sidebar" class="bg-black text-white w-64 h-full fixed top-0 left-0 -translate-x-full transition-transform z-40 flex flex-col justify-between">
             <div>
                 <div class="px-4 pt-3 pb-2 flex items-center border-b border-gray-300">
                     <img src="/images/username.png" alt="User Icon" class="h-10 w-10 mr-4">
@@ -108,8 +105,7 @@
                 <h1 class="text-lg font-semibold">Presensi Magang Sekretariat DPRD Kab. Banjar</h1>
             </header>
             <main id="content" class="p-6 flex flex-col items-center mx-auto">
-                <div
-                    class="bg-[#EAEAEA] p-4 mb-6 rounded-md border-t-4 border-[#396E66] shadow-md text-center w-full max-w-md">
+                <div class="bg-[#EAEAEA] p-4 mb-6 rounded-md border-t-4 border-[#396E66] shadow-md text-center w-full max-w-md">
                     <h2 class="text-lg font-bold text-black">Data Anak Magang</h2>
                 </div>
                 <div class="w-full mx-auto">
@@ -135,16 +131,13 @@
                                     <td class="px-6 py-4">{{ $data->email }}</td>
                                     <td class="px-6 py-4">{{ $data->status }}</td>
                                     <td class="px-6 py-4 flex items-center justify-start space-x-2">
-                                        <a href="{{ route('admin.user.edit_magang', $data->id) }}"
-                                            class="flex items-center hover:opacity-75">
+                                        <a href="{{ route('admin.user.edit_magang', $data->id) }}" class="flex items-center hover:opacity-75">
                                             <img src="/svg/edit.svg" alt="Edit Icon" class="h-6 w-6">
                                         </a>
-                                        <form action="{{ route('admin.user.delete_magang', $data->id) }}" method="POST"
-                                            class="delete-form" data-id="{{ $data->id }}">
+                                        <form action="{{ route('admin.user.delete_magang', $data->id) }}" method="POST" class="delete-form" data-id="{{ $data->id }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="button"
-                                                class="flex items-center hover:opacity-75 delete-btn">
+                                            <button type="button" class="flex items-center hover:opacity-75 delete-btn">
                                                 <img src="/svg/delete.svg" alt="Delete Icon" class="h-6 w-6">
                                             </button>
                                         </form>
@@ -155,22 +148,17 @@
                     </table>
                 </div>
             </main>
-            <div id="popupHapus"
-                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div id="popupHapus" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                 <div class="bg-white rounded-md py-6 px-8 relative">
                     <p class="text-center text-lg font-semibold mb-6 mt-4">Anda yakin mengahapus data ini?</p>
-                    <img id="closePopup" src="/svg/Close.svg" alt="Close pop up"
-                        class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
+                    <img id="closePopup" src="/svg/Close.svg" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
                     <div class="flex justify-around space-x-4">
-                        <button id="btnBatal"
-                            class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
-                        <button id="btnYakin"
-                            class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Yakin</button>
+                        <button id="btnBatal" class="bg-[#ECB131] text-white font-bold px-24 py-2 rounded-md">Batal</button>
+                        <button id="btnYakin" class="bg-[#396E66] text-white font-bold px-24 py-2 rounded-md">Yakin</button>
                     </div>
                 </div>
             </div>
-            <div id="popupKonfirmasi"
-                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
+            <div id="popupKonfirmasi" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
                 <div class="bg-white rounded-md p-4 relative animate-slide-down w-80">
                     <div class="flex items-center">
                         <p class="text-lg font-semibold ml-4 mr-2">Data berhasil dihapus!</p>
@@ -179,8 +167,7 @@
                 </div>
             </div>
             @if (session('success'))
-                <div id="popupSuccess"
-                    class="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
+                <div id="popupSuccess" class="fixed inset-0 bg-black bg-opacity-50 flex items-start justify-center z-50 pt-16">
                     <div class="bg-white rounded-md px-2 py-4 relative animate-slide-down w-full max-w-lg">
                         <div class="flex items-center">
                             <p class="text-lg font-semibold mr-2 ml-6">Pembaruan data anak magang berhasil!</p>
@@ -189,19 +176,15 @@
                     </div>
                 </div>
             @endif
-            <div id="logoutModal"
-                class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div id="logoutModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                 <div class="bg-white rounded-md py-6 px-12 relative">
                     <p class="text-center text-lg font-semibold mb-8 mt-4">Apakah anda yakin ingin Logout?</p>
-                    <img id="closePopup" src="/svg/Close.svg" alt="Close pop up"
-                        class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
+                    <img id="closePopup" src="/svg/Close.svg" alt="Close pop up" class="absolute top-2 right-2 h-6 w-6 cursor-pointer">
                     <div class="flex space-x-4 mt-4">
-                        <button id="cancelLogout"
-                            class="bg-[#ECB131] text-white font-bold flex-1 py-2 rounded-md shadow">
+                        <button id="cancelLogout" class="bg-[#ECB131] text-white font-bold flex-1 py-2 rounded-md shadow">
                             Batal
                         </button>
-                        <a href="{{ route('logout') }}"
-                            class="bg-[#396E66] text-white font-bold flex-1 py-2 rounded-md shadow text-center inline-block">
+                        <a href="{{ route('logout') }}" class="bg-[#396E66] text-white font-bold flex-1 py-2 rounded-md shadow text-center inline-block">
                             Ya
                         </a>
                     </div>
@@ -212,77 +195,41 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
         <script>
+            $(document).ready(function() {
+                $('#dataTable').DataTable({
+                    responsive: true, 
+                    autoWidth: false,
+                });
+            });
+
             document.addEventListener("DOMContentLoaded", function() {
+                //Sidebar
                 const sidebarToggle = document.getElementById("sidebarToggle");
                 const sidebar = document.getElementById("sidebar");
                 const mainContent = document.getElementById("mainContent");
+                sidebarToggle.addEventListener("click", () => {
+                    sidebar.classList.toggle("-translate-x-full");
+                    sidebar.classList.toggle("translate-x-0");
+                    mainContent.style.paddingLeft = sidebar.classList.contains("-translate-x-full") ? "0" : "16rem";
+                });
+
+                //Logout
                 const logoutButton = document.getElementById('logoutButton');
                 const logoutModal = document.getElementById('logoutModal');
                 const cancelLogout = document.getElementById('cancelLogout');
-                const closePopup = document.querySelectorAll('#closePopup');
+                logoutButton.addEventListener('click', () => {
+                    logoutModal.classList.remove('hidden');
+                });
+                cancelLogout.addEventListener('click', () => {
+                    logoutModal.classList.add('hidden');
+                });
+
+                //Hapus Data
                 const popupHapus = document.getElementById("popupHapus");
                 const popupKonfirmasi = document.getElementById("popupKonfirmasi");
                 const btnYakin = document.getElementById("btnYakin");
                 const btnBatal = document.getElementById("btnBatal");
                 let deleteForm = null;
-
-                // Toggle Sidebar
-                sidebarToggle.addEventListener("click", () => {
-                    sidebar.classList.toggle("-translate-x-full");
-                    sidebar.classList.toggle("translate-x-0");
-                    mainContent.style.paddingLeft = sidebar.classList.contains("-translate-x-full") ? "0" :
-                        "16rem";
-                });
-
-                // Show logout modal
-                logoutButton.addEventListener('click', () => {
-                    logoutModal.classList.remove('hidden');
-                });
-
-                // Hide logout modal
-                cancelLogout.addEventListener('click', () => {
-                    logoutModal.classList.add('hidden');
-                });
-
-                closePopup.forEach(button => {
-                    button.addEventListener('click', () => {
-                        logoutModal.classList.add('hidden');
-                        popupHapus.classList.add('hidden');
-                        popupKonfirmasi.classList.add('hidden');
-                    });
-                });
-
-                // DataTables Initialization
-                $("#dataTable").DataTable({
-                    responsive: true,
-                    autoWidth: false,
-                    columnDefs: [{
-                            width: "10%",
-                            targets: 0
-                        },
-                        {
-                            width: "20%",
-                            targets: 1
-                        },
-                        {
-                            width: "20%",
-                            targets: 2
-                        },
-                        {
-                            width: "20%",
-                            targets: 3
-                        },
-                        {
-                            width: "15%",
-                            targets: 4
-                        },
-                        {
-                            width: "15%",
-                            targets: 5
-                        },
-                    ],
-                });
-
                 document.querySelectorAll(".delete-btn").forEach(button => {
                     button.addEventListener("click", function(event) {
                         event.preventDefault();
@@ -290,32 +237,39 @@
                         deleteForm = this.closest(".delete-form");
                     });
                 });
-
                 btnYakin.addEventListener("click", function() {
                     if (deleteForm) {
-                        popupHapus.classList.add("hidden"); // Sembunyikan pop-up hapus
-                        popupKonfirmasi.classList.remove("hidden"); // Tampilkan pop-up konfirmasi
-
+                        popupHapus.classList.add("hidden");
+                        popupKonfirmasi.classList.remove("hidden"); 
                         setTimeout(() => {
                             popupKonfirmasi.classList.add(
-                                "hidden"); // Sembunyikan pop-up konfirmasi setelah 3 detik
-                            deleteForm.submit(); // Lanjutkan submit form
+                                "hidden");
+                            deleteForm.submit(); 
                         }, 3000);
                     }
                 });
+                btnBatal.addEventListener("click", function() {
+                    popupHapus.classList.add("hidden");
+                });
 
+                //Sucsess Edit Data
                 let popup = document.getElementById("popupSuccess");
                 if (popup) {
                     setTimeout(() => {
                         popup.classList.add("hidden");
-                    }, 4000);
+                    }, 3000);
                 }
 
-                btnBatal.addEventListener("click", function() {
-                    popupHapus.classList.add("hidden");
+                //Close
+                const closePopup = document.querySelectorAll('#closePopup');
+                closePopup.forEach(button => {
+                    button.addEventListener('click', () => {
+                        logoutModal.classList.add('hidden');
+                        popupHapus.classList.add('hidden');
+                        popupKonfirmasi.classList.add('hidden');
+                    });
                 });
             });
         </script>
-</body>
-
+    </body>
 </html>

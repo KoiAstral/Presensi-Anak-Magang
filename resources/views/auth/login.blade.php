@@ -7,14 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        @layer utilities {
-            .bg-blur {
-                backdrop-filter: blur(5px);
-            }
-        }
         body {
             font-family: 'Montserrat', sans-serif;
-        }
+        } 
     </style>
 </head>
 <body class="bg-cover bg-center bg-no-repeat" style="background-image: url('/images/gedung.jpg');">
@@ -28,7 +23,6 @@
             </div>
             <form method="POST" action="{{ route('login_proses') }}">
                 @csrf
-                <!-- Input for Nomor Induk -->
                 <div class="mb-6">
                     <label for="nomor_induk" class="text-gray-700 font-medium block mb-2">Nomor Induk</label>
                     <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-white">
@@ -42,7 +36,7 @@
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
-                <!-- Input for Password -->
+
                 <div class="mb-6">
                     <label for="password" class="text-gray-700 font-medium block mb-2">Password</label>
                     <div class="flex items-center border-2 border-[#396E66] rounded-lg px-4 py-3 bg-white">
@@ -55,13 +49,12 @@
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                     @enderror
                 </div>
-                <!-- Submit Button -->
-                <button type="submit"
-                        class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all">
+
+                <button type="submit" class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all">
                     <img src="{{ asset('svg/login.svg') }}" alt="Login Icon" class="h-6 w-6">
                     Login
                 </button>
-                <!-- Register Link --> 
+                
                 <div class="text-center mt-5">
                     <p class="text-gray-500">
                         Belum memiliki akun? 

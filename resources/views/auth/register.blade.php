@@ -24,8 +24,6 @@
             </div>
             <form method="POST" action="{{ route('register_proses') }}">
                 @csrf
-                
-                <!-- Nama -->
                 <div class="mb-5">
                     <div class="flex items-center border-2 rounded-lg px-4 py-3 
                         {{ $errors->has('nama') ? 'border-red-500' : 'border-[#396E66]' }}">
@@ -37,8 +35,7 @@
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
                 </div>
-                
-                <!-- Nomor Induk -->
+
                 <div class="mb-5">
                     <div class="flex items-center border-2 rounded-lg px-4 py-3 
                         {{ $errors->has('nomor_induk') ? 'border-red-500' : 'border-[#396E66]' }}">
@@ -51,7 +48,6 @@
                     @enderror
                 </div>
 
-                <!-- Asal Sekolah/Universitas -->
                 <div class="mb-5">
                     <div class="flex items-center border-2 rounded-lg px-4 py-3 
                         {{ $errors->has('sekolah') ? 'border-red-500' : 'border-[#396E66]' }}">
@@ -64,7 +60,6 @@
                     @enderror
                 </div>
                 
-                <!-- Email -->
                 <div class="mb-5">
                     <div class="flex items-center border-2 rounded-lg px-4 py-3 
                         {{ $errors->has('email') ? 'border-red-500' : 'border-[#396E66]' }}">
@@ -76,7 +71,7 @@
                     <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
                     @enderror
                 </div>                
-                <!-- Password -->
+
                 <div class="mb-5">
                     <div class="flex items-center border-2 rounded-lg px-4 py-3 
                         {{ $errors->has('password') ? 'border-red-500' : 'border-[#396E66]' }}">
@@ -89,7 +84,6 @@
                     @enderror
                 </div>
                 
-                <!-- Konfirmasi Password -->
                 <div class="mb-5">
                     <div class="flex items-center border-2 rounded-lg px-4 py-3 
                         {{ $errors->has('password_confirmation') ? 'border-red-500' : 'border-[#396E66]' }}">
@@ -102,13 +96,11 @@
                     @enderror
                 </div>
                 
-                <!-- Submit Button -->
                 <button type="submit" class="w-full bg-[#396E66] hover:bg-[#2E5C55] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2">
                     Register
                     <img src="/images/login.png" alt="Login" class="h-6 w-6">
                 </button>
                 
-                <!-- Login Link -->
                 <div class="text-center mt-5">
                     <p class="text-gray-500">
                         Sudah memiliki akun? 
