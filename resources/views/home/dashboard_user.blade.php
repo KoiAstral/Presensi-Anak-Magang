@@ -200,143 +200,127 @@
                     </div>
                 </div>
             </div>
+    </div>
 
-            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-            <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
-            <script>
-                document.addEventListener("DOMContentLoaded", function () {
-                    
-                });
-            </script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                $(document).ready(function() {
-                    $('#dataTable').DataTable();
-                    $('#dataTableAbsensi').DataTable();
-                });
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+            $('#dataTableAbsensi').DataTable();
 
-                //tab-presensi-absensi
-                const tabButtons = document.querySelectorAll(".tab-btn");
-                const tabContents = document.querySelectorAll(".tab-content");
-                function updateTabStyles(activeTab) {
-                    tabButtons.forEach(button => {
-                        button.classList.remove("text-[#396E66]", "border-[#396E66]", "text-[#00307D]", "border-[#00307D]");
-                        if (button.dataset.target === activeTab) {
-                            if (activeTab === "tab-presensi") {
-                                button.classList.add("text-[#396E66]", "border-[#396E66]");
-                            } else {
-                                button.classList.add("text-[#00307D]", "border-[#00307D]");
-                            }
-                        }
-                    });
+            $('#logoutButton').on('click', function () {
+                $('#logoutModal').removeClass('hidden');
+            });
+            $('#closePopup, #cancelLogout').on('click', function () {
+                $('#logoutModal, #popupPresensi').addClass('hidden');
+            });
+
+            // Tab Presensi & Absensi
+            $(".tab-btn").on("click", function () {
+                let target = $(this).data("target");
+
+                $(".tab-content").addClass("hidden");
+                $("#" + target).removeClass("hidden");
+
+                $(".tab-btn").removeClass("text-[#396E66] border-[#396E66] text-[#00307D] border-[#00307D]");
+                if (target === "tab-presensi") {
+                    $(this).addClass("text-[#396E66] border-[#396E66]");
+                } else {
+                    $(this).addClass("text-[#00307D] border-[#00307D]");
                 }
-                tabButtons.forEach(button => {
-                    button.addEventListener("click", function () {
-                        tabContents.forEach(content => content.classList.add("hidden"));
-                        document.getElementById(this.dataset.target).classList.remove("hidden");
-                        updateTabStyles(this.dataset.target);
-                    });
-                });
-                updateTabStyles("tab-presensi"); 
+            });
 
-                //Succsess Pengajuan Izin
-                let popup = document.getElementById("popupSuccess");
-                if (popup) {
-                    popup.classList.remove("hidden");
-                    setTimeout(() => {
-                        popup.classList.add("hidden");
-                    }, 3000);
-                }       
+            $(".tab-btn[data-target='tab-presensi']").trigger("click");
 
-                //Profile Dropdown 
-                const profileMenu = document.getElementById("profileMenu");
-                const modalProfile = document.getElementById("modalProfile");
-                const arrowIcon = document.getElementById("arrowIcon");
-                let isProfileOpen = false;
-                profileMenu.addEventListener("click", function (event) {
-                    event.stopPropagation(); 
-                    modalProfile.classList.toggle("hidden"); 
-                    isProfileOpen = !isProfileOpen;
-                    arrowIcon.style.transform = isProfileOpen ? "rotate(180deg)" : "rotate(0deg)";
-                });
-                document.addEventListener("click", function () {
-                    modalProfile.classList.add("hidden");
-                    isProfileOpen = false;
-                    arrowIcon.style.transform = "rotate(0deg)";
-                });
+            // Success Pengajuan Izin
+            let $popup = $("#popupSuccess");
+            if ($popup.length) {
+                $popup.removeClass("hidden");
+                setTimeout(() => {
+                    $popup.addClass("hidden");
+                }, 3000);
+            }
 
-        
-                // Presensi Popup
-                document.getElementById("btnPresensi").addEventListener("click", function () {
-                    document.getElementById("popupPresensi").classList.remove("hidden");
-                });
-                document.querySelectorAll("#btnBatal").forEach(button => {
-                    button.addEventListener("click", function () {
-                        document.getElementById("popupPresensi").classList.add("hidden");
-                    });
-                });
-        
-                // Handle Presensi Action
-                document.getElementById("btnHadir").addEventListener("click", async function () {
-                    let now = new Date();
-                    let presensiUrl = document.querySelector('meta[name="presensi-url"]').content;
-                    let csrfToken = document.querySelector('meta[name="csrf-token"]').content;
-                    let nomorInduk = document.querySelector('meta[name="nomor-induk"]').content;
+            // Profile Dropdown
+            let isProfileOpen = false;
+            $("#profileMenu").on("click", function (event) {
+                event.stopPropagation();
+                $("#modalProfile").toggleClass("hidden");
+                isProfileOpen = !isProfileOpen;
+                $("#arrowIcon").css("transform", isProfileOpen ? "rotate(180deg)" : "rotate(0deg)");
+            });
 
-                    try {
-                        let response = await fetch(presensiUrl, {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                                "X-CSRF-TOKEN": csrfToken
-                            },
-                            body: JSON.stringify({
-                                nomor_induk: nomorInduk,
-                                tanggal_presensi: now.toISOString().split('T')[0],
-                                waktu_presensi: now.toTimeString().split(' ')[0],
-                                status: "Hadir"
-                            })
-                        });
+            $(document).on("click", function () {
+                $("#modalProfile").addClass("hidden");
+                isProfileOpen = false;
+                $("#arrowIcon").css("transform", "rotate(0deg)");
+            });
 
-                        document.getElementById("popupPresensi").classList.add("hidden");
-                        if (response.ok) {
-                            document.getElementById("popupBerhasilPresensi").classList.remove("hidden");
-                            setTimeout(() => {
-                                document.getElementById("popupBerhasilPresensi").classList.add("hidden");
-                                location.reload();
-                            }, 2000);
-                        } else {
-                            document.getElementById("popupSudahPresensi").classList.remove("hidden");
-                            setTimeout(() => {
-                                document.getElementById("popupSudahPresensi").classList.add("hidden");
-                            }, 2000);
-                        }
-                    } catch (error) {
-                        console.error("Error:", error);
-                        alert("Terjadi kesalahan, coba lagi.");
-                    }
-                });
-        
-                // Logout
-                const logoutButton = document.getElementById('logoutButton');
-                const logoutModal = document.getElementById('logoutModal');
-                const cancelLogout = document.getElementById('cancelLogout');
-                logoutButton.addEventListener('click', () => {
-                    logoutModal.classList.remove('hidden');
-                });
-                cancelLogout.addEventListener('click', () => {
-                    logoutModal.classList.add('hidden');
-                });
+            // Presensi Popup
+            $("#btnPresensi").on("click", function () {
+                $("#popupPresensi").removeClass("hidden");
+            });
 
-                //Close
-                const closePopup = document.querySelectorAll('#closePopup');
-                    closePopup.forEach(button => {
-                        button.addEventListener('click', () => {
-                            logoutModal.classList.add('hidden');
-                            popupPresensi.classList.add('hidden');
-                    });
+            $("#btnBatal").on("click", function () {
+                $("#popupPresensi").addClass("hidden");
+            });
+
+            // Handle Presensi Action
+            $("#btnHadir").on("click", function () {
+                let now = new Date();
+                let presensiUrl = $('meta[name="presensi-url"]').attr("content");
+                let csrfToken = $('meta[name="csrf-token"]').attr("content");
+                let nomorInduk = $('meta[name="nomor-induk"]').attr("content");
+
+                $.ajax({
+                    url: presensiUrl,
+                    type: "POST",
+                    contentType: "application/json",
+                    headers: { "X-CSRF-TOKEN": csrfToken },
+                    data: JSON.stringify({
+                        nomor_induk: nomorInduk,
+                        tanggal_presensi: now.toISOString().split("T")[0],
+                        waktu_presensi: now.toTimeString().split(" ")[0],
+                        status: "Hadir",
+                    }),
+                    success: function () {
+                        $("#popupPresensi").addClass("hidden");
+                        $("#popupBerhasilPresensi").removeClass("hidden");
+                        setTimeout(() => {
+                            $("#popupBerhasilPresensi").addClass("hidden");
+                            location.reload();
+                        }, 2000);
+                    },
+                    error: function () {
+                        $("#popupPresensi").addClass("hidden");
+                        $("#popupSudahPresensi").removeClass("hidden");
+                        setTimeout(() => {
+                            $("#popupSudahPresensi").addClass("hidden");
+                        }, 2000);
+                    },
                 });
             });
-        </script>        
-    </body>
+        });
+            // Logout
+            const logoutButton = document.getElementById('logoutButton');
+            const logoutModal = document.getElementById('logoutModal');
+            const cancelLogout = document.getElementById('cancelLogout');
+            logoutButton.addEventListener('click', () => {
+                logoutModal.classList.remove('hidden');
+            });
+            cancelLogout.addEventListener('click', () => {
+                logoutModal.classList.add('hidden');
+            });
+
+            //Close
+            const closePopup = document.querySelectorAll('#closePopup');
+                closePopup.forEach(button => {
+                    button.addEventListener('click', () => {
+                        logoutModal.classList.add('hidden');
+                        popupPresensi.classList.add('hidden');
+                });
+            });
+    </script>        
+</body>
 </html>

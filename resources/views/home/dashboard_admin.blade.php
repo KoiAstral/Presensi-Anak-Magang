@@ -105,31 +105,24 @@
                 </div>
             </div>
         </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            //Sidebar
-            const sidebarToggle = document.getElementById("sidebarToggle");
-            const sidebar = document.getElementById("sidebar");
-            const mainContent = document.getElementById("mainContent");
-            sidebarToggle.addEventListener("click", () => {
-                sidebar.classList.toggle("-translate-x-full");
-                sidebar.classList.toggle("translate-x-0");
-                mainContent.style.paddingLeft = sidebar.classList.contains("-translate-x-full") ? "0" : "16rem";
+        const sidebarToggle = document.getElementById("sidebarToggle");
+        const sidebar = document.getElementById("sidebar");
+        const mainContent = document.getElementById("mainContent");
+        sidebarToggle.addEventListener("click", () => {
+            sidebar.classList.toggle("-translate-x-full");
+            sidebar.classList.toggle("translate-x-0");
+            mainContent.style.paddingLeft = sidebar.classList.contains("-translate-x-full") ? "0" : "16rem";
+        });
+
+        $(document).ready(function() {
+            $('#logoutButton').on('click', function () {
+                $('#logoutModal').removeClass('hidden');
             });
-    
-            // Logout
-            const logoutButton = document.getElementById('logoutButton');
-            const logoutModal = document.getElementById('logoutModal');
-            const cancelLogout = document.getElementById('cancelLogout');
-            const closePopup = document.getElementById('closePopup');
-            logoutButton.addEventListener('click', () => {
-                logoutModal.classList.remove('hidden');
-            });
-            cancelLogout.addEventListener('click', () => {
-                logoutModal.classList.add('hidden');
-            });
-            closePopup.addEventListener('click', () => {
-                logoutModal.classList.add('hidden');
+            $('#closePopup, #cancelLogout').on('click', function () {
+                $('#logoutModal, #popupHapus').addClass('hidden');
             });
         });
     </script>

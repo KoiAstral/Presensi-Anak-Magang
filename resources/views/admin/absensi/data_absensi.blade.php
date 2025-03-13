@@ -207,117 +207,96 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-        <script>
-            $(document).ready(function() {
-                $('#dataTable').DataTable({
-                    responsive: true, 
-                    autoWidth: false,
-                });
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script>
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        sidebarToggle.addEventListener('click', () => {
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+                sidebar.classList.add('translate-x-0');
+                mainContent.classList.add('pl-64'); 
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                sidebar.classList.remove('translate-x-0');
+                mainContent.classList.remove('pl-64');
+            }
+            setTimeout(() => {
+                window.dispatchEvent(new Event('resize')); 
+            }, 300);
+        });
+        $(document).ready(function() {
+            $('#dataTable').DataTable({
+                responsive: true, 
+                autoWidth: false,
             });
 
-            document.addEventListener("DOMContentLoaded", function() {
-                //Sidebar
-                const sidebarToggle = document.getElementById('sidebarToggle');
-                const sidebar = document.getElementById('sidebar');
-                const mainContent = document.getElementById('mainContent');
-                sidebarToggle.addEventListener('click', () => {
-                    if (sidebar.classList.contains('-translate-x-full')) {
-                        sidebar.classList.remove('-translate-x-full');
-                        sidebar.classList.add('translate-x-0');
-                        mainContent.classList.add('pl-64'); 
-                    } else {
-                        sidebar.classList.add('-translate-x-full');
-                        sidebar.classList.remove('translate-x-0');
-                        mainContent.classList.remove('pl-64');
-                    }
-                    setTimeout(() => {
-                        window.dispatchEvent(new Event('resize')); 
-                    }, 300);
-                });
+            $('#logoutButton').on('click', function () {
+                $('#logoutModal').removeClass('hidden');
+            });
+            $('#closePopup, #cancelLogout').on('click', function () {
+                $('#logoutModal').addClass('hidden');
+            });
 
-                // Logout
-                const logoutButton = document.getElementById('logoutButton');
-                const logoutModal = document.getElementById('logoutModal');
-                const cancelLogout = document.getElementById('cancelLogout');
-                const closePopup = document.getElementById('closePopup');
-                logoutButton.addEventListener('click', () => {
-                    logoutModal.classList.remove('hidden');
-                });
-                cancelLogout.addEventListener('click', () => {
-                    logoutModal.classList.add('hidden');
-                });
-                closePopup.addEventListener('click', () => {
-                    logoutModal.classList.add('hidden');
-                });
+            let approveForm, rejectForm;
+            $("button[data-approve]").on("click", function () {
+                $("#popupApproved").removeClass("hidden");
+                approveForm = $(this).closest("form");
+            });
+            $("button[data-reject]").on("click", function () {
+                $("#popupRejected").removeClass("hidden");
+                rejectForm = $(this).closest("form");
+            });
 
-                // Approved and Reject
-                const approveButtons = document.querySelectorAll("button[data-approve]");
-                const rejectButtons = document.querySelectorAll("button[data-reject]");
-                const popupApproved = document.getElementById("popupApproved");
-                const popupRejected = document.getElementById("popupRejected");
-                const popupApprovedConfirm = document.getElementById("popupApprovedConfirm");
-                const popupRejectedConfirm = document.getElementById("popupRejectedConfirm");
-                let approveForm, rejectForm;
-
-                approveButtons.forEach(button => {
-                    button.addEventListener("click", function () {
-                        popupApproved.classList.remove("hidden"); 
-                        approveForm = this.closest("form"); 
-                    });
-                });
-                rejectButtons.forEach(button => {
-                    button.addEventListener("click", function () {
-                        popupRejected.classList.remove("hidden"); 
-                        rejectForm = this.closest("form"); 
-                    });
-                });
-
-                document.getElementById("btnYakinApprove").addEventListener("click", function () {
-                    if (approveForm) {
-                        submitForm(approveForm, popupApproved, popupApprovedConfirm);
-                    }
-                });
-                document.getElementById("btnYakinReject").addEventListener("click", function () {
-                    if (rejectForm) {
-                        submitForm(rejectForm, popupRejected, popupRejectedConfirm);
-                    }
-                });
-                document.getElementById("btnBatalApprove").addEventListener("click", function () {
-                    popupApproved.classList.add("hidden");
-                });
-                document.getElementById("btnBatalReject").addEventListener("click", function () {
-                    popupRejected.classList.add("hidden");
-                });
-
-                function submitForm(form, confirmPopup, successPopup) {
-                    const formData = new FormData(form);
-                    fetch(form.action, {
-                        method: form.method,
-                        body: formData,
-                        headers: {
-                            "X-Requested-With": "XMLHttpRequest",
-                            "X-CSRF-TOKEN": document.querySelector("input[name='_token']").value,
-                        },
-                    })
-                    .then(response => {
-                        if (response.ok) {
-                            confirmPopup.classList.add("hidden");
-                            successPopup.classList.remove("hidden");
-
-                            setTimeout(() => {
-                                successPopup.classList.add("hidden");
-                                location.reload();
-                            }, 2000);
-                        } else {
-                            console.error("Gagal memperbarui data");
-                        }
-                    })
-                    .catch(error => console.error("Terjadi kesalahan:", error));
+            $("#btnYakinApprove").on("click", function () {
+                if (approveForm) {
+                    submitForm(approveForm, "#popupApproved", "#popupApprovedConfirm");
                 }
             });
-        </script>
-    </body>
+            $("#btnYakinReject").on("click", function () {
+                if (rejectForm) {
+                    submitForm(rejectForm, "#popupRejected", "#popupRejectedConfirm");
+                }
+            });
+
+            $("#btnBatalApprove").on("click", function () {
+                $("#popupApproved").addClass("hidden");
+            });
+            $("#btnBatalReject").on("click", function () {
+                $("#popupRejected").addClass("hidden");
+            });
+
+            function submitForm(form, confirmPopup, successPopup) {
+                let formData = new FormData(form[0]);
+                $.ajax({
+                    url: form.attr("action"),
+                    type: form.attr("method"),
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    headers: {
+                        "X-Requested-With": "XMLHttpRequest",
+                        "X-CSRF-TOKEN": $("input[name='_token']").val(),
+                    },
+                    success: function () {
+                        $(confirmPopup).addClass("hidden");
+                        $(successPopup).removeClass("hidden");
+
+                        setTimeout(() => {
+                            $(successPopup).addClass("hidden");
+                            location.reload();
+                        }, 2000);
+                    },
+                    error: function () {
+                        console.error("Gagal memperbarui data");
+                    }
+                });
+            }
+        });                
+    </script>
+</body>
 </html>
