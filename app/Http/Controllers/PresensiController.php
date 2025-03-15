@@ -11,14 +11,12 @@ class PresensiController extends Controller
 {
     public function indexAdmin()
     {
-        $presensi = Presensi::with('user')->get(); 
-        $presensi = Presensi::all();
+        $presensi = Presensi::with('user')->get();
         $user = Auth::user();
-        $users = User::all();
+
         return view('admin.presensi.data_presensi', compact('presensi', 'user'));
     }
 
-    
     public function store()
     {
         $user = Auth::user(); // Fetch the logged-in user
