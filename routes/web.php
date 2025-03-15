@@ -3,8 +3,6 @@
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Clogin; // Import the Clogin controller
-use App\Http\Controllers\Cregister;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -43,12 +41,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');    
     // Logout
     Route::get('/logout', [AuthController::class, 'logout_page'])->name('logout');
-});
-
-// Admin routes
-Route::prefix('admin')->group(function () {
-    Route::get('/presensi', [PresensiController::class, 'indexAdmin'])->name('Table_presensi');
-    Route::get('/absensi', [AbsensiController::class, 'indexAdmin'])->name('Table_absensi');
 });
 
 // absensi routes
