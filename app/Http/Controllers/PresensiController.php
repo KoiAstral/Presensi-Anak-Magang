@@ -9,7 +9,7 @@ use App\Models\User;
 
 class PresensiController extends Controller
 {
-    public function indexAdmin()
+    public function index()
     {
         $presensi = Presensi::with('user')->get();
         $user = Auth::user();

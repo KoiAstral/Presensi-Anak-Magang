@@ -57,7 +57,7 @@ Route::middleware(['auth'])->group(function () {
 
 // admin route
 Route::get('/data-siswa', [UserController::class, 'index'])->name('data.siswa');
-Route::get('/riwayat-presensi', [PresensiController::class, 'indexAdmin'])->name('presensi.index');
+Route::get('/riwayat-presensi', [PresensiController::class, 'index'])->name('presensi.index');
 Route::get('/konfirmasi-pengajuan', [AbsensiController::class, 'indexAdmin'])->name('konfirmasi-pengajuan');
 Route::post('/absensi/updatestatus/{id}', [AbsensiController::class, 'updateStatus'])->name('absensi.updatestatus');
 
